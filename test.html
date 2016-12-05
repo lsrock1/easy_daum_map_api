@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!-- HTML5 Hello world by kirupa - http://www.kirupa.com/html5/getting_your_feet_wet_html5_pg1.htm -->
+<html lang="en-us">
+
+<head>
+<meta charset="utf-8">
+<title>Hello...</title>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+<style type="text/css">
+#mainContent {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: xx-large;
+	font-weight: bold;
+	background-color: #E3F0FB;
+	border-radius: 4px;
+	padding: 10px;
+	text-align: center;
+}
+.buttonStyle {
+	border-radius: 4px;
+	border: thin solid #F0E020;
+	padding: 5px;
+	background-color: #F8F094;
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	font-weight: bold;
+	color: #663300;
+	width: 75px;
+}
+
+.buttonStyle:hover {
+	border: thin solid #FFCC00;
+	background-color: #FCF9D6;
+	color: #996633;
+	cursor: pointer;
+}
+.buttonStyle:active {
+	border: thin solid #99CC00;
+	background-color: #F5FFD2;
+	color: #669900;
+	cursor: pointer;
+}
+
+</style>
+</head>
+
+<body>
+<div id="mainContent">
+<p id="helloText">?</p>
+<button id="clickButton" class="buttonStyle">click me</button>
+</div>
+<div id="map" style="width:500px;height:400px;"></div>
+<div id="map2" style="width:500px;height:400px;"></div>
+<button id="m1">셋설정</button>
+<button id="m2">셋2</button>
+<script src="//apis.daum.net/maps/maps3.js?apikey=23598cdf36f0c5f5bf1f1bfda70b8e80&libraries=services"></script>
+<script src="/own.js"></script>
+<script> 
+var myButton = document.getElementById("clickButton");
+var myText = document.getElementById("helloText");
+
+myButton.addEventListener('click', doSomething, false)
+
+function doSomething() {
+	myText.textContent = "hello, world!";
+}
+var container=document.getElementById("map");
+var container1=document.getElementById("map2");
+var options = { //지도를 생성할 때 필요한 기본 옵션
+	lat: 33.450701,
+	lng: 126.570667, //지도의 중심좌표.
+	level: 3 //지도의 레벨(확대, 축소 정도)
+};
+var map=new kakaoMap(container,options);
+var map1=new kakaoMap(container1,options);
+$("#m1").click(function(){
+	// map.addControl('Type','RIGHTTOP');
+	console.log(map.level());
+})
+$("#m2").click(function(){
+	map1.level(10);
+})
+map.on('click',function(a) {
+    alert(a.latLng);
+});
+
+</script>
+
+</body>
+</html>
