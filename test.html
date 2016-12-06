@@ -72,18 +72,25 @@ var options = { //지도를 생성할 때 필요한 기본 옵션
 	lng: 126.570667, //지도의 중심좌표.
 	level: 3 //지도의 레벨(확대, 축소 정도)
 };
-var map=new kakaoMap(container,options);
-var map1=new kakaoMap(container1,options);
+var markoption={
+	lat: 33.450701,
+	lng: 126.570667
+}
+
+var mark2={
+	lat: 33.450701,
+	lng: 126.580667
+}
+var map=daumMap(container,options);
+var map1=daumMap(container1,options);
+var mk=map.mark(markoption);
+var mk2=map.mark(mark2);
 $("#m1").click(function(){
-	// map.addControl('Type','RIGHTTOP');
-	console.log(map.level());
+	mk.remove();
 })
 $("#m2").click(function(){
-	map1.level(10);
+	mk.map(map1);
 })
-map.on('click',function(a) {
-    alert(a.latLng);
-});
 
 </script>
 
