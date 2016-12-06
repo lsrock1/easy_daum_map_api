@@ -1,8 +1,23 @@
 function isInt(n) {
    return n % 1 === 0;
 }
-
+// daum.maps.event.preventMap();
 function daumMap(container,options){
+  if(options.mapTypeId){
+    switch(name){
+      case "ROADMAP":
+        options.mapTypeId=daum.maps.MapTypeId.ROADMAP;
+        break;
+      case "SKYVIEW":
+        options.mapTypeId=daum.maps.MapTypeId.SKYVIEW;
+        break;
+      case "HYBRID":
+        options.mapTypeId=daum.maps.MapTypeId.HYBRID;
+        break;
+      default: break;
+    }
+  }
+  
   var options={
     center: new daum.maps.LatLng(options.lat,options.lng),
     level: options.level,
@@ -21,7 +36,7 @@ function daumMap(container,options){
   
   return {
     center: function(lat,lng){
-      if(isNaN(lat)||isNaN(lng)){
+      if(!lat||!lng){
         return [map.getCenter().lat,map.getCenter().lng];
       }
       else{
@@ -30,24 +45,28 @@ function daumMap(container,options){
     },
     
     level: function(level,options){
-      if(isNaN(level)){
-        return this.map.getLevel();
+      if(!level){
+        return map.getLevel();
       }
       else{
-        return this.map.setLevel(level,options);
+        return map.setLevel(level,options);
       }
     },
     
     mapTypeId: function(name){
-      if(isNaN(name)){
-        var mapId=typeof map.getMapTypeId();
+      console.log(name);
+      if(!name){
+        var mapId=map.getMapTypeId();
+        console.log(mapId);
         switch(mapId){
-          case "daum.maps.MapTypeId.ROADMAP":
+          case 1:
             return "ROADMAP";
-          case "daum.maps.MapTypeId.SKYVIEW":
+          case 2:
             return "SKYVIEW";
-          default:
+          case 3:
             return "HYBRID";
+          default:
+            break;
         }
       }
       else{
@@ -67,8 +86,8 @@ function daumMap(container,options){
     },
     
     bound: function(lat1,lng1,lat2,lng2,paddingTop,paddingRight,paddingBottom,paddingLeft){
-      if(isNaN(lat1)||isNaN(lng1)||isNaN(lat2)||isNaN(lng1)){
-        var mapBound=this.map.getBounds();
+      if(!lat1||!lng1||!lat2||!lng1){
+        var mapBound=map.getBounds();
         var sw=mapBound.getSouthWest();
         var ne=mapBound.getNorthEast();
   
@@ -181,7 +200,7 @@ function daumMap(container,options){
     },
     
     draggable: function(bool){
-      if(isNaN(bool)){
+      if(!bool){
         return map.getDraggable();
       }
       else{
@@ -190,7 +209,7 @@ function daumMap(container,options){
     },
     
     zoomable: function(bool){
-      if(isNaN(bool)){
+      if(!bool){
         return map.getZoomable();
       }
       else{
@@ -247,7 +266,7 @@ function daumMap(container,options){
     },
     
     keyboardShortcuts: function(bool){
-      if(isNaN(bool)){
+      if(!bool){
         return map.getKeyboardShortcuts();
       }
       else{
@@ -263,10 +282,24 @@ function daumMap(container,options){
       daum.maps.event.trigger(map, event,data);
     },
     
+    off: function(event,func){
+      daum.maps.event.removeListener(map,event,func);
+    },
+    
     mark: function(options){
       var mark= new marker(map,options);
       markers.push(mark);
       return mark;
+    },
+    
+    markers: function(){
+      return markers;
+    },
+    
+    removeAll: function(){
+      markers.forEach(function(value){
+        value.remove();
+      })
     },
     
     object: function(){
@@ -306,6 +339,10 @@ function marker(map,options){
       }
     },
     
+    attach: function(){
+      marker.setMap(map);
+    },
+    
     remove: function(){
       marker.setMap(null);
     },
@@ -332,7 +369,7 @@ function marker(map,options){
     },
     
     zindex: function(num){
-      if(isNaN(num)){
+      if(!num){
         return marker.getZIndex();
       }
       else{
@@ -341,7 +378,7 @@ function marker(map,options){
     },
     
     visible: function(bool){
-      if(isNaN(bool)){
+      if(!bool){
         return marker.getVisible();
       }
       else{
@@ -350,7 +387,7 @@ function marker(map,options){
     },
     
     title: function(title){
-      if(isNaN(title)){
+      if(!title){
         return marker.getTitle();
       }
       else{
@@ -359,7 +396,7 @@ function marker(map,options){
     },
     
     draggable: function(bool){
-      if(isNaN(bool)){
+      if(!bool){
         return marker.getDraggable();
       }
       else{
@@ -368,7 +405,7 @@ function marker(map,options){
     },
     
     clickable: function(bool){
-      if(isNaN(bool)){
+      if(!bool){
         return marker.getClickable(bool);
       }
       else{
@@ -377,7 +414,7 @@ function marker(map,options){
     },
     
     altitude: function(num){
-      if(isNaN(num)){
+      if(!num){
         return marker.getAltitude();
       }
       else{
@@ -386,7 +423,7 @@ function marker(map,options){
     },
     
     range: function(num){
-      if(isNaN(num)){
+      if(!num){
         return marker.getRange();
       }
       else{
@@ -395,12 +432,24 @@ function marker(map,options){
     },
     
     opacity: function(num){
-      if(isNaN(num)){
+      if(!num){
         return marker.getOpacity();
       }
       else{
         marker.setOpacity(num);
       }
+    },
+    
+    on: function(event,func){
+      daum.maps.event.addListener(marker,event,func);
+    },
+    
+    trigger: function(event,func){
+      daum.maps.event.trigger(marker,event,func);
+    },
+    
+    off: function(event,func){
+      daum.maps.event.removeEventListener(marker,event,func);
     }
   
   }
