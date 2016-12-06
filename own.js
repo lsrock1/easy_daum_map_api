@@ -3,7 +3,7 @@ function isInt(n) {
 }
 
 function kakaoMap(container,options){
-  var initoptions={
+  var options={
     center: new daum.maps.LatLng(options.lat,options.lng),
     level: options.level,
     mapTypeId: options.mapTypeId,
@@ -16,7 +16,7 @@ function kakaoMap(container,options){
     keyboardShortcuts: options.keyboardShortcuts
   };
   
-  this.map=new daum.maps.Map(container, initoptions);
+  this.map=new daum.maps.Map(container, options);
   this.markers=[];
   
   this.center=function(lat,lng){
@@ -257,13 +257,64 @@ function kakaoMap(container,options){
   
   this.on=function(event,func){
     daum.maps.event.addListener(this.map, event,func);
-  }
+  };
   
-  this.mark=function(options){
-    return new daum.maps.Marker({
-      map: this.map,
-      position: new daum.maps.LatLng(options.lat,options.lng),
-      
-    });
+  this.trigger=function(event,data){
+    daum.maps.event.trigger(this.map, event,data);
+  };
+  
+  this.marker=function(options){
+    var mark= new marker(this.map,options);
+    markers.push(mark);
+    return mark;
   };
 }
+
+function marker(map,options){
+  var options={
+    position: new daum.maps.LatLng(options.lat,options.lng),
+    map: map,
+    image: options.image,
+    title: options.title,
+    draggable: options.draggable,
+    clickable: options.clickable,
+    zIndex: options.zIndex,
+    opacity: options.opacity,
+    altitude: options.altitude,
+    range: options.range
+  };
+  this.marker=new daum.maps.Marker(options);
+  
+  this.map=function(map){
+    if(map instanceof daum.maps.Map){
+      this.marker.setMap(map);
+    }
+    else if(map==null){
+      this.marker.setMap(null);
+    }
+    else{
+      return this.marker.getMap();
+    }
+  };
+  
+  this.image=function(image){
+    if(image instanceof daum.maps.MarkerImage){
+      this.marker.setImage(image);
+    }
+    else{
+      return this.marker.getImage();
+    }
+  };
+  
+  this.position=function(name,a,b,c,d){
+    if(name=='latlng'){
+      this.marker.setPosition(new daum.maps.LatLng(a,b));
+    }
+    else if(name=='viewpoint'){
+      this.marker.setPosition(new daum.maps.Viewpoint(a,b,c,d));
+    }
+    else{
+      return this.marker.getPosition();
+    }
+  }
+};
