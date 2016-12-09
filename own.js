@@ -1,6 +1,20 @@
 function isInt(n) {
    return n % 1 === 0;
 }
+
+Array.prototype.mapFunc=function(name,value){
+  var list=[]
+  this.forEach(function(ob){
+    var content=ob[name](value);
+    if(content){
+      list.push(content);
+    }
+  });
+  if(list.length>0){
+    return list;
+  }
+};
+
 // daum.maps.event.preventMap();
 function daumMap(container,options){
   if(options.mapTypeId){
@@ -32,7 +46,6 @@ function daumMap(container,options){
   };
   
   var map=new daum.maps.Map(container, options);
-  var markers=[];
   
   return {
     center: function(lat,lng){
@@ -54,10 +67,8 @@ function daumMap(container,options){
     },
     
     mapTypeId: function(name){
-      console.log(name);
       if(!name){
         var mapId=map.getMapTypeId();
-        console.log(mapId);
         switch(mapId){
           case 1:
             return "ROADMAP";
@@ -286,22 +297,6 @@ function daumMap(container,options){
       daum.maps.event.removeListener(map,event,func);
     },
     
-    mark: function(options){
-      var mark= new marker(map,options);
-      markers.push(mark);
-      return mark;
-    },
-    
-    markers: function(){
-      return markers;
-    },
-    
-    removeAll: function(){
-      markers.forEach(function(value){
-        value.remove();
-      })
-    },
-    
     object: function(){
       return map;
     }
@@ -310,10 +305,10 @@ function daumMap(container,options){
 
 //마커 객체 정의
 
-function marker(map,options){
+function marker(options){
+  var tag=options.tag;
   var options={
     position: new daum.maps.LatLng(options.lat,options.lng),
-    map: map,
     image: options.image,
     title: options.title,
     draggable: options.draggable,
@@ -323,28 +318,27 @@ function marker(map,options){
     altitude: options.altitude,
     range: options.range
   };
+  
+  var daumMap=null;
+  
   var marker=new daum.maps.Marker(options);
-
+  
   return {
-    map: function(map){
-      if(typeof map =='object'){
-        marker.setMap(map.object());
-      }
-      else if(map==null){
-        marker.setMap(null);
+    map: function(getmap){
+      if(typeof getmap =='object'){
+        if(getmap!=daumMap){
+          marker.setMap(getmap.object());
+          daumMap=getmap;
+        }
       }
       else{
-        return map;
-        // return this.marker.getMap();
+        return daumMap;
       }
-    },
-    
-    attach: function(){
-      marker.setMap(map);
     },
     
     remove: function(){
       marker.setMap(null);
+      daumMap=null;
     },
     
     image: function(image){

@@ -59,20 +59,33 @@ var options = { //지도를 생성할 때 필요한 기본 옵션
 	lng: 126.570667, //지도의 중심좌표.
 	level: 3 //지도의 레벨(확대, 축소 정도)
 };
-var markoption={
+var mark1={
 	lat: 33.450701,
-	lng: 126.570667
+	lng: 126.570667,
+	tag: 1
 }
 
 var mark2={
 	lat: 33.450701,
-	lng: 126.580667
+	lng: 126.580667,
+	tag: 1
+}
+
+var mark3={
+	lat: 33.450701,
+	lng: 126.560667,
+	tag: 1
 }
 var map=daumMap(container,options);
-var mk=map.mark(markoption);
-var mk2=map.mark(mark2);
+var marker1=marker(mark1);
+var marker2=marker(mark2);
+var marker3=marker(mark3);
+
+
+[marker1,marker2,marker3].mapFunc('map',map);
+
 $("#m1").click(function(){
-	mk.remove();
+	console.log([marker1,marker2,marker3].mapFunc('remove'));
 })
 $("#m2").click(function(){
 	// mk.attach();
@@ -82,6 +95,7 @@ $("#m2").click(function(){
 })
 $("#m3").click(function(){
 	map.removeAll();
+	console.log(map.mark());
 })
 </script>
 
