@@ -85,17 +85,15 @@ var marker3=marker(mark3);
 [marker1,marker2,marker3].mapFunc('map',map);
 
 $("#m1").click(function(){
-	console.log([marker1,marker2,marker3].mapFunc('remove'));
+	// console.log([marker1,marker2,marker3].mapFunc('remove'));
+	map.pan(50,50);
 })
 $("#m2").click(function(){
-	// mk.attach();
-	// mk2.remove();
-	
-	console.log(map.mapTypeId("HYBRID"));
+	// map.bound(marker1,marker2);
+	map.pan(33.443431839028484, 126.564911080311, 33.457930846656026, 126.5863513426475);
 })
 $("#m3").click(function(){
-	map.removeAll();
-	console.log(map.mark());
+	map.pan(33.450701,126.560667);
 })
 </script>
 
