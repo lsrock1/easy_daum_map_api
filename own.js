@@ -40,7 +40,7 @@ function daumMap(container,options){
     scrollwheel: options.scrollwheel,
     disableDoubleClick: options.disableDoubleClick,
     disableDoubleClickZoom: options.disableDoubleClickZoom,
-    projectionId: options.projectionId,
+    //projectionId: options.projectionId,
     tileAnimation: options.tileAnimation,
     keyboardShortcuts: options.keyboardShortcuts
   };
