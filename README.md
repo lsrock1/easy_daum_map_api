@@ -1,4 +1,4 @@
-daum 지도 api easy wrap
+daum 지도 api easy
 =======================
 
 다음 지도를 사용하기 쉽게 만든 js입니다.
@@ -36,8 +36,7 @@ own.js를 다운받아서 daum map api 스크립트 소스 다음에 포함합�
     
 #daumMap 메소드
 
-##중심좌표 옮기기 및 현재중심좌표 반환  
-##setCenter, getCenter
+##1.중심좌표 옮기기 및 현재 중심좌표 반환 (setCenter, getCenter)
 http://apis.map.daum.net/web/documentation/#Map_setCenter
 
     map.center();
@@ -47,8 +46,7 @@ http://apis.map.daum.net/web/documentation/#Map_setCenter
     //map의 중심좌표를 34.450701,127.570667 로 이동
     
 
-##지도의 확대 수준 설정 및 반환  
-##setLevel, getLevel
+##2.지도의 확대 수준 설정 및 반환 (setLevel, getLevel)
 맵 타입에 따라 확대 가능 수준이 다름 자세한 사항은 doc 참고  
 http://apis.map.daum.net/web/documentation/#Map_setLevel
 
@@ -58,8 +56,7 @@ http://apis.map.daum.net/web/documentation/#Map_setLevel
     map.level(10);
     //map의 확대수준을 10으로 변경
 
-##지도 종류 변경 및 현재 종류 반환  
-##setMapTypeId, getMapTypeId
+##3.지도 종류 변경 및 현재 종류 반환 (setMapTypeId, getMapTypeId)
 지도의 종류에 관한 사항 doc 참고  
 http://apis.map.daum.net/web/documentation/#Map_setMapTypeId
 
@@ -70,8 +67,7 @@ http://apis.map.daum.net/web/documentation/#Map_setMapTypeId
     //지도종류 변경
     //'ROADMAP' 'SKYVIEW' 'HYBRID' 세가지 종류 선택 가능
     
-##레벨과 좌표를 변경해 Bound 영역을 지도 안에 나타내거나 현재 영역 반환  
-##setBounds, getBounds
+##4.레벨과 좌표를 변경해 Bound 영역을 지도 안에 나타내거나 현재 영역 반환 (setBounds, getBounds)
 
     map.bound();
     //정수 배열 [33.443431839028484, 126.564911080311, 33.457930846656026, 126.5863513426475]
@@ -83,5 +79,4 @@ http://apis.map.daum.net/web/documentation/#Map_setMapTypeId
     map.bound(marker1,marker2);
     //마커 객체를 전달해서 두 마커가 다 나오도록 설정 가능
     
-##부드럽게 이동
-##panBy, panTo
+##5.부드럽게 이동 (panBy, panTo)

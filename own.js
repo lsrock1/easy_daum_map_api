@@ -2,14 +2,27 @@ function isInt(n) {
    return n % 1 === 0;
 }
 
-Array.prototype.mapFunc=function(name,value){
+Array.prototype.daum=function(name,value){
   var list=[]
-  this.forEach(function(ob){
-    var content=ob[name](value);
-    if(content){
-      list.push(content);
+  if(Array.isArray(value)){
+    for(var i=0;i<this.length;i++){
+      var inst=(value[i] ? value[i] : value[value.length-1])
+      var content=this[i][name](inst);
+      
+      if(content){
+        list.push(content);
+      }
     }
-  });
+  }
+  else{
+    this.forEach(function(ob){
+      var content=ob[name](value);
+      if(content){
+        list.push(content);
+      }
+    });
+  }
+  
   if(list.length>0){
     return list;
   }

@@ -47,6 +47,7 @@
 
 <body>
 <div id="map" style="width:500px;height:400px;"></div>
+<div id="map2" style="width:500px;height:400px;"></div>
 <button id="m1">셋설정</button>
 <button id="m2">셋2</button>
 <button id="m3">3</button>
@@ -54,6 +55,7 @@
 <script src="/own.js"></script>
 <script> 
 var container=document.getElementById("map");
+var container2=document.getElementById("map2");
 var options = { //지도를 생성할 때 필요한 기본 옵션
 	lat: 33.450701,
 	lng: 126.570667, //지도의 중심좌표.
@@ -77,12 +79,13 @@ var mark3={
 	tag: 1
 }
 var map=daumMap(container,options);
+var map2=daumMap(container2,options);
 var marker1=marker(mark1);
 var marker2=marker(mark2);
 var marker3=marker(mark3);
 
 
-[marker1,marker2,marker3].mapFunc('map',map);
+[marker1,marker2,marker3].daum('map',map);
 
 $("#m1").click(function(){
 	// console.log([marker1,marker2,marker3].mapFunc('remove'));
