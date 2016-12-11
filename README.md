@@ -17,79 +17,87 @@ own.js를 다운받아서 daum map api 스크립트 소스 아래에 포함합�
 마커 등록
 
     <div id="map" style="width:500px;height:400px;"></div>
-    var container=document.getElementById("map");
-    var options = {
-    	lat: 33.450701,
-    	lng: 126.570667,
-    	level: 3
-    };
-     
-    var map=daumMap(container,options); //지도 초기화
-     
-    var mark={
-    	lat: 33.450701,
-    	lng: 126.570667,
-    	tag: 1
-    }//마커 옵션
-    var marker1=marker(mark1); //마커객체 생성
-    marker1.map(map); //마커를 지도에 표시
-    marker1.remove(); //마커 지우기
+    <script>
+        var container=document.getElementById("map");
+        var options = {
+        	lat: 33.450701,
+        	lng: 126.570667,
+        	level: 3
+        };
+         
+        var map=daumMap(container,options); //지도 초기화
+         
+        var mark={
+        	lat: 33.450701,
+        	lng: 126.570667,
+        }//마커 옵션
+        
+        var marker1=marker(mark1); //마커객체 생성
+        marker1.map(map); //마커를 지도에 표시
+        marker1.remove(); //마커 지우기
+    </script>
 
 
 다중 마커 등록
 
     <div id="map" style="width:500px;height:400px;"></div>
-    var container=document.getElementById("map");
-    var options = {
-    	lat: 33.450701,
-    	lng: 126.570667,
-    	level: 3
-    };
-     
-    var map=daumMap(container,options); //지도 초기화
-     
-    var mark={
-    	lat: 33.450701,
-    	lng: 126.570667
-    }
-    var mark2={
-    	lat: 33.450701,
-    	lng: 126.580667
-    }
-    //마커 옵션
-    var marker1=marker(mark); //첫 번째 마커객체 생성
-    var marker2=marker(mark2); //두 번째 마커객체 생성
-    marker1.map(map); //지도에 표시
-    marker2.map(map); //지도에 표시
+    <script>
+        var container=document.getElementById("map");
+        var options = {
+        	lat: 33.450701,
+        	lng: 126.570667,
+        	level: 3
+        };
+         
+        var map=daumMap(container,options); //지도 초기화
+         
+        var mark={
+        	lat: 33.450701,
+        	lng: 126.570667
+        }
+        var mark2={
+        	lat: 33.450701,
+        	lng: 126.580667
+        }
+        //마커 옵션
+        
+        var marker1=marker(mark); //첫 번째 마커객체 생성
+        var marker2=marker(mark2); //두 번째 마커객체 생성
+        
+        marker1.map(map); //지도에 표시
+        marker2.map(map); //지도에 표시
+    </script>
 
 
 다중 마커를 배열로 관리하기
 
     <div id="map" style="width:500px;height:400px;"></div>
-    var container=document.getElementById("map");
-    var options = {
-    	lat: 33.450701,
-    	lng: 126.570667,
-    	level: 3
-    };
-     
-    var map=daumMap(container,options); //지도 초기화
-     
-    var mark={
-    	lat: 33.450701,
-    	lng: 126.570667
-    }
-    var mark2={
-    	lat: 33.450701,
-    	lng: 126.580667
-    }
-    //마커 옵션
-    var markers=[]
-    markers.push(marker(mark)); //첫 번째 마커객체 생성 markers 배열에 삽입
-    markers.push(marker(mark2)); //두 번째 마커객체 생성 markers 배열에 삽입
-     
-    markers.daum('map',map); //모든 마커를 map이라는 지도에 표시
-    markers.daum('remove'); //모든 마커 지우기
+    <script>
+        var container=document.getElementById("map");
+        var options = {
+        	lat: 33.450701,
+        	lng: 126.570667,
+        	level: 3
+        };
+         
+        var map=daumMap(container,options); //지도 초기화
+         
+        var mark={
+        	lat: 33.450701,
+        	lng: 126.570667
+        }
+        var mark2={
+        	lat: 33.450701,
+        	lng: 126.580667
+        }
+        //마커 옵션
+        var markers=[]
+        markers.push(marker(mark)); //첫 번째 마커객체 생성 markers 배열에 삽입
+        markers.push(marker(mark2)); //두 번째 마커객체 생성 markers 배열에 삽입
+         
+        markers.daum('map',map); //모든 마커를 map이라는 지도에 표시
+        markers.daum('remove'); //모든 마커 지우기
+    </script>
 
 
 #1. daumMap 객체
