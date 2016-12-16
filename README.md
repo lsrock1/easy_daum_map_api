@@ -7,10 +7,10 @@ daum 지도 api easy
 
 #포함하기
 
-own.js를 다운받아서 daum map api 스크립트 소스 아래에 포함합니다.
+own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 
     <script src="//apis.daum.net/maps/maps3.js?apikey=본인 api 키"></script>
-    <script src="/own.js"></script>
+    <script src="/own.min.js"></script>
     
 #예제
 
