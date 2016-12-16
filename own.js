@@ -6,29 +6,27 @@ function arglen(obj){
   return Object.keys(obj).length;
 }
 
-Array.prototype.daum=function(name,value){
-  var list=[]
-  if(Array.isArray(value)){
+Array.prototype.markerMap=function(value){
+  this.forEach(function(ob){
+    ob['map'](value);
+  });
+};
+
+Array.prototype.markerRemove=function(){
+  this.forEach(function(ob){
+    ob['remove'];
+  });
+};
+
+Array.prototype.markerClick=function(value){
+  if(Array.isArray(value)&&this.length==value.length){
     for(var i=0;i<this.length;i++){
-      var inst=(value[i] ? value[i] : value[value.length-1])
-      var content=this[i][name](inst);
-      
-      if(content){
-        list.push(content);
-      }
+      (function(marker,val){
+        marker.on('click',function(){
+          val.open(marker);
+        });
+      }(this[i],value[i]));
     }
-  }
-  else{
-    this.forEach(function(ob){
-      var content=ob[name](value);
-      if(content){
-        list.push(content);
-      }
-    });
-  }
-  
-  if(list.length>0){
-    return list;
   }
 };
 
@@ -65,6 +63,8 @@ function daumMap(container,options){
   var map=new daum.maps.Map(container, options);
   
   return {
+    name: "daumMap",
+    
     center: function(lat,lng){
       if(!lat||!lng){
         return [map.getCenter().lat,map.getCenter().lng];
@@ -123,7 +123,7 @@ function daumMap(container,options){
         );
       }
       else if(lat1&&typeof lat1 =='object'&&lng1&&typeof lng1=='object'){
-        map.setBounds(new daum.maps.LatLngBounds(lat1.position(),lng1.position()),
+        map.setBounds(new daum.maps.LatLngBounds(lat1.positionObject(),lng1.positionObject()),
         lat2,
         lng2,
         paddingTop,
@@ -331,8 +331,8 @@ function daumMap(container,options){
 //마커 객체 정의
 
 function marker(options){
-  var tag=options.tag;
-  var options={
+  var daumMap=null;
+  var initoptions={
     position: new daum.maps.LatLng(options.lat,options.lng),
     image: options.image,
     title: options.title,
@@ -344,11 +344,17 @@ function marker(options){
     range: options.range
   };
   
-  var daumMap=null;
+  if(options.map){
+    daumMap=options.map;
+    initoptions.map=options.map.object();
+  }
   
-  var marker=new daum.maps.Marker(options);
+  
+  var marker=new daum.maps.Marker(initoptions);
   
   return {
+    name: "marker",
+    
     map: function(getmap){
       if(typeof getmap =='object'){
         if(getmap!=daumMap){
@@ -366,7 +372,7 @@ function marker(options){
       daumMap=null;
     },
     
-    position : function(){
+    positionObject : function(){
       return options.position;
     },
     
@@ -463,18 +469,106 @@ function marker(options){
       }
     },
     
-    on: function(options){
-      daum.maps.event.addListener(marker,options.event,options.function);
+    on: function(event,func){
+      daum.maps.event.addListener(marker,event,func);
     },
     
-    trigger: function(options){
-      daum.maps.event.trigger(marker,options.event,options.function);
+    trigger: function(event,func){
+      daum.maps.event.trigger(marker,event,func);
     },
     
-    off: function(options){
-      daum.maps.event.removeEventListener(marker,options.event,options.function);
+    off: function(event,func){
+      daum.maps.event.removeEventListener(marker,event,func);
+    },
+    
+    object: function(){
+      return marker;
     }
   
   }
 };
 //마커끝
+
+function infoWindow(options){
+  var daumMap=null;
+  var initoptions=initoptions={
+    content: options.content,
+    disableAutoPan: options.disableAutoPan,
+    removable: options.removable,
+    zIndex: options.zIndex,
+    altitude: options.altitude,
+    range: options.range
+  }; 
+  
+  if(options.map&&options.lat&&options.lng){
+    initoptions.position=new daum.maps.LatLng(options.lat,options.lng);
+    initoptions.map=options.map.object();
+    daumMap=options.map;
+  }
+  
+  var infowindow=new daum.maps.InfoWindow(initoptions);
+  
+  return{
+    name: "infoWindow",
+    
+    open: function(marker){
+      infowindow.open(marker.map().object(),marker.object());
+      daumMap=marker.map();
+    },
+    
+    close: function(){
+      infowindow.close();
+    },
+    
+    map: function(){
+      return daumMap;
+    },
+    
+    position: function(lat,lng){
+      if(value){
+        infowindow.setPosition(new daum.maps.LatLng(lat,lng));
+      }
+      else{
+        var latlng=infowindow.getPosition();
+        return [latlng.getLat(),latlng.getLng()];
+      }
+    },
+    
+    content: function(value){
+      if(value){
+        infowindow.setContent(value);
+      }
+      else{
+        return infowindow.getContent();
+      }
+    },
+    
+    zindex: function(value){
+      if(value){
+        infoWindow.setZIndex(value);
+      }
+      else{
+        return infowindow.getZIndex();
+      }
+    },
+    
+    altitude: function(value){
+      if(value){
+        infowindow.setAltitude(value);
+      }
+      else{
+        return infowindow.getAltitude();
+      }
+    },
+    
+    range: function(value){
+      if(value){
+        infowindow.setRange(value);
+      }
+      else{
+        return infowindow.getRange();
+      }
+    }
+    
+  }
+}

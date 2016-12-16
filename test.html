@@ -55,37 +55,68 @@
 <script src="/own.js"></script>
 <script> 
 var container=document.getElementById("map");
-var container2=document.getElementById("map2");
 var options = { //지도를 생성할 때 필요한 기본 옵션
 	lat: 33.450701,
 	lng: 126.570667, //지도의 중심좌표.
 	level: 3 //지도의 레벨(확대, 축소 정도)
 };
+
+var map=daumMap(container,options);
 var mark1={
 	lat: 33.450701,
 	lng: 126.570667,
-	tag: 1
+	clickable: true,
+	map: map
 }
 
 var mark2={
 	lat: 33.450701,
 	lng: 126.580667,
-	tag: 1
+	clickable: true,
+	map: map
 }
 
 var mark3={
 	lat: 33.450701,
 	lng: 126.560667,
-	tag: 1
+	clickable: true
 }
-var map=daumMap(container,options);
-var map2=daumMap(container2,options);
+
+var info1={
+    content: '<div style="padding:5px;">11</div>',
+    removable: true
+}
+
+var info2={
+    content: '<div style="padding:5px;">22</div>',
+    removable: true
+}
+
+var info3={
+    content: '<div style="padding:5px;">33</div>',
+    removable: true
+}
+
 var marker1=marker(mark1);
 var marker2=marker(mark2);
 var marker3=marker(mark3);
+var markers=[marker1,marker2,marker3];
+var infow1=infoWindow(info1);
+var infow2=infoWindow(info2);
+var infow3=infoWindow(info3);
+var infows=[infow1,infow2,infow3];
+// markers.daumMap(map);
+// infow1.open(map,marker1);
+// markers.daumClick(infows);
+// marker1.map(map);
+// marker2.map(map);
+marker1.on('click',function(){
+    infow1.open(marker1);
+})
 
-
-[marker1,marker2,marker3].daum('map',map);
+marker2.on('click',function(){
+    infow2.open(marker2);
+})
 
 $("#m1").click(function(){
 	// console.log([marker1,marker2,marker3].mapFunc('remove'));
