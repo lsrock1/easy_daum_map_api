@@ -3,7 +3,9 @@ daum 지도 api easy
 
 다음 지도를 사용하기 쉽게 만든 js입니다.
 
-
+![Alt text](/image/mi.png)
+빨간색: 인포윈도우
+파란색: 마커
 
 #포함하기
 
@@ -161,7 +163,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
     </script>
 
 
-###마커 위에 인포위도우 생성
+###마커 위에 인포윈도우 생성
 
     <div id="map" style="width:500px;height:400px;"></div>
     <script>
