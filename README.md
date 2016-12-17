@@ -22,7 +22,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 
     <div id="map" style="width:500px;height:400px;"></div>
     <script>
-      svar container=document.getElementById("map");
+      var container=document.getElementById("map");
       var options = {
       	lat: 33.450701, //지도의 중심 위도
       	lng: 126.570667,//지도의 중심 경도
@@ -47,7 +47,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 
     <div id="map" style="width:500px;height:400px;"></div>
     <script>
-      svar container=document.getElementById("map");
+      var container=document.getElementById("map");
       var options = {
       	lat: 33.450701,
       	lng: 126.570667,
@@ -73,7 +73,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 
     <div id="map" style="width:500px;height:400px;"></div>
     <script>
-      svar container=document.getElementById("map");
+      var container=document.getElementById("map");
       var options = {
       	lat: 33.450701,
       	lng: 126.570667,
