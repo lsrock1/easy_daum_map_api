@@ -2,10 +2,6 @@ function isInt(n) {
    return n % 1 === 0;
 }
 
-function arglen(obj){
-  return Object.keys(obj).length;
-}
-
 Array.prototype.markerMap=function(value){
   this.forEach(function(ob){
     ob['map'](value);
@@ -491,7 +487,7 @@ function marker(options){
 
 function infoWindow(options){
   var daumMap=null;
-  var initoptions=initoptions={
+  var initoptions={
     content: options.content,
     disableAutoPan: options.disableAutoPan,
     removable: options.removable,
@@ -570,5 +566,87 @@ function infoWindow(options){
       }
     }
     
+  }
+}
+
+function customOverlay(options){
+  var daumMap=null;
+  var initoptions={
+    content: options.content,
+    clickable: options.clickable,
+    xAnchor: options.xAnchor,
+    yAnchor: options.yAnchor,
+    zIndex: options.zIndex
+  };
+  if(options.map&&options.lat&&options.lng){
+    daumMap=map;
+    initoptions.map=daumMap.object();
+    initoptions.position=new daum.maps.LatLng(options.lat,options.lng);
+  }
+  
+  var customoverlay=new daum.maps.CustomOverlay(initoptions);
+  
+  return{
+    name: "customOverlay",
+    
+    map: function(value){
+      if(value){
+        customoverlay.setMap(value.object());
+        daumMap=value;
+      }
+      else{
+        return daumMap;
+      }
+    },
+    
+    remove: function(){
+      customoverlay.setMap(null);
+    },
+    
+    position: function(lat,lng){
+      if(lat&&lng){
+        customoverlay.setPosition(new daum.maps.LatLng(lat,lng));
+      }
+      else{
+        var latlng=customoverlay.getPosition();
+        return [latlng.getLat(),latlng.getLng()];
+      }
+    },
+    
+    content: function(value){
+      if(value){
+        customoverlay.setContent(value);
+      }
+      else{
+        return customoverlay.getContent();
+      }
+    },
+    
+    zindex: function(value){
+      if(value){
+        customoverlay.setZIndex(value);
+      }
+      else{
+        return customoverlay.getZIndex();
+      }
+    },
+    
+    altitude: function(value){
+      if(value){
+        customoverlay.setAltitude(value);
+      }
+      else{
+        return customoverlay.getAltitude();
+      }
+    },
+    
+    range: function(value){
+      if(value){
+        customoverlay.setRange(value);
+      }
+      else{
+        return customoverlay.getRange();
+      }
+    }
   }
 }
