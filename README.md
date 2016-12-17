@@ -3,7 +3,7 @@ daum 지도 api easy
 
 다음 지도를 사용하기 쉽게 만든 js입니다.
 
-![Alt text](/image/mi.png)
+![Alt text](/image/mi.png)  
 빨간색: 인포윈도우
 파란색: 마커
 
