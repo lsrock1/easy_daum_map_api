@@ -64,7 +64,6 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
       //마커 옵션
       
       var marker1=marker(mark1); //마커객체 생성
-      marker1.map(map); //마커를 지도에 표시
       marker1.remove(); //마커 지우기
     </script>
     
