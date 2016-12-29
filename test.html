@@ -113,21 +113,14 @@ var co2={
 
 var marker1=marker(mark1);
 var marker2=marker(mark2);
-var marker3=marker(mark3);
-// var markers=[marker1,marker2,marker3];
+var markers=[marker1,marker2];
 
 var ov=customOverlay(co);
 var ov2=customOverlay(co2);
 var arr=[ov,ov2];
-arr.customOverlayRemove('arr');
-// console.log(ov2.content());
-var arr=[ov,ov2];
-marker1.on('click',function(){
-    ov.open(marker1);
-})
-marker2.on('click',function(){
-    ov2.open(marker2);
-})
+arr.customOverlayOnClose('arr');
+
+markers.markerClick(arr);
 // var infow1=infoWindow(info1);
 // var infow2=infoWindow(info2);
 // var infow3=infoWindow(info3);

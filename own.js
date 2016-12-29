@@ -2,6 +2,10 @@ function isInt(n) {
    return n % 1 === 0;
 }
 
+function preventMap(){
+  daum.maps.event.preventMap;
+}
+
 Array.prototype.markerMap=function(value){
   this.forEach(function(ob){
     ob['map'](value);
@@ -26,12 +30,9 @@ Array.prototype.markerClick=function(value){
   }
 };
 
-Array.prototype.customOverlayRemove=function(name){
+Array.prototype.customOverlayOnClose=function(name){
   for(var i =0;i<this.length;i++){
-    var content=this[i]['content']();
-    var point=content.search("close");
-    content=content.slice(0,point+6)+"onclick='"+name+"["+i.toString()+"].remove()'"+content.slice(point+6);
-    this[i]['content'](content);
+    this[i]['onClose'](name+"["+i.toString()+"]");
   }
 };
 
@@ -554,8 +555,11 @@ function customOverlay(options){
     options.map=daumMap.object();
     options.position=new daum.maps.LatLng(options.lat,options.lng);
   }
-
+  var div=document.createElement('div');
+  div.innerHTML=options.content;
+  options.content=div;
   var customoverlay=new daum.maps.CustomOverlay(options);
+  
 
   return {
     name: "CustomOverlay",
@@ -577,6 +581,13 @@ function customOverlay(options){
       }
     },
     
+    onClose: function(name){
+      var content=this.content();
+      var point=content.search("close");
+      content=content.slice(0,point+6)+"onclick='"+name+".remove()'"+content.slice(point+6);
+      this.content(content);
+    },
+    
     remove: function(){
       customoverlay.setMap(null);
     },
@@ -593,10 +604,10 @@ function customOverlay(options){
     
     content: function(value){
       if(value){
-        customoverlay.setContent(value);
+        div.innerHTML=value;
       }
       else{
-        return customoverlay.getContent();
+        return div.innerHTML;
       }
     },
     
@@ -625,6 +636,14 @@ function customOverlay(options){
       else{
         return customoverlay.getRange();
       }
+    },
+    
+    on: function(name,func){
+      div.addEventListener(name, func);
+    },
+    
+    off: function(name,func){
+      div.removeEventListener(name,func);
     }
   }
 }
