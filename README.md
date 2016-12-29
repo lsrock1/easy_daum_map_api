@@ -18,7 +18,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 
 ##1. 지도에 마커 올리기
 
-###+ 방법 (1) 마커객체 생성 후 map 메소드 사용
+### + 방법 (1) 마커객체 생성 후 map 메소드 사용
 
     <div id="map" style="width:500px;height:400px;"></div>
     <script>
