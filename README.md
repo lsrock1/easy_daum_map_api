@@ -19,7 +19,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 #예제
 
 ##1. 지도에 마커 올리기
-
+![Alt text](/image/marker.png)
 ###* 방법 (1) 마커객체 생성 후 map 메소드 사용
 
 ```{.javascript}
@@ -98,7 +98,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 ```    
     
 ##2. 다중 마커 사용
-
+![Alt text](/image/markers.png)
 ```{.javascript}
 <div id="map" style="width:500px;height:400px;"></div>
 <script>
@@ -132,7 +132,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 ```
 
 ##3. 인포윈도우 생성
-
+![Alt text](/image/info.png)
 ```{.javascript}
 <div id="map" style="width:500px;height:400px;"></div>
 <script>
@@ -170,7 +170,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 ```
 
 ##4. 마커 위에 인포윈도우 생성
-
+![Alt text](/image/infomarker.png)
 ```{.javascript}
 <div id="map" style="width:500px;height:400px;"></div>
 <script>
@@ -185,12 +185,14 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   
   var mark1={
   	lat: 33.450701,
-  	lng: 126.570667
+  	lng: 126.570667,
+  	map: map
   }
   
   var mark2={
   	lat: 33.450701,
-  	lng: 126.580667
+  	lng: 126.580667,
+  	map: map
   }
   //마커 옵션
   
@@ -400,7 +402,7 @@ map.center(33.450701,126.570667);
 ####매개변수 존재: 확대 축소 수준을 매개변수로 설정, options 객체로 다양한 효과 가능
 
 ```{.javascript}
-map.level(3);
+map.level(3,options);
 //확대 축소 수준 3으로 변경
 ```
 
@@ -414,7 +416,7 @@ map.level(3);
 ####매개변수가 없을 때: 현재 지도 종류 반환
 
 ```{.javascript}
- map.mepTypeId();
+ map.mapTypeId();
 //"ROADMAP"
 ```
   반환값
@@ -424,7 +426,7 @@ map.level(3);
 ####매개변수 존재: 지도 종류 변경
 
 ```{.javascript}
-map.mepTypeId("SKYVIEW");
+map.mapTypeId("SKYVIEW");
 //지도 종류 스카이뷰로 변경
 ```
 

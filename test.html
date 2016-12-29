@@ -54,89 +54,55 @@
 <script src="//apis.daum.net/maps/maps3.js?apikey=23598cdf36f0c5f5bf1f1bfda70b8e80&libraries=services"></script>
 <script src="/own.js"></script>
 <script> 
-var container=document.getElementById("map");
-var options = { //지도를 생성할 때 필요한 기본 옵션
-	lat: 33.450701,
-	lng: 126.570667, //지도의 중심좌표.
-	level: 3 //지도의 레벨(확대, 축소 정도)
-};
-
-var map=daumMap(container,options);
-var mark1={
-	lat: 33.450701,
-	lng: 126.570667,
-	clickable: true
-}
-
-var mark2={
-	lat: 33.450701,
-	lng: 126.580667,
-	clickable: true
-}
-
-var mark3={
-	lat: 33.450701,
-	lng: 126.560667,
-	clickable: true
-}
-var co={
-    content: '<div class="customOverlay"><a>Chart</a><br/><button class="close">asdfsdfsdf</button></div>',
-//     lat: 33.450701,
-// 	lng: 126.560667,
-	clickable: true,
-// 	map: map 
-}
-var co2={
-    content: '<div class="customOverlay"><a>Chart</a><br/><button class="close">asdfsdfsdf</button></div>',
-//     lat: 33.450701,
-// 	lng: 126.560667,
-	clickable: true,
-// 	map: map 
-}
-// var info1={
-//     content: '<div style="padding:5px;">11</div>',
-//     removable: true
-// }
-
-// var info2={
-//     content: '<div style="padding:5px;">22</div>',
-//     removable: true
-// }
-
-// var info3={
-//     content: '<div style="padding:5px;">33</div>',
-//     removable: true
-// }
-
-var marker1=marker(mark1);
-var marker2=marker(mark2);
-var markers=[marker1,marker2];
-markers.markerMap(map);
-
-var ov=customOverlay(co);
-var ov2=customOverlay(co2);
-var arr=[ov,ov2];
-arr.customOverlayOnClose('arr');
-
-markers.markerClick(arr);
-
-// var infow1=infoWindow(info1);
-// var infow2=infoWindow(info2);
-// var infow3=infoWindow(info3);
-// var infows=[infow1,infow2,infow3];
-// markers.daumMap(map);
-// infow1.open(map,marker1);
-// markers.daumClick(infows);
-// marker1.map(map);
-// marker2.map(map);
-
-
-
+  var container=document.getElementById("map");
+  var options = {
+  	lat: 33.450701,
+  	lng: 126.570667,
+  	level: 3
+  };
+   
+  var map=daumMap(container,options); //지도 초기화
+  
+  var mark1={
+  	lat: 33.450701,
+  	lng: 126.570667,
+  	map: map
+  }
+  
+  var mark2={
+  	lat: 33.450701,
+  	lng: 126.580667,
+  	map: map
+  }
+  //마커 옵션
+  
+  var marker1=marker(mark1);
+  var marker2=marker(mark2);
+  //마커 생성
+  
+  var info1={
+    content: '<div style="padding:5px;">11</div>',
+    removable: true
+  }
+   
+  var info2={
+      content: '<div style="padding:5px;">22</div>',
+      removable: true
+  }
+  //인포윈도우 옵션
+  
+  var infow1=infoWindow(info1);
+  var infow2=infoWindow(info2);
+  //인포윈도우 생성
+  
+  infow1.open(marker1);
+  infow2.open(marker2);
+  //마커 바로위에 인포윈도우 띄우기
 $("#m1").click(function(){
     markers.markerRemove();
 })
 $("#m2").click(function(){
-	console.log(map.bound());
+	console.log(map.bound())
 })
 $("#m3").click(function(){
 	map.pan(33.450701,126.560667);
