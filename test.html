@@ -65,22 +65,19 @@ var map=daumMap(container,options);
 var mark1={
 	lat: 33.450701,
 	lng: 126.570667,
-	clickable: true,
-	map: map
+	clickable: true
 }
 
 var mark2={
 	lat: 33.450701,
 	lng: 126.580667,
-	clickable: true,
-	map: map
+	clickable: true
 }
 
 var mark3={
 	lat: 33.450701,
 	lng: 126.560667,
-	clickable: true,
-	map: map
+	clickable: true
 }
 var co={
     content: '<div class="customOverlay"><a>Chart</a><br/><button class="close">asdfsdfsdf</button></div>',
@@ -114,6 +111,7 @@ var co2={
 var marker1=marker(mark1);
 var marker2=marker(mark2);
 var markers=[marker1,marker2];
+markers.markerMap(map);
 
 var ov=customOverlay(co);
 var ov2=customOverlay(co2);
@@ -121,6 +119,7 @@ var arr=[ov,ov2];
 arr.customOverlayOnClose('arr');
 
 markers.markerClick(arr);
+
 // var infow1=infoWindow(info1);
 // var infow2=infoWindow(info2);
 // var infow3=infoWindow(info3);
@@ -134,9 +133,7 @@ markers.markerClick(arr);
 
 
 $("#m1").click(function(){
-	// console.log([marker1,marker2,marker3].mapFunc('remove'));
-// 	map.pan(50,50);
-    console.log(ov.content());
+    markers.markerRemove();
 })
 $("#m2").click(function(){
 	// map.bound(marker1,marker2);

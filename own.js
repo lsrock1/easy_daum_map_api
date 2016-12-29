@@ -14,7 +14,7 @@ Array.prototype.markerMap=function(value){
 
 Array.prototype.markerRemove=function(){
   this.forEach(function(ob){
-    ob['remove'];
+    ob['remove']();
   });
 };
 

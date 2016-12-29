@@ -280,7 +280,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
       	lng: 126.570667,
       	level: 3
       };
-       
+      
       var map=daumMap(container,options); //지도 초기화
       
       var mark1={
@@ -325,7 +325,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 # daumMap 객체
 지도 객체
 
-생성자 함수: daumMap(container,options)
+##생성자 함수: daumMap(container,options)
 
 지도를 생성한다.
 
@@ -339,6 +339,28 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
     var map = daumMap(container, options);
     
 매개변수
-* container: ELEMENT NODE
 * options
-  *
+  * center : 삭제
+  * lat (Float): 중심좌표 위도 (필수)
+  * lng (Float): 중심좌표 경도 (필수)
+  * mapTypeId (String: ROADMAP , SKYVIEW , HYBRID 중 하나): 지도 종류
+  * 나머지 [다음 지도](http://apis.map.daum.net/web/documentation/#Map)와 같음
+
+
+##메소드
+
+###center
+
+    map.center();
+    //[33.450701,126.570667]
+  
+    반환값
+    * latlng (Array): [위도 (Float), 경도 (Float)]
+
+
+    map.center(33.450701,126.570667);
+    //중심좌표 위도 33.450701 경도 126.570667 로 변경
+    
+    매개변수 
+    * 위도 (Float)
+    * 경도 (Float)
