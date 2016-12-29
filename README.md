@@ -18,7 +18,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 
 ##1. 지도에 마커 올리기
 
-###-방법 (1) 마커객체 생성 후 map 메소드 사용
+###+방법 (1) 마커객체 생성 후 map 메소드 사용
 
     <div id="map" style="width:500px;height:400px;"></div>
     <script>
@@ -43,7 +43,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
     </script>
 
 
-###-방법 (2) 마커객체 생성 옵션에 map 넣기
+###+방법 (2) 마커객체 생성 옵션에 map 넣기
 
     <div id="map" style="width:500px;height:400px;"></div>
     <script>
@@ -68,7 +68,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
     </script>
     
     
-###*방법 (3) 마커객체를 배열에 넣어 markerMap 메소드 사용(여러개의 마커 사용시 편리)
+###+방법 (3) 마커객체를 배열에 넣어 markerMap 메소드 사용(여러개의 마커 사용시 편리)
 
     <div id="map" style="width:500px;height:400px;"></div>
     <script>
@@ -213,7 +213,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
     
 ##5. 마커 클릭 이벤트에 인포윈도우 연결
 
-###*방법 (1) 마커의 on 메소드 사용
+###+방법 (1) 마커의 on 메소드 사용
 
     <div id="map" style="width:500px;height:400px;"></div>
     <script>
@@ -270,7 +270,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
     </script>
     
 
-###*방법 (2) 마커 배열의 markerClick 메소드 사용(여러개의 마커와 인포윈도우 사용시 편리)
+###+방법 (2) 마커 배열의 markerClick 메소드 사용(여러개의 마커와 인포윈도우 사용시 편리)
 
     <div id="map" style="width:500px;height:400px;"></div>
     <script>
@@ -339,6 +339,6 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
     var map = daumMap(container, options);
     
 매개변수
--container: ELEMENT NODE
--options
-  -
++container: ELEMENT NODE
++options
+  +
