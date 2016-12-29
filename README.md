@@ -361,16 +361,19 @@ var map = daumMap(container, options);
 
 ##메소드
 
-###center
+### 1. center
 
 ####매개변수가 없을 때: 중심좌표 실수 배열 반환  
-####매개변수 존재: 위도,경도 값으로 중심좌표 변경
+
 ```{.javascript}
  map.center();
 //[33.450701,126.570667]
 ```
   반환값
-  * latlng (Array): [위도 (Float), 경도 (Float)]
+  * [Float, Float]
+
+
+####매개변수 존재: 위도,경도 값으로 중심좌표 변경
 
 ```{.javascript}
 map.center(33.450701,126.570667);
@@ -380,3 +383,90 @@ map.center(33.450701,126.570667);
   매개변수 
   * 위도 (Float)
   * 경도 (Float)
+
+
+### 2. level
+
+####매개변수가 없을 때: 현재 확대 축소 수준 반환  
+
+```{.javascript}
+ map.level();
+//3
+```
+  반환값
+  * Integer
+
+
+####매개변수 존재: 확대 축소 수준을 매개변수로 설정, options 객체로 다양한 효과 가능
+
+```{.javascript}
+map.level(3);
+//확대 축소 수준 3으로 변경
+```
+
+  매개변수
+  * level (Integer)
+  * options (Object) [참조](http://apis.map.daum.net/web/documentation/#Map_setLevel)
+
+
+### 3. mapTypeId
+
+####매개변수가 없을 때: 현재 지도 종류 반환
+
+```{.javascript}
+ map.mepTypeId();
+//"ROADMAP"
+```
+  반환값
+  * String
+
+
+####매개변수 존재: 지도 종류 변경
+
+```{.javascript}
+map.mepTypeId("SKYVIEW");
+//지도 종류 스카이뷰로 변경
+```
+
+  매개변수 
+  * 지도 종류 (String) [참조](http://apis.map.daum.net/web/documentation/#MapTypeId)
+
+
+### 4. bound
+
+####매개변수가 없을 때: 현재 지도 영역을 반환한다
+
+```{.javascript}
+ map.bound();
+//[33.4488882499644, 126.56798133906949, 33.45251321509635, 126.5733411966229]
+```
+  반환값
+  * [첫째 좌표의 위도(Float),첫째 좌표의 경도(Float),둘째 좌표의 위도(Float),둘째 좌표의 경도(Float)]
+  * 반환되는 좌표 규칙 [참조](http://apis.map.daum.net/web/documentation/#LatLngBounds)
+
+
+####매개변수가 존재: 주어진 영역이 화면 안에 전부 나타날 수 있도록 지도의 중심 좌표와 확대 수준을 설정한다
+
+####위도,경도,위도,경도 순으로 두개의 좌표를 전달했을 때
+
+```{.javascript}
+map.bound(33.4488882499644, 126.56798133906949, 33.45251321509635, 126.5733411966229);
+//두 좌표가 보이도록 지도 확대 축소
+```
+
+  매개변수 
+  * 보여야 할 첫째 좌표의 위도 값 (Float)
+  * 보여야 할 첫째 좌표의 경도 값 (Float)
+  * 보여야 할 둘째 좌표의 위도 값 (Float)
+  * 보여야 할 둘째 좌표의 경도 값 (Float)
+
+####두개의 marker 객체를 전달했을 때
+
+```{.javascript}
+map.bound(marker1,marker2);
+//두 마커가 보이도록 지도 확대 축소
+```
+
+  매개변수 
+  * 마커 객체 (Object)
+  * 마커 객체 (Object)
