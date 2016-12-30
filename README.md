@@ -283,7 +283,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 ```
 
 
-###* 방법 (2) 마커 배열의 markerClick 메소드 사용(여러개의 마커와 인포윈도우 사용시 편리)
+###* 방법 (2) easyMap의 markerClick 메소드 사용(여러개의 마커와 인포윈도우 사용시 편리)
 
 ```{.javascript}
 <div id="map" style="width:500px;height:400px;"></div>
