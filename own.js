@@ -6,35 +6,38 @@ function preventMap(){
   daum.maps.event.preventMap;
 }
 
-Array.prototype.markerMap=function(value){
-  this.forEach(function(ob){
-    ob['map'](value);
-  });
-};
-
-Array.prototype.markerRemove=function(){
-  this.forEach(function(ob){
-    ob['remove']();
-  });
-};
-
-Array.prototype.markerClick=function(value){
-  if(Array.isArray(value)&&this.length==value.length){
-    for(var i=0;i<this.length;i++){
-      (function(marker,val){
-        marker.on('click',function(){
-          val.open(marker);
-        });
-      }(this[i],value[i]));
+var easyMap={
+    markerMap: function(markers,value){
+      markers.forEach(function(ob){
+        ob['map'](value);
+      });
+    },
+    
+    markerRemove: function(markers){
+      markers.forEach(function(ob){
+        ob['remove']();
+      });
+    },
+    
+    markerClick: function(markers,overlay){
+      if(Array.isArray(overlay)&&markers.length==overlay.length){
+        for(var i=0;i<markers.length;i++){
+          (function(marker,val){
+            marker.on('click',function(){
+              val.open(marker);
+            });
+          }(markers[i],overlay[i]));
+        }
+      }
+    },
+    
+    customOverlayOnClose: function(overlay,name){
+      for(var i =0;i<overlay.length;i++){
+        overlay[i]['onClose'](name+"["+i.toString()+"]");
+      }
     }
-  }
 };
 
-Array.prototype.customOverlayOnClose=function(name){
-  for(var i =0;i<this.length;i++){
-    this[i]['onClose'](name+"["+i.toString()+"]");
-  }
-};
 
 function daumMap(container,options){
   if(options.mapTypeId){
@@ -584,11 +587,11 @@ function customOverlay(options){
     onClose: function(name){
       var content=this.content();
       var point=content.search("close");
-      content=content.slice(0,point+6)+"onclick='"+name+".remove()'"+content.slice(point+6);
+      content=content.slice(0,point+6)+"onclick='"+name+".close()'"+content.slice(point+6);
       this.content(content);
     },
     
-    remove: function(){
+    close: function(){
       customoverlay.setMap(null);
     },
 

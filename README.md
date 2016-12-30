@@ -72,7 +72,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 </script>
 ```  
     
-###* 방법 (3) 마커객체를 배열에 넣어 markerMap 메소드 사용(여러개의 마커 사용시 편리)
+###* 방법 (3) easyMap의 markerMap 매소드 사용(여러개의 마커 사용시 편리)
 
 ```{.javascript}
 <div id="map" style="width:500px;height:400px;"></div>
@@ -93,7 +93,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   //마커 옵션
   
   var marker1=marker(mark1); //마커객체 생성
-  [marker1].markerMap(map); //마커 올리기
+  easyMap.markerMap([marker1],map) //마커 올리기
 </script>
 ```    
     
@@ -125,9 +125,9 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   var markers=[]
   markers.push(marker(mark1)); //첫 번째 마커객체 생성 markers 배열에 삽입
   markers.push(marker(mark2)); //두 번째 마커객체 생성 markers 배열에 삽입
-   
-  markers.markerMap(map); //모든 마커를 map이라는 지도에 표시
-  markers.markerRemove(); //모든 마커 지우기
+  
+  easyMap.markerMap(markers,map); //모든 마커를 map이라는 지도에 표시
+  easyMap.markerRemove(markers); //모든 마커 지우기
 </script>
 ```
 
@@ -185,19 +185,19 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   
   var mark1={
   	lat: 33.450701,
-  	lng: 126.570667,
-  	map: map
+  	lng: 126.570667
   }
   
   var mark2={
   	lat: 33.450701,
-  	lng: 126.580667,
-  	map: map
+  	lng: 126.580667
   }
   //마커 옵션
   
-  var marker1=marker(mark1);
-  var marker2=marker(mark2);
+  var markers=[];
+  markers.push(marker(mark1));
+  markers.push(marker(mark2));
+  easyMap.markerMap(markers,map);
   //마커 생성
   
   var info1={
@@ -249,10 +249,10 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   }
   //마커 옵션
   
-  var marker1=marker(mark1);
-  var marker2=marker(mark2);
-  marker1.map(map);
-  marker2.map(map);
+  var markers=[];
+  markers.push(marker(mark1));
+  markers.push(marker(mark2));
+  easyMap.markerMap(markers,map);
   //마커 생성
   
   var info1={
@@ -308,10 +308,10 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   }
   //마커 옵션
   
-  var markers=[]
+  var markers=[];
   markers.push(marker(mark1));
   markers.push(marker(mark2));
-  markers.markerMap(map);
+  easyMap.markerMap(markers,map);
   //마커 생성 및 지도에 올리기
   
   var info1={
@@ -330,7 +330,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   infows.push(infoWindow(info2));
   //인포윈도우 생성
   
-  markers.markerClick(infows);
+  easyMap.markerClick(markers,infows);
   //각 배열의 N번째 마커와 인포윈도우 클릭으로 연결
   
 </script>
