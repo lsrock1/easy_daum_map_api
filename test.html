@@ -81,28 +81,27 @@
   //마커 생성
   
   var info1={
-    content: '<div style="padding:5px;">11</div>',
-    removable: true
+    content: '<div style="padding:5px;">11<button class="close">close</button></div>',
+    clickable: true
   }
    
   var info2={
-      content: '<div style="padding:5px;">22</div>',
-      removable: true
+      content: '<div style="padding:5px;">22<button class="close">close</button></div>',
+      clickable: true
   }
   //인포윈도우 옵션
   
-  var infow1=infoWindow(info1);
-  var infow2=infoWindow(info2);
+  var infow1=customOverlay(info1);
+  var infow2=customOverlay(info2);
+  var infows=[infow1,infow2];
   //인포윈도우 생성
-  
-  infow1.open(marker1);
-  infow2.open(marker2);
-  //마커 바로위에 인포윈도우 띄우기
+  easyMap.customOverlayOnClose([infow1,infow2],'infows');
+  easyMap.markerClick([marker1,marker2],[infow1,infow2]);
 $("#m1").click(function(){
     markers.markerRemove();
 })
 $("#m2").click(function(){
-	console.log(map.bound())
+	map.projectionId('NONE');
 })
 $("#m3").click(function(){
 	map.pan(33.450701,126.560667);

@@ -152,7 +152,7 @@ function daumMap(container,options){
     addControl: function(control,position){
       var posi;
       var con;
-      if(control=="Type"){
+      if(control=="TYPE"){
         con =new daum.maps.MapTypeControl();
       }
       else{
@@ -256,8 +256,6 @@ function daumMap(container,options){
     addOverlayMapTypeId: function(name){
       var type;
       switch(name){
-        case "ROADVIEW":
-          type=daum.maps.MapTypeId.ROADVIEW;
         case "OVERLAY":
           type=daum.maps.MapTypeId.OVERLAY;
         case "TRAFFIC":
@@ -278,8 +276,6 @@ function daumMap(container,options){
     removeOverlayMapTypeId: function(name){
       var type;
       switch(name){
-        case "ROADVIEW":
-          type=daum.maps.MapTypeId.ROADVIEW;
         case "OVERLAY":
           type=daum.maps.MapTypeId.OVERLAY;
         case "TRAFFIC":
@@ -586,7 +582,7 @@ function customOverlay(options){
     
     onClose: function(name){
       var content=this.content();
-      var point=content.search("close");
+      var point=content.indexOf("close");
       content=content.slice(0,point+6)+"onclick='"+name+".close()'"+content.slice(point+6);
       this.content(content);
     },
