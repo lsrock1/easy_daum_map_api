@@ -375,7 +375,7 @@ var map = daumMap(container, options);
   * [Number, Number]
 
 
-####.center(Number,Number): 위도,경도 값으로 중심좌표 변경
+####.center(위도,경도): 위도,경도 값으로 중심좌표 변경
 
 ```{.javascript}
 map.center(33.450701,126.570667);
@@ -396,10 +396,10 @@ map.center(33.450701,126.570667);
 //3
 ```
   반환값
-  * INumber
+  * Number
 
 
-####.level(number,options): 확대 축소 수준을 매개변수로 설정, options 객체로 다양한 효과 가능
+####.level(level,options): 확대 축소 수준을 매개변수로 설정, options 객체로 다양한 효과 가능
 
 ```{.javascript}
 map.level(3,options);
@@ -423,7 +423,7 @@ map.level(3,options);
   * String
 
 
-####.mapTypeId(String): 지도 종류 변경
+####.mapTypeId(지도 종류): 지도 종류 변경
 
 ```{.javascript}
 map.mapTypeId("SKYVIEW");
@@ -431,7 +431,7 @@ map.mapTypeId("SKYVIEW");
 ```
 
   매개변수 
-  * 지도 종류 (String) [참조](http://apis.map.daum.net/web/documentation/#MapTypeId)
+  * 지도 종류 (String): SKYVIEW ROADMAP HYBRID 문자열 중 하나 [참조](http://apis.map.daum.net/web/documentation/#MapTypeId)
 
 
 ### 4. bound
@@ -447,7 +447,7 @@ map.mapTypeId("SKYVIEW");
   * 반환되는 좌표 규칙 [참조](http://apis.map.daum.net/web/documentation/#LatLngBounds)
 
 
-####.bound(number,number,number,number): 주어진 영역이 화면 안에 전부 나타날 수 있도록 지도의 중심 좌표와 확대 수준을 설정한다
+####.bound(위도1,경도1,위도2,경도2): 주어진 영역이 화면 안에 전부 나타날 수 있도록 지도의 중심 좌표와 확대 수준을 설정한다
 ####위도,경도,위도,경도 순으로 두개의 좌표 전달
 
 ```{.javascript}
@@ -456,12 +456,12 @@ map.bound(33.4488882499644, 126.56798133906949, 33.45251321509635, 126.573341196
 ```
 
   매개변수 
-  * 보여야 할 첫째 좌표의 위도 값 (Float)
-  * 보여야 할 첫째 좌표의 경도 값 (Float)
-  * 보여야 할 둘째 좌표의 위도 값 (Float)
-  * 보여야 할 둘째 좌표의 경도 값 (Float)
+  * 위도1 (Float): 보여야 할 첫째 좌표의 위도 값
+  * 경도1 (Float): 보여야 할 첫째 좌표의 경도 값
+  * 위도2 (Float): 보여야 할 둘째 좌표의 위도 값
+  * 경도2 (Float): 보여야 할 둘째 좌표의 경도 값
 
-####.bound(Object,Object)
+####.bound(마커,마커)
 ####두개의 marker 객체를 전달했을 때
 
 ```{.javascript}
@@ -470,24 +470,24 @@ map.bound(marker1,marker2);
 ```
 
   매개변수 
-  * 마커 객체 (Object)
-  * 마커 객체 (Object)
+  * 마커 (Object): 마커 객체
+  * 마커 (Object): 마커 객체
 
 
 ### 5. pan
 
-####.pan(Integer,Integer): 중심좌표 해당 픽셀만큼 부드럽게 이동
+####.pan(x,y): 중심좌표 해당 픽셀만큼 부드럽게 이동
 
 ```{.javascript}
 map.pan(50,100);
 //오른쪽으로 50 픽셀 위쪽으로 100 픽셀 이동
 ```
   매개변수
-  * x값 (Integer)
-  * y값 (Integer)
+  * x (Integer): x축 이동 픽셀값
+  * y (Integer): y축 이동 픽셀값
 
 
-####.pan(Float,Float): 해당 위,경도로 중심좌표 부드럽게 이동
+####.pan(위도,경도): 해당 위,경도로 중심좌표 부드럽게 이동
 
 ```{.javascript}
 map.pan(33.450701,126.570667);
@@ -499,7 +499,7 @@ map.pan(33.450701,126.570667);
   * 경도 (Float)
 
 
-####.pan(Float,Float,Float,Float): 두 좌표가 보이는 영역으로 부드럽게 이동
+####.pan(위도1,경도1,위도2,경도2): 두 좌표가 보이는 영역으로 부드럽게 이동
 [참조](http://apis.map.daum.net/web/documentation/#Map_panTo)
 ```{.javascript}
 map.pan(33.4488882499644, 126.56798133906949, 33.45251321509635, 126.5733411966229);
@@ -507,15 +507,15 @@ map.pan(33.4488882499644, 126.56798133906949, 33.45251321509635, 126.57334119662
 ```
 
   매개변수 
-  * 보여야 할 첫째 좌표의 위도 값 (Float)
-  * 보여야 할 첫째 좌표의 경도 값 (Float)
-  * 보여야 할 둘째 좌표의 위도 값 (Float)
-  * 보여야 할 둘째 좌표의 경도 값 (Float)
+  * 위도1 (Float): 보여야 할 첫째 좌표의 위도 값
+  * 경도1 (Float): 보여야 할 첫째 좌표의 경도 값
+  * 위도2 (Float): 보여야 할 둘째 좌표의 위도 값
+  * 경도2 (Float): 보여야 할 둘째 좌표의 경도 값
 
 
 ### 6. addControl
 
-####.addControl(String,String): 지도에 컨트롤러를 올린다
+####.addControl(컨트롤러 이름,위치): 지도에 컨트롤러를 올린다
 
 ```{.javascript}
 map.addControl("TYPE","TOP");
@@ -526,13 +526,13 @@ map.addControl("ZOOM","BOTTOMLEFT");
 ```
 
   매개변수 [참조](http://apis.map.daum.net/web/sample/addMapControl/)
-  * 컨트롤러 종류 (String: TYPE, ZOOM)
-  * 위치 (String: TOP, TOPLEFT, TOPRIGHT, LEFT, RIGHT, BOTTOMLEFT, BOTTOMRIGHT)
+  * 컨트롤러 이름 (String): TYPE, ZOOM
+  * 위치 (String): TOP, TOPLEFT, TOPRIGHT, LEFT, RIGHT, BOTTOMLEFT, BOTTOMRIGHT
 
 
 ### 7. removeControl
 
-####.removeControl(String,String): 지도에 컨트롤러를 없앤다
+####.removeControl(컨트롤러 이름,위치): 지도에 컨트롤러를 없앤다
 
 ```{.javascript}
 map.removeControl("TYPE","TOP");
@@ -543,8 +543,8 @@ map.removeControl("ZOOM","BOTTOMLEFT");
 ```
 
   매개변수 [참조](http://apis.map.daum.net/web/sample/addMapControl/)
-  * 컨트롤러 종류 (String: TYPE, ZOOM)
-  * 위치 (String: TOP, TOPLEFT, TOPRIGHT, LEFT, RIGHT, BOTTOMLEFT, BOTTOMRIGHT)
+  * 컨트롤러 이름 (String): TYPE, ZOOM
+  * 위치 (String): TOP, TOPLEFT, TOPRIGHT, LEFT, RIGHT, BOTTOMLEFT, BOTTOMRIGHT
 
 
 ### 8. draggable
@@ -604,7 +604,7 @@ map.relayout();
 
 ### 11. addOverlayMapTypeId
 
-####.addOverlayMapTypeId(String): 지도에 로드뷰, 교통정보 등의 오버레이 타입의 타일 이미지를 올린다.
+####.addOverlayMapTypeId(타일 종류): 지도에 로드뷰, 교통정보 등의 오버레이 타입의 타일 이미지를 올린다.
 
 ```{.javascript}
 map.addOverlayMapTypeId("TRAFFIC");
@@ -615,12 +615,12 @@ map.addOverlayMapTypeId("TERRAIN");
 ```
 
   매개변수 [참조](http://apis.map.daum.net/web/documentation/#MapTypeId)
-  * 타일 종류 (String: TRAFFIC, TERRAIN, BICYCLE, BICYCLE_HYBRID, USE_DISTRICT, OVERLAY)
+  * 타일 종류 (String): TRAFFIC, TERRAIN, BICYCLE, BICYCLE_HYBRID, USE_DISTRICT, OVERLAY
 
 
 ### 12. removeOverlayMapTypeId
 
-####.removeOverlayMapTypeId(String): 지도에 로드뷰, 교통정보 등의 오버레이 타입의 타일 이미지를 삭제한다.
+####.removeOverlayMapTypeId(타일 종류): 지도에 로드뷰, 교통정보 등의 오버레이 타입의 타일 이미지를 삭제한다.
 
 ```{.javascript}
 map.removeOverlayMapTypeId("TRAFFIC");
@@ -631,7 +631,7 @@ map.removeOverlayMapTypeId("TERRAIN");
 ```
 
   매개변수 [참조](http://apis.map.daum.net/web/documentation/#MapTypeId)
-  * 타일 종류 (String: TRAFFIC, TERRAIN, BICYCLE, BICYCLE_HYBRID, USE_DISTRICT, OVERLAY)
+  * 타일 종류 (String): TRAFFIC, TERRAIN, BICYCLE, BICYCLE_HYBRID, USE_DISTRICT, OVERLAY
 
 
 ### 13. keyboardShortcuts
@@ -659,7 +659,7 @@ map.keyboardShortcuts(false);
 
 ### 14. on
 
-####.on(String,function): 지도에 이벤트를 등록한다
+####.on(이벤트 이름,콜백함수): 지도에 이벤트를 등록한다
 
 ```{.javascript}
 map.on('center_changed',function(){
