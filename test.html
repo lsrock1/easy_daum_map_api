@@ -69,11 +69,11 @@
   
   var cOptions=[
     {
-      content:'<div class="overlay">11111<br/><button class="close">&times;</button></div>',
+      content:'<div class="overlay">11111<br/><button>&times;</button></div>',
       clickable: true,
     },
     {
-      content:'<div class="overlay">22222<br/><button class="close">&times;</button></div>',
+      content:'<div class="overlay">close<br/><div><button class="close">&times;</button></div></div>',
       clickable: true,
     }
   ]
@@ -92,17 +92,8 @@
   //첫 번째 인자로 오버레이들이 담긴 배열을 두 번째 인자로 배일의 이름을 전달합니다
   
   easyMap.markerClick(markers,overlays);
-  //각 배열의 N번째 마커와 오버레이를 클릭으로 연결
-  overlays[0].on("mouseover",function(){
-    overlays[0].close();
-  })
 $("#m1").click(function(){
-    cow1.on("mousedown",function(){
-       cow1.close(); 
-    });
-    cow1.on("mouseup",function(){
-        cow1.open(marker1);
-    })
+ console.log(overlays[1].content());
 })
 $("#m2").click(function(){
 	map.projectionId('NONE');

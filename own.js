@@ -581,10 +581,25 @@ function customOverlay(options){
     },
     
     onClose: function(name){
-      var content=this.content();
-      var point=content.indexOf("close");
-      content=content.slice(0,point+6)+"onclick='"+name+".close()'"+content.slice(point+6);
-      this.content(content);
+      var totalContent=this.content();
+      var content=totalContent;
+      var length=0;
+      while(1){
+        var point=content.indexOf("class");
+        if(point===-1){
+          break;
+        }
+        var dot=content[point+6];
+        var lastDot=content.slice(point+7).indexOf(dot)+point+7;
+        if (content.slice(point+7,lastDot).indexOf("close")!==-1){
+          totalContent=totalContent.slice(0,length+lastDot+2)+"onclick='"+name+".close()'"+totalContent.slice(length+lastDot+2);
+          
+          this.content(totalContent);
+          break;
+        }
+        content=content.slice(lastDot+1);
+        length+=lastDot;
+      }
     },
     
     close: function(){
