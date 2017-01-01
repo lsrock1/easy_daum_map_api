@@ -338,8 +338,9 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   
 ##6. 닫기 가능한 다중 커스텀 오버레이 띄우기
 
-daum map api 공식 예제를 조금 변형했습니다 [여기서!](http://apis.map.daum.net/web/sample/removableCustomOverlay/)  
-다음 공식 예제와 같은 오버레이를 띄우려면 css가 필요하며 css는 공식 예제에서 확인하실 수 있습니다!
+오버레이의 css는 다음 공식 api 예제를 참고했습니다. [여기](http://apis.map.daum.net/web/sample/dragCustomOverlay/)  
+괜찮은 커스텀 오버레이 css는 다음 공식 예제 [여기](http://apis.map.daum.net/web/sample/removableCustomOverlay/)에서 참고하시면 됩니다  
+
 
 ```javascript
 <div id="map" style="width:500px;height:400px;"></div>
@@ -371,50 +372,16 @@ daum map api 공식 예제를 조금 변형했습니다 [여기서!](http://apis
   mOptions.forEach(function(option){
     markers.push(marker(option));
   });
-  //마커 생성
+  //마커 객체 생성
   
   var cOptions=[
     {
-      content: '<div class="wrap">' + 
-            '    <div class="info">' + 
-            '        <div class="title">' + 
-            '            11111' + 
-            '            <div class="close" title="닫기"></div>' + 
-            '        </div>' + 
-            '        <div class="body">' + 
-            '            <div class="img">' +
-            '                <img src="http://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70">' +
-            '           </div>' + 
-            '            <div class="desc">' + 
-            '                <div class="ellipsis">제주특별자치도 제주시 첨단로 242</div>' + 
-            '                <div class="jibun ellipsis">(우) 63309 (지번) 영평동 2181</div>' + 
-            '                <div><a href="http://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' + 
-            '            </div>' + 
-            '        </div>' + 
-            '    </div>' +    
-            '</div>',
-      clickable: true
+      content:'<div class="overlay">11111<br/><button class="close">&times;</button></div>',
+      clickable: true,
     },
     {
-      content: '<div class="wrap">' + 
-            '    <div class="info">' + 
-            '        <div class="title">' + 
-            '            22222' + 
-            '            <div class="close" title="닫기"></div>' + 
-            '        </div>' + 
-            '        <div class="body">' + 
-            '            <div class="img">' +
-            '                <img src="http://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70">' +
-            '           </div>' + 
-            '            <div class="desc">' + 
-            '                <div class="ellipsis">제주특별자치도 제주시 첨단로 242</div>' + 
-            '                <div class="jibun ellipsis">(우) 63309 (지번) 영평동 2181</div>' + 
-            '                <div><a href="http://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' + 
-            '            </div>' + 
-            '        </div>' + 
-            '    </div>' +    
-            '</div>',
-      clickable: true
+      content:'<div class="overlay">22222<br/><button class="close">&times;</button></div>',
+      clickable: true,
     }
   ]
   //커스텀 오버레이 옵션
@@ -425,14 +392,22 @@ daum map api 공식 예제를 조금 변형했습니다 [여기서!](http://apis
   cOptions.forEach(function(option){
     overlays.push(customOverlay(option));
   });
-  //오버레이 생성
+  //오버레이 객체 생성
   
   easyMap.customOverlayOnClose(overlays,'overlays');
   //오버레이 요소 중 close 클래스에 close 이벤트를 등록합니다
   //첫 번째 인자로 오버레이들이 담긴 배열을 두 번째 인자로 배일의 이름을 전달합니다
+  //close 클래스인 button을 클릭하면 개별 오버레이가 닫히게 됩니다
   
   easyMap.markerClick(markers,overlays);
   //각 배열의 N번째 마커와 오버레이를 클릭으로 연결
+  //마커를 클릭하면 오버레이가 열립니다
+  
+  overlays[0].on("mouseover",function(){
+    overlays[0].close();
+  })
+  //오버레이에 마우스를 올리면 닫히는 이벤트를 등록합니다
+  //같은 형태로 다른 이벤트를 등록할 수 있습니다
 </script>
 ```
 
