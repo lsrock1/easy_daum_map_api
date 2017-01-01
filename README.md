@@ -171,7 +171,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 
 ##4. 마커 위에 인포윈도우 생성
 ![Alt text](/image/infomarker.png)
-```{.javascript}
+```javascript
 <div id="map" style="width:500px;height:400px;"></div>
 <script>
   var container=document.getElementById("map");
@@ -226,7 +226,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 
 ###* 방법 (1) 마커의 on 메소드 사용
 
-```{.javascript}
+```javascript
 <div id="map" style="width:500px;height:400px;"></div>
 <script>
   var container=document.getElementById("map");
@@ -240,12 +240,14 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   
   var mark1={
   	lat: 33.450701,
-  	lng: 126.570667
+  	lng: 126.570667,
+  	clickable: true
   }
   
   var mark2={
   	lat: 33.450701,
-  	lng: 126.580667
+  	lng: 126.580667,
+  	clickable: true
   }
   //마커 옵션
   
@@ -299,12 +301,14 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   
   var mark1={
   	lat: 33.450701,
-  	lng: 126.570667
+  	lng: 126.570667,
+  	clickable: true
   }
   
   var mark2={
   	lat: 33.450701,
-  	lng: 126.580667
+  	lng: 126.580667,
+  	clickable: true
   }
   //마커 옵션
   
@@ -378,10 +382,12 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
     {
       lat: 33.450701,
   	  lng: 126.570667,
+  	  clickable: true
     },
     {
       lat: 33.450701,
   	  lng: 126.580667,
+  	  clickable: true
     }
   ];
   //옵션 배열
