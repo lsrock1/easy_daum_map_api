@@ -638,11 +638,11 @@ function customOverlay(options){
     },
     
     on: function(name,func){
-      div.addEventListener(name, func);
+      div.addEventListener(div,name, func);
     },
     
     off: function(name,func){
-      div.removeEventListener(name,func);
+      div.removeEventListener(div,name,func);
     }
   }
 }

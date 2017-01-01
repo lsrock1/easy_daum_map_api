@@ -285,7 +285,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 
 ###* 방법 (2) easyMap의 markerClick 메소드 사용(여러개의 마커와 인포윈도우 사용시 편리)
 
-```{.javascript}
+```javascript
 <div id="map" style="width:500px;height:400px;"></div>
 <script>
   var container=document.getElementById("map");
@@ -334,8 +334,108 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   //각 배열의 N번째 마커와 인포윈도우 클릭으로 연결
   
 </script>
-```    
-    
+```
+  
+##6. 닫기 가능한 다중 커스텀 오버레이 띄우기
+
+daum map api 공식 예제를 조금 변형했습니다 [여기서!](http://apis.map.daum.net/web/sample/removableCustomOverlay/)  
+다음 공식 예제와 같은 오버레이를 띄우려면 css가 필요하며 css는 공식 예제에서 확인하실 수 있습니다!
+
+```javascript
+<div id="map" style="width:500px;height:400px;"></div>
+<script>
+  var container=document.getElementById("map");
+  var options = {
+  	lat: 33.450701,
+  	lng: 126.570667,
+  	level: 3
+  };
+   
+  var map=daumMap(container,options); //지도 초기화
+  
+  var mOptions=[
+    {
+      lat: 33.450701,
+  	  lng: 126.570667,
+    },
+    {
+      lat: 33.450701,
+  	  lng: 126.580667,
+    }
+  ];
+  //옵션 배열
+  
+  var markers=[];
+  //마커들을 저장할 배열
+  
+  mOptions.forEach(function(option){
+    markers.push(marker(option));
+  });
+  //마커 생성
+  
+  var cOptions=[
+    {
+      content: '<div class="wrap">' + 
+            '    <div class="info">' + 
+            '        <div class="title">' + 
+            '            11111' + 
+            '            <div class="close" title="닫기"></div>' + 
+            '        </div>' + 
+            '        <div class="body">' + 
+            '            <div class="img">' +
+            '                <img src="http://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70">' +
+            '           </div>' + 
+            '            <div class="desc">' + 
+            '                <div class="ellipsis">제주특별자치도 제주시 첨단로 242</div>' + 
+            '                <div class="jibun ellipsis">(우) 63309 (지번) 영평동 2181</div>' + 
+            '                <div><a href="http://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' + 
+            '            </div>' + 
+            '        </div>' + 
+            '    </div>' +    
+            '</div>',
+      clickable: true
+    },
+    {
+      content: '<div class="wrap">' + 
+            '    <div class="info">' + 
+            '        <div class="title">' + 
+            '            22222' + 
+            '            <div class="close" title="닫기"></div>' + 
+            '        </div>' + 
+            '        <div class="body">' + 
+            '            <div class="img">' +
+            '                <img src="http://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70">' +
+            '           </div>' + 
+            '            <div class="desc">' + 
+            '                <div class="ellipsis">제주특별자치도 제주시 첨단로 242</div>' + 
+            '                <div class="jibun ellipsis">(우) 63309 (지번) 영평동 2181</div>' + 
+            '                <div><a href="http://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' + 
+            '            </div>' + 
+            '        </div>' + 
+            '    </div>' +    
+            '</div>',
+      clickable: true
+    }
+  ]
+  //커스텀 오버레이 옵션
+  
+  var overlays=[];
+  //오버레이들을 저장할 배열
+  
+  cOptions.forEach(function(option){
+    overlays.push(customOverlay(option));
+  });
+  //오버레이 생성
+  
+  easyMap.customOverlayOnClose(overlays,'overlays');
+  //오버레이 요소 중 close 클래스에 close 이벤트를 등록합니다
+  //첫 번째 인자로 오버레이들이 담긴 배열을 두 번째 인자로 배일의 이름을 전달합니다
+  
+  easyMap.markerClick(markers,overlays);
+  //각 배열의 N번째 마커와 오버레이를 클릭으로 연결
+</script>
+```
+
 # daumMap 객체
 지도 객체
 
