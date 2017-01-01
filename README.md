@@ -421,9 +421,9 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   //오버레이 객체 생성
   
   easyMap.customOverlayOnClose(overlays,'overlays');
-  //오버레이 요소 중 close 클래스에 close 이벤트를 등록합니다
+  //오버레이 요소 중 close 클래스를 가진 요소에 close 이벤트를 등록합니다
   //첫 번째 인자로 오버레이들이 담긴 배열을 두 번째 인자로 배일의 이름을 전달합니다
-  //close 클래스인 button을 클릭하면 개별 오버레이가 닫히게 됩니다
+  //함수가 실행된 후 close 클래스를 가진 button을 클릭하면 개별 오버레이가 닫히게 됩니다
   
   easyMap.markerClick(markers,overlays);
   //각 배열의 N번째 마커와 오버레이를 클릭으로 연결
