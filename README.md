@@ -343,7 +343,27 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 
 
 ```javascript
-<div id="map" style="width:500px;height:400px;"></div>
+<style type="text/css">
+    .overlay {
+        left: -50px;
+        position:absolute;
+        top:0;
+        width:100px;
+        height: 100px;
+        background: #fff;
+        border:1px solid #ccc;
+        border-radius: 5px;
+        white-space: pre;
+        word-wrap: break-word;
+        position: absolute;top: -150px;
+    }
+    .close{
+        font-size: 30px;
+    }
+</style>
+<body>
+  <div id="map" style="width:500px;height:400px;"></div>
+</body>
 <script>
   var container=document.getElementById("map");
   var options = {
