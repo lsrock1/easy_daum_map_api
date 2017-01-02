@@ -341,29 +341,21 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 ```
   
 ##6. 닫기 가능한 다중 커스텀 오버레이 띄우기
-
-오버레이의 css는 다음 공식 api 예제를 참고했습니다. [여기](http://apis.map.daum.net/web/sample/dragCustomOverlay/)  
+![Alt text](/image/coverlay.png)
+오버레이의 css는 [다음 공식 api 예제](http://apis.map.daum.net/web/sample/categoryFromBounds/)를 참고했습니다.
 괜찮은 커스텀 오버레이 css는 다음 공식 예제 [여기](http://apis.map.daum.net/web/sample/removableCustomOverlay/)에서 참고하시면 됩니다  
 
 
 ```javascript
 <style type="text/css">
-    .overlay {
-        left: -50px;
-        position:absolute;
-        top:0;
-        width:100px;
-        height: 100px;
-        background: #fff;
-        border:1px solid #ccc;
-        border-radius: 5px;
-        white-space: pre;
-        word-wrap: break-word;
-        position: absolute;top: -150px;
-    }
-    .close{
-        font-size: 30px;
-    }
+  .placeinfo_wrap {position:absolute;bottom:28px;left:-90px;width:180px;}
+  .placeinfo {position:relative;width:100%;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;padding-bottom: 10px;background: #fff;}
+  .placeinfo:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}
+  .placeinfo_wrap .after {content:'';position:relative;margin-left:-12px;left:50%;width:22px;height:10px;background:url('http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
+  .placeinfo a, .placeinfo a:hover, .placeinfo a:active{color:#fff;text-decoration: none;}
+  .placeinfo a, .placeinfo span {display: block;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
+  .placeinfo span {margin:5px 5px 0 5px;cursor: default;font-size:13px;}
+  .placeinfo .title {font-weight: bold; font-size:14px;border-radius: 6px 6px 0 0;margin: -1px -1px 0 -1px;padding:10px; color: #fff;background: #002D56;background: #002D56 url(http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center;}
 </style>
 <body>
   <div id="map" style="width:500px;height:400px;"></div>
@@ -402,11 +394,15 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   
   var cOptions=[
     {
-      content:'<div class="overlay">11111<br/><button class="close">&times;</button></div>',
+      content:'<div class="placeinfo_wrap"><div class="placeinfo"><a class="title" >일번</a><span>'+
+              '<span style="text-align: right;" class="close">&times;</span>'+
+              '</span></div><div class="after"></div></div>',
       clickable: true,
     },
     {
-      content:'<div class="overlay">22222<br/><button class="close">&times;</button></div>',
+      content:'<div class="placeinfo_wrap"><div class="placeinfo"><a class="title" >이번</a><span>'+
+              '<span style="text-align: right;" class="close">&times;</span>'+
+              '</span></div><div class="after"></div></div>',
       clickable: true,
     }
   ]
