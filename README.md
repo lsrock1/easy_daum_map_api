@@ -341,7 +341,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 ```
   
 ##6. 닫기 가능한 다중 커스텀 오버레이 띄우기
-![Alt text](/image/coverlay.png)
+![Alt text](/image/coverlay.png)  
 오버레이의 css는 [다음 공식 api 예제](http://apis.map.daum.net/web/sample/categoryFromBounds/)를 참고했습니다.
 괜찮은 커스텀 오버레이 css는 다음 공식 예제 [여기](http://apis.map.daum.net/web/sample/removableCustomOverlay/)에서 참고하시면 됩니다  
 
