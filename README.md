@@ -11,7 +11,7 @@ daum 지도 api easy
 
 own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 
-```{.javascript}
+```javascript
 <script src="//apis.daum.net/maps/maps3.js?apikey=본인 api 키"></script>
 <script src="/own.min.js"></script>
 ```
@@ -22,7 +22,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 ![Alt text](/image/marker.png)
 ###* 방법 (1) 마커객체 생성 후 map 메소드 사용
 
-```{.javascript}
+```javascript
 <div id="map" style="width:500px;height:400px;"></div>
 <script>
   var container=document.getElementById("map");
@@ -48,7 +48,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 
 ###* 방법 (2) 마커객체 생성 옵션에 map 넣기
 
-```{.javascript}
+```javascript
 <div id="map" style="width:500px;height:400px;"></div>
 <script>
   var container=document.getElementById("map");
@@ -74,7 +74,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
     
 ###* 방법 (3) easyMap의 markerMap 매소드 사용(여러개의 마커 사용시 편리)
 
-```{.javascript}
+```javascript
 <div id="map" style="width:500px;height:400px;"></div>
 <script>
   var container=document.getElementById("map");
@@ -99,7 +99,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
     
 ##2. 다중 마커 사용
 ![Alt text](/image/markers.png)
-```{.javascript}
+```javascript
 <div id="map" style="width:500px;height:400px;"></div>
 <script>
   var container=document.getElementById("map");
@@ -133,7 +133,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 
 ##3. 인포윈도우 생성
 ![Alt text](/image/info.png)
-```{.javascript}
+```javascript
 <div id="map" style="width:500px;height:400px;"></div>
 <script>
   var container=document.getElementById("map");
@@ -436,23 +436,25 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   //같은 형태로 다른 이벤트를 등록할 수 있습니다
 </script>
 ```
-
+  
+  
 # daumMap 객체
 지도 객체
 
 ##생성자 함수: daumMap(container,options)
 
 지도를 생성한다.
-```{.javascript}
+```javascript
 var container = document.getElementById('map'),
   options = {
       lat: 33.450701,
   	  lng: 126.570667,
       level: 3
   };
-  
+
 var map = daumMap(container, options);
-```    
+```
+
 매개변수
 * options
   * center : 삭제
@@ -468,7 +470,7 @@ var map = daumMap(container, options);
 
 ####.center(): 중심좌표 반환  
 
-```{.javascript}
+```javascript
  map.center();
 //[33.450701,126.570667]
 ```
@@ -478,7 +480,7 @@ var map = daumMap(container, options);
 
 ####.center(위도,경도): 위도,경도 값으로 중심좌표 변경
 
-```{.javascript}
+```javascript
 map.center(33.450701,126.570667);
 //중심좌표 위도 33.450701 경도 126.570667 로 변경
 ```
@@ -492,7 +494,7 @@ map.center(33.450701,126.570667);
 
 ####.level(): 현재 확대 축소 수준 반환  
 
-```{.javascript}
+```javascript
  map.level();
 //3
 ```
@@ -502,7 +504,7 @@ map.center(33.450701,126.570667);
 
 ####.level(level,options): 확대 축소 수준을 매개변수로 설정, options 객체로 다양한 효과 가능
 
-```{.javascript}
+```javascript
 map.level(3,options);
 //확대 축소 수준 3으로 변경
 ```
@@ -516,7 +518,7 @@ map.level(3,options);
 
 ####.mapTypeId(): 현재 지도 종류 반환
 
-```{.javascript}
+```javascript
  map.mapTypeId();
 //"ROADMAP"
 ```
@@ -526,7 +528,7 @@ map.level(3,options);
 
 ####.mapTypeId(지도 종류): 지도 종류 변경
 
-```{.javascript}
+```javascript
 map.mapTypeId("SKYVIEW");
 //지도 종류 스카이뷰로 변경
 ```
@@ -539,7 +541,7 @@ map.mapTypeId("SKYVIEW");
 
 ####.bound(): 현재 지도의 화면 영역 반환
 
-```{.javascript}
+```javascript
  map.bound();
 //[33.4488882499644, 126.56798133906949, 33.45251321509635, 126.5733411966229]
 ```
@@ -551,7 +553,7 @@ map.mapTypeId("SKYVIEW");
 ####.bound(위도1,경도1,위도2,경도2): 주어진 영역이 화면 안에 전부 나타날 수 있도록 지도의 중심 좌표와 확대 수준을 설정한다
 ####위도,경도,위도,경도 순으로 두개의 좌표 전달
 
-```{.javascript}
+```javascript
 map.bound(33.4488882499644, 126.56798133906949, 33.45251321509635, 126.5733411966229);
 //두 좌표가 보이도록 지도 확대 축소
 ```
@@ -565,7 +567,7 @@ map.bound(33.4488882499644, 126.56798133906949, 33.45251321509635, 126.573341196
 ####.bound(마커,마커)
 ####두개의 marker 객체를 전달했을 때
 
-```{.javascript}
+```javascript
 map.bound(marker1,marker2);
 //두 마커가 보이도록 지도 확대 축소
 ```
@@ -579,7 +581,7 @@ map.bound(marker1,marker2);
 
 ####.pan(x,y): 중심좌표 해당 픽셀만큼 부드럽게 이동
 
-```{.javascript}
+```javascript
 map.pan(50,100);
 //오른쪽으로 50 픽셀 위쪽으로 100 픽셀 이동
 ```
@@ -590,7 +592,7 @@ map.pan(50,100);
 
 ####.pan(위도,경도): 해당 위,경도로 중심좌표 부드럽게 이동
 
-```{.javascript}
+```javascript
 map.pan(33.450701,126.570667);
 //33.450701,126.570667로 부드럽게 이동
 ```
@@ -602,7 +604,7 @@ map.pan(33.450701,126.570667);
 
 ####.pan(위도1,경도1,위도2,경도2): 두 좌표가 보이는 영역으로 부드럽게 이동
 [참조](http://apis.map.daum.net/web/documentation/#Map_panTo)
-```{.javascript}
+```javascript
 map.pan(33.4488882499644, 126.56798133906949, 33.45251321509635, 126.5733411966229);
 //두 좌표가 보이도록 지도 이동
 ```
@@ -618,7 +620,7 @@ map.pan(33.4488882499644, 126.56798133906949, 33.45251321509635, 126.57334119662
 
 ####.addControl(컨트롤러 이름,위치): 지도에 컨트롤러를 올린다
 
-```{.javascript}
+```javascript
 map.addControl("TYPE","TOP");
 //타입 컨트롤러를 상단에 올린다
 
@@ -635,7 +637,7 @@ map.addControl("ZOOM","BOTTOMLEFT");
 
 ####.removeControl(컨트롤러 이름,위치): 지도에 컨트롤러를 없앤다
 
-```{.javascript}
+```javascript
 map.removeControl("TYPE","TOP");
 //상단에 있는 타입 컨트롤러를 없앤다
 
@@ -652,7 +654,7 @@ map.removeControl("ZOOM","BOTTOMLEFT");
 
 ####.draggable(): 마우스 드래그와 모바일 터치를 이용한 지도 이동 가능 여부를 반환한다
 
-```{.javascript}
+```javascript
 map.draggable();
 //true
 ```
@@ -662,7 +664,7 @@ map.draggable();
 
 ####.draggable(Boolean): 마우스 드래그와 모바일 터치를 이용한 지도 이동 가능 여부를 설정한다
 
-```{.javascript}
+```javascript
 map.draggable(false);
 //마우스 드래그 및 모바일 터치로 이동 불가
 ```
@@ -675,7 +677,7 @@ map.draggable(false);
 
 ####.zoomable(): 마우스 휠과 모바일 터치를 이용한 지도 확대, 축소 가능 여부를 반환한다.
 
-```{.javascript}
+```javascript
 map.zoomable();
 //true
 ```
@@ -685,7 +687,7 @@ map.zoomable();
 
 ####.zoomable(Boolean): 마우스 휠과 모바일 터치를 이용한 지도 확대, 축소 가능 여부를 설정한다.
 
-```{.javascript}
+```javascript
 map.zoomable(false);
 //마우스 휠 및 모바일 터치로 확대, 축소 불가
 ```
@@ -698,7 +700,7 @@ map.zoomable(false);
 
 ####.relayout(): 지도를 표시하는 HTML elemente의 크기를 변경한 후에는 반드시 이 함수를 호출해야 한다.
 
-```{.javascript}
+```javascript
 map.relayout();
 ```
 
@@ -707,7 +709,7 @@ map.relayout();
 
 ####.addOverlayMapTypeId(타일 종류): 지도에 로드뷰, 교통정보 등의 오버레이 타입의 타일 이미지를 올린다.
 
-```{.javascript}
+```javascript
 map.addOverlayMapTypeId("TRAFFIC");
 //교통정보 타일 이미지를 올린다
 
@@ -723,7 +725,7 @@ map.addOverlayMapTypeId("TERRAIN");
 
 ####.removeOverlayMapTypeId(타일 종류): 지도에 로드뷰, 교통정보 등의 오버레이 타입의 타일 이미지를 삭제한다.
 
-```{.javascript}
+```Javascript
 map.removeOverlayMapTypeId("TRAFFIC");
 //교통정보 타일 이미지를 없앤다
 
@@ -739,7 +741,7 @@ map.removeOverlayMapTypeId("TERRAIN");
 
 ####.keyboardShortcuts(): 키보드의 방향키와 +,-키로 지도 이동,확대,축소 가능여부를 반환한다.
 
-```{.javascript}
+```javascript
 map.keyboardShortcuts();
 //true
 ```
@@ -749,7 +751,7 @@ map.keyboardShortcuts();
 
 ####.keyboardShortcuts(Boolean): 키보드의 방향키와 +,-키로 지도 이동,확대,축소 가능여부를 설정한다.
 
-```{.javascript}
+```javascript
 map.keyboardShortcuts(false);
 //키보드로 조절 불가
 ```
@@ -762,7 +764,7 @@ map.keyboardShortcuts(false);
 
 ####.on(이벤트 이름,콜백함수): 지도에 이벤트를 등록한다
 
-```{.javascript}
+```javascript
 map.on('center_changed',function(){
   console.log("중심 좌표가 변경됩니다");
 });
@@ -778,3 +780,8 @@ map.on("click",function(e){
   매개변수 [지도 기본 이벤트](http://apis.map.daum.net/web/documentation/#Map_Events)
   * 이벤트 이름 (String)
   * 콜백함수 (Function)
+  
+  
+### 14. off
+
+####.off(이벤트 이름, 콜백함수): 지도의 이벤트를 제거한다

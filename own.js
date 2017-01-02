@@ -592,13 +592,13 @@ function customOverlay(options){
         var dot=content[point+6];
         var lastDot=content.slice(point+7).indexOf(dot)+point+7;
         if (content.slice(point+7,lastDot).indexOf("close")!==-1){
-          totalContent=totalContent.slice(0,length+lastDot+2)+"onclick='"+name+".close()'"+totalContent.slice(length+lastDot+2);
+          totalContent=totalContent.slice(0,length+lastDot+1)+"onclick='"+name+".close()'"+totalContent.slice(length+lastDot+1);
           
           this.content(totalContent);
           break;
         }
+        length+=content.slice(0,lastDot+1).length;
         content=content.slice(lastDot+1);
-        length+=lastDot;
       }
     },
     
