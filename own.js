@@ -593,7 +593,6 @@ function customOverlay(options){
         var lastDot=content.slice(point+7).indexOf(dot)+point+7;
         if (content.slice(point+7,lastDot).indexOf("close")!==-1){
           totalContent=totalContent.slice(0,length+lastDot+1)+"onclick='"+name+".close()'"+totalContent.slice(length+lastDot+1);
-          
           this.content(totalContent);
           break;
         }
