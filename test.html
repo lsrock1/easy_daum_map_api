@@ -89,6 +89,10 @@
   //첫 번째 인자로 오버레이들이 담긴 배열을 두 번째 인자로 배일의 이름을 전달합니다
   
   easyMap.markerClick(markers,overlays);
+  
+  map.on('click',function(e){
+    alert(e.position);
+  })
 $("#m1").click(function(){
  console.log(overlays[1].content());
 })

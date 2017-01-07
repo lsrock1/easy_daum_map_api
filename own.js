@@ -6,6 +6,21 @@ function preventMap(){
   daum.maps.event.preventMap;
 }
 
+function mouseEvent(mouse){
+    var point=mouse.point.toString().slice(1,-1).split(",");
+    point[1]=Number(point[1].trim());
+    point[0]=Number(point[0]);
+    return {
+        position: function(){
+          return [mouse.latLng.getLat(),mouse.latLng.getLng()];
+        },
+        
+        point: function(){
+          return [point[0],point[1]];
+        }
+    };
+}
+
 var easyMap={
     markerMap: function(markers,value){
       markers.forEach(function(ob){
@@ -303,7 +318,16 @@ function daumMap(container,options){
     },
     
     on: function(event,func){
-      daum.maps.event.addListener(map, event,func);
+      var callback=function(mouse){
+          if (mouse.LatLng){
+            var mouse=mouseEvent(mouse);
+            func(mouse);
+          }
+          else{
+            func();
+          }
+      };
+      daum.maps.event.addListener(map, event,callback);
     },
     
     trigger: function(event,data){

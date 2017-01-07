@@ -1,11 +1,12 @@
 daum 지도 api easy
 =======================
-
+#목적
 다음 지도를 사용하기 쉽게 만든 js입니다.
+쉬운 인터페이스를 구현하는 것을 목표로 합니다.
+다음에서 제공하는 객체들을 가능한 직접 사용하지 않습니다.
+제이쿼리스러운 메소드를 추구합니다.
 
-![Alt text](/image/mi.png)  
-빨간색: 인포윈도우  
-파란색: 마커
+물론 own.js 없이 다음 api를 사용하는게 자유도는 더 높습니다.
 
 #포함하기
 
@@ -767,15 +768,32 @@ map.on('center_changed',function(){
 //중심 좌표가 변경되었을 때 콘솔에 로그를 띄우는 이벤트를 등록합니다
 
 map.on("click",function(e){
-  var latlng = e.latLng;
-  alert('click! ' + latlng.toString());
+  var latlng = e.position;
+  alert(latlng);
 });
-//지도를 클릭했을 때 좌표를 알림창으로 띄우는 이벤트를 등록합니다
+//지도를 클릭했을 때 위 경도를 알림창으로 띄우는 이벤트를 등록합니다
 ```
 
   매개변수 [지도 기본 이벤트](http://apis.map.daum.net/web/documentation/#Map_Events)
   * 이벤트 이름 (String)
   * 콜백함수 (Function)
+  
+
+#### mouseEvent
+
+click, dbclick, rightclick, mousemove 이벤트는 콜백함수로 mouseEvent라는 인자를 전달하는데  
+이 인자는 두가지 메소드를 가집니다.
+```javascript
+map.on('click',function(mouseEvent){
+  alert(mouseEvent.position);
+});
+//지도를 클릭했을 때 위 경도를 알림창으로 띄우는 이벤트를 등록합니다
+
+map.on("click",function(mouseEvent){
+  alert(mouseEvent.point);
+});
+//지도를 클릭했을 때 픽셀 좌표를 알림창으로 띄우는 이벤트를 등록합니다
+```
   
   
 ### 14. off
