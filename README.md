@@ -4,10 +4,9 @@ daum 지도 api easy
 다음 지도를 사용하기 쉽게 만든 js입니다  
 쉬운 인터페이스를 구현하는 것을 목표로 합니다  
 다음에서 제공하는 객체들을 가능한 직접 사용하지 않습니다  
-제이쿼리스러운 메소드를 추구합니다  
-
+제이쿼리스러운 메소드를 추구합니다(메소드 체인 가능)  
 물론 own.js 없이 다음 api를 사용하는게 자유도는 더 높습니다  
-
+  
 #포함하기
 
 own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
@@ -96,6 +95,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   //마커 옵션
   
   var marker1=marker(mark1); //마커객체 생성
+  var easyMap=easyMap(); //easyMap 생성
   easyMap.markerMap([marker1],map) //마커 올리기
 </script>
 ```    
@@ -128,7 +128,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   var markers=[]
   markers.push(marker(mark1)); //첫 번째 마커객체 생성 markers 배열에 삽입
   markers.push(marker(mark2)); //두 번째 마커객체 생성 markers 배열에 삽입
-  
+  var easyMap=easyMap(); //easyMap 생성
   easyMap.markerMap(markers,map); //모든 마커를 map이라는 지도에 표시
   easyMap.markerRemove(markers); //모든 마커 지우기
 </script>
@@ -200,6 +200,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   var markers=[];
   markers.push(marker(mark1));
   markers.push(marker(mark2));
+  var easyMap=easyMap(); //easyMap 생성
   easyMap.markerMap(markers,map);
   //마커 생성
   
@@ -257,6 +258,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   var markers=[];
   markers.push(marker(mark1));
   markers.push(marker(mark2));
+  var easyMap=easyMap(); //easyMap 생성
   easyMap.markerMap(markers,map);
   //마커 생성
   
@@ -318,6 +320,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   var markers=[];
   markers.push(marker(mark1));
   markers.push(marker(mark2));
+  var easyMap=easyMap(); //easyMap 생성
   easyMap.markerMap(markers,map);
   //마커 생성 및 지도에 올리기
   
@@ -418,6 +421,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
     overlays.push(customOverlay(option));
   });
   //오버레이 객체 생성
+  var easyMap=easyMap(); //easyMap 생성
   
   easyMap.customOverlayOnClose(overlays,'overlays');
   //clickable 옵션과 비슷한 역할을 합니다
@@ -438,3 +442,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 ```
 
 #[daumMap 객체](/readme/daumMap.md#daummap-객체)
+#[mouseEvent 객체](/readme/mouseEvent.md#mouseEvent-객체)
+#[marker 객체]()
+#[infoWindow 객체]()
+#[customOverlay 객체]()

@@ -1,35 +1,37 @@
-function isInt(n) {
-   return n % 1 === 0;
-}
-
 function preventMap(){
   daum.maps.event.preventMap;
 }
+
 function eventCallback(func){
-    return function(mouse){
-        if(mouse.latLng){
-            var point=mouse.point.toString().slice(1,-1).split(",");
-            point[1]=Number(point[1].trim());
-            point[0]=Number(point[0]);
-            var returnMouse={
-                position: function(){
-                  return [mouse.latLng.getLat(),mouse.latLng.getLng()];
-                },
-                
-                point: function(){
-                  return [point[0],point[1]];
-                }
-            };
-            func(returnMouse);
+  return function(mouse){
+    if(mouse.latLng&&mouse.point){
+      var point=mouse.point.toString().slice(1,-1).split(",");
+      point[1]=Number(point[1].trim());
+      point[0]=Number(point[0]);
+      var returnMouse={
+        name: 'mouseEvent',
+        
+        position: function(){
+          return [mouse.latLng.getLat(),mouse.latLng.getLng()];
+        },
+        
+        point: function(){
+          return [point[0],point[1]];
         }
-        else{
-            func();
-        }
+      };
+      func(returnMouse);
     }
+    else{
+      func(mouse);
+    }
+  }
 }
 
 
-var easyMap={
+function easyMap(){
+  return {
+    name: 'easyMap',
+   
     markerMap: function(markers,value){
       markers.forEach(function(ob){
         ob['map'](value);
@@ -43,7 +45,7 @@ var easyMap={
     },
     
     markerClick: function(markers,overlay){
-      if(Array.isArray(overlay)&&markers.length==overlay.length){
+      if(Array.isArray(overlay)&&markers.length===overlay.length){
         for(var i=0;i<markers.length;i++){
           (function(marker,val){
             marker.on('click',function(){
@@ -59,34 +61,63 @@ var easyMap={
         overlay[i]['onClose'](name+"["+i.toString()+"]");
       }
     }
-};
+  };  
+}
 
 
 function daumMap(container,options){
-  if(options.mapTypeId){
-    switch(name){
-      case "ROADMAP":
-        options.mapTypeId=daum.maps.MapTypeId.ROADMAP;
-        break;
-      case "SKYVIEW":
-        options.mapTypeId=daum.maps.MapTypeId.SKYVIEW;
-        break;
-      case "HYBRID":
-        options.mapTypeId=daum.maps.MapTypeId.HYBRID;
-        break;
-      default: break;
-    }
-  }
+  options.mapTypeId=options.mapTypeId ? mapType(options.mapTypeId) : undefined;
   options.center=new daum.maps.LatLng(options.lat,options.lng);
   
   var map=new daum.maps.Map(container, options);
+  function mapType(index){
+    var mapTypeId={
+      "ROADMAP" : daum.maps.MapTypeId.ROADMAP,
+      "SKYVIEW" : daum.maps.MapTypeId.SKYVIEW,
+      "HYBRID" : daum.maps.MapTypeId.HYBRID,
+      1 : "ROADMAP",
+      2 : "SKYVIEW",
+      3 : "HYBRID"
+    };
+    
+    return mapTypeId[index];
+  }
   
+  function overlayMapType(index){
+    var overlayMapType={
+      "OVERLAY":daum.maps.MapTypeId.OVERLAY,
+      "TRAFFIC":daum.maps.MapTypeId.TRAFFIC,
+      "TERRAIN":daum.maps.MapTypeId.TERRAIN,
+      "BICYCLE":daum.maps.MapTypeId.BICYCLE,
+      "BICYCLE_HYBRID":daum.maps.MapTypeId.BICYCLE_HYBRID,
+      "USE_DISTRICT":daum.maps.MapTypeId.USE_DISTRICT
+    }
+    
+    return overlayMapType[index];
+  }
+  
+  function controlPosition(index){
+    var positions={
+      "TOP": daum.maps.ControlPosition.TOP,
+      "TOPLEFT":daum.maps.ControlPosition.TOPLEFT,
+      "TOPRIGHT":daum.maps.ControlPosition.TOPRIGHT,
+      "LEFT":daum.maps.ControlPosition.LEFT,
+      "RIGHT":daum.maps.ControlPosition.RIGHT,
+      "BOTTOMLEFT":daum.maps.ControlPosition.BOTTOMLEFT,
+      "BOTTOM":daum.maps.ControlPosition.BOTTOM,
+      "BOTTOMRIGHT":daum.maps.ControlPosition.BOTTOMRIGHT
+    }
+    
+    return positions[index];
+  }
+
   return {
     name: "daumMap",
     
     center: function(lat,lng){
       if(lat&&lng){
         map.setCenter(new daum.maps.Latmng(lat,lng));
+        return this;
       }
       else{
         return [map.getCenter().lat,map.getCenter().lng];
@@ -95,7 +126,8 @@ function daumMap(container,options){
     
     level: function(level,options){
       if(level){
-        return map.setLevel(level,options);
+        map.setLevel(level,options);
+        return this;
       }
       else{
         return map.getLevel();
@@ -104,49 +136,30 @@ function daumMap(container,options){
     
     mapTypeId: function(name){
       if(name){
-        switch(name){
-          case "ROADMAP":
-            map.setMapTypeId(daum.maps.MapTypeId.ROADMAP);
-            break;
-          case "SKYVIEW":
-            map.setMapTypeId(daum.maps.MapTypeId.SKYVIEW);
-            break;
-          case "HYBRID":
-            map.setMapTypeId(daum.maps.MapTypeId.HYBRID);
-            break;
-          default: break;
-        }
+        map.setMapTypeId(mapType(name));
+        return this;
       }
       else{
         var mapId=map.getMapTypeId();
-        switch(mapId){
-          case 1:
-            return "ROADMAP";
-          case 2:
-            return "SKYVIEW";
-          case 3:
-            return "HYBRID";
-          default:
-            break;
-        }
+        return mapType(mapId);
       }
     },
     
-    bound: function(lat1,lng1,lat2,lng2,paddingTop,paddingRight,paddingBottom,paddingLeft){
-      if(lat1&&lng1&&lat2&&lng2){
-        map.setBounds(new daum.maps.LatLngBounds(new daum.maps.LatLng(lat1,lng1), new daum.maps.LatLng(lat2,lng2)),
-          paddingTop,
-          paddingRight,
-          paddingBottom,
-          paddingLeft
+    bound: function(options){
+      if(options.lat1&&options.lng1&&options.lat2&&options.lng2){
+        map.setBounds(new daum.maps.LatLngBounds(new daum.maps.LatLng(options.lat1,options.lng1), new daum.maps.LatLng(options.lat2,options.lng2)),
+          options.paddingTop,
+          options.paddingRight,
+          options.paddingBottom,
+          options.paddingLeft
         );
       }
-      else if(lat1&&typeof lat1 =='object'&&lng1&&typeof lng1=='object'){
-        map.setBounds(new daum.maps.LatLngBounds(lat1.positionObject(),lng1.positionObject()),
-        lat2,
-        lng2,
-        paddingTop,
-        paddingRight
+      else if(options.marker1&&options.marker2){
+        map.setBounds(new daum.maps.LatLngBounds(options.marker1.positionObject(),options.marker2.positionObject()),
+          options.paddingTop,
+          options.paddingRight,
+          options.paddingBottom,
+          options.paddingLeft
         );
       }
       else{
@@ -158,114 +171,44 @@ function daumMap(container,options){
       }
     },
     
-    pan: function(lat1,lng1,lat2,lng2){
-      if(!lat2&&!lng2){
-        if(isInt(lat1)&&isInt(lng1)){
-          map.panBy(lat1,lng1);
-        }
-        else{
-          map.panTo(new daum.maps.LatLng(lat1, lng1));
-        }
+    pan: function(options){
+      if(options.x&&options.y){
+        map.panBy(options.x,options.y);
+      }
+      else if(options.lat1&&options.lng1&&options.lat2&&options.lng2){
+        map.panTo(new daum.maps.LatLngBounds(new daum.maps.LatLng(options.lat1,options.lng1), new daum.maps.LatLng(options.lat2,options.lng2)));
       }
       else{
-        map.panTo(new daum.maps.LatLngBounds(new daum.maps.LatLng(lat1,lng1), new daum.maps.LatLng(lat2,lng2)));
+        map.panTo(new daum.maps.LatLng(options.lat, options.lng));
       }
     },
     
     addControl: function(control,position){
-      var posi;
-      var con;
-      if(control=="TYPE"){
-        con =new daum.maps.MapTypeControl();
-      }
-      else{
-        con = new daum.maps.ZoomControl();
-      }
-    
-      switch(position){
-        case "TOP":
-          posi= daum.maps.ControlPosition.TOP;
-          break;
-        case "TOPLEFT":
-          posi=daum.maps.ControlPosition.TOPLEFT;
-          break;
-        case "TOPRIGHT":
-          posi=daum.maps.ControlPosition.TOPRIGHT;
-          break;
-        case "LEFT":
-          posi=daum.maps.ControlPosition.LEFT;
-          break;
-        case "RIGHT":
-          posi=daum.maps.ControlPosition.RIGHT;
-          break;
-        case "BOTTOMLEFT":
-          posi=daum.maps.ControlPosition.BOTTOMLEFT;
-          break;
-        case "BOTTOM":
-          posi=daum.maps.ControlPosition.BOTTOM;
-          break;
-        case "BOTTOMRIGHT":
-          posi=daum.maps.ControlPosition.BOTTOMRIGHT;
-          break;
-        default:break;
-      }
-    
-      map.addControl(con,posi);
+      var con= control ==='TYPE' ? new daum.maps.MapTypeControl() : new daum.maps.ZoomControl();
+      map.addControl(con,controlPosition(position));
+      return this;
     },
     
     removeControl: function(control,position){
-      var posi;
-      var con;
-      if(control=="Type"){
-        con =new daum.maps.MapTypeControl();
-      }
-      else{
-        con = new daum.maps.ZoomControl();
-      }
-  
-      switch(position){
-        case "TOP":
-          posi= daum.maps.ControlPosition.TOP;
-          break;
-        case "TOPLEFT":
-          posi=daum.maps.ControlPosition.TOPLEFT;
-          break;
-        case "TOPRIGHT":
-          posi=daum.maps.ControlPosition.TOPRIGHT;
-          break;
-        case "LEFT":
-          posi=daum.maps.ControlPosition.LEFT;
-          break;
-        case "RIGHT":
-          posi=daum.maps.ControlPosition.RIGHT;
-          break;
-        case "BOTTOMLEFT":
-          posi=daum.maps.ControlPosition.BOTTOMLEFT;
-          break;
-        case "BOTTOM":
-          posi=daum.maps.ControlPosition.BOTTOM;
-          break;
-        case "BOTTOMRIGHT":
-          posi=daum.maps.ControlPosition.BOTTOMRIGHT;
-          break;
-        default:break;
-      }
-  
-      map.removeControl(con,posi);
+      var con= control ==='TYPE' ? new daum.maps.MapTypeControl() : new daum.maps.ZoomControl();
+      map.removeControl(con,controlPosition(position));
+      return this;
     },
     
     draggable: function(bool){
       if(bool){
         map.setDraggable(bool);
+        return this;
       }
       else{
         return map.getDraggable();
-      }
+      }    
     },
     
     zoomable: function(bool){
       if(bool){
         map.setZoomable(bool);
+        return this;
       }
       else{
         return map.getZoomable();
@@ -274,51 +217,23 @@ function daumMap(container,options){
     
     relayout: function(){
       map.relayout();
+      return this;
     },
     
     addOverlayMapTypeId: function(name){
-      var type;
-      switch(name){
-        case "OVERLAY":
-          type=daum.maps.MapTypeId.OVERLAY;
-        case "TRAFFIC":
-          type=daum.maps.MapTypeId.TRAFFIC;
-        case "TERRAIN":
-          type=daum.maps.MapTypeId.TERRAIN;
-        case "BICYCLE":
-          type=daum.maps.MapTypeId.BICYCLE;
-        case "BICYCLE_HYBRID":
-          type=daum.maps.MapTypeId.BICYCLE_HYBRID;
-        case "USE_DISTRICT":
-          type=daum.maps.MapTypeId.USE_DISTRICT;
-        default: break;
-      }
-      map.addOverlayMapTypeId(type);
+      map.addOverlayMapTypeId(overlayMapType(name));
+      return this;
     },
     
     removeOverlayMapTypeId: function(name){
-      var type;
-      switch(name){
-        case "OVERLAY":
-          type=daum.maps.MapTypeId.OVERLAY;
-        case "TRAFFIC":
-          type=daum.maps.MapTypeId.TRAFFIC;
-        case "TERRAIN":
-          type=daum.maps.MapTypeId.TERRAIN;
-        case "BICYCLE":
-          type=daum.maps.MapTypeId.BICYCLE;
-        case "BICYCLE_HYBRID":
-          type=daum.maps.MapTypeId.BICYCLE_HYBRID;
-        case "USE_DISTRICT":
-          type=daum.maps.MapTypeId.USE_DISTRICT;
-        default: break;
-      }
-      map.removeOverlayMapTypeId(type);
+      map.removeOverlayMapTypeId(overlayMapType(name));
+      return this;
     },
     
     keyboardShortcuts: function(bool){
       if(bool){
         map.setKeyboardShortcuts(bool);
+        return this;
       }
       else{
         return map.getKeyboardShortcuts();
@@ -326,16 +241,18 @@ function daumMap(container,options){
     },
     
     on: function(event,func){
-      var callback=eventCallback(func);
-      daum.maps.event.addListener(map, event,callback);
+      daum.maps.event.addListener(map, event,eventCallback(func));
+      return this;
     },
     
     trigger: function(event,data){
       daum.maps.event.trigger(map, event,data);
+      return this;
     },
     
     off: function(event,func){
-      daum.maps.event.removeListener(map,event,func);
+      daum.maps.event.removeListener(map,event,eventCallback(func));
+      return this;
     },
     
     object: function(){
@@ -354,18 +271,18 @@ function marker(options){
     options.map=daumMap.object();
   }
   
-  
   var marker=new daum.maps.Marker(options);
   
   return {
     name: "marker",
     
     map: function(getmap){
-      if(typeof getmap =='object'){
-        if(getmap!=daumMap){
+      if(getmap.name=='daumMap'){
+        if(getmap!==daumMap){
           marker.setMap(getmap.object());
           daumMap=getmap;
         }
+        return this;
       }
       else{
         return daumMap;
@@ -375,6 +292,7 @@ function marker(options){
     remove: function(){
       marker.setMap(null);
       daumMap=null;
+      return this;
     },
     
     positionObject : function(){
@@ -382,8 +300,9 @@ function marker(options){
     },
     
     image: function(image){
-      if(image&&image instanceof daum.maps.MarkerImage){
+      if(image){
         marker.setImage(image);
+        return this;
       }
       else{
         return marker.getImage();
@@ -395,17 +314,19 @@ function marker(options){
         var position=marker.getPosition();
         return [position.getLat(),position.getLng()];
       }
-      else if(options.name=='latlng'){
+      else if(options.name==='latlng'){
         marker.setPosition(new daum.maps.LatLng(options.lat,options.lng));
       }
-      else if(options.name=='viewpoint'){
+      else if(options.name==='viewpoint'){
         marker.setPosition(new daum.maps.Viewpoint(options.lat1,options.lng1,options.lat2,options.lng2));
       }
+      return this;
     },
     
     zindex: function(num){
       if(num){
         marker.setZIndex(num);
+        return this;
       }
       else{
         return marker.getZIndex();
@@ -415,6 +336,7 @@ function marker(options){
     visible: function(bool){
       if(bool){
         marker.setVisible(bool);
+        return this;
       }
       else{
         return marker.getVisible();
@@ -424,6 +346,7 @@ function marker(options){
     title: function(title){
       if(title){
         marker.setTitle(title);
+        return this;
       }
       else{
         return marker.getTitle();
@@ -433,6 +356,7 @@ function marker(options){
     draggable: function(bool){
       if(bool){
         marker.setDraggable(bool);
+        return this;
       }
       else{
         return marker.getDraggable();
@@ -442,6 +366,7 @@ function marker(options){
     clickable: function(bool){
       if(bool){
         marker.setClickable(bool);
+        return this;
       }
       else{
         return marker.getClickable(bool);
@@ -451,6 +376,7 @@ function marker(options){
     altitude: function(num){
       if(num){
         marker.setAltitude(num);
+        return this;
       }
       else{
         return marker.getAltitude();
@@ -460,6 +386,7 @@ function marker(options){
     range: function(num){
       if(num){
         marker.setRange(num);
+        return this;
       }
       else{
         return marker.getRange();
@@ -469,6 +396,7 @@ function marker(options){
     opacity: function(num){
       if(num){
         marker.setOpacity(num);
+        return this;
       }
       else{
         return marker.getOpacity();
@@ -476,15 +404,18 @@ function marker(options){
     },
     
     on: function(event,func){
-      daum.maps.event.addListener(marker,event,func);
+      daum.maps.event.addListener(marker,event,eventCallback(func));
+      return this;
     },
     
     trigger: function(event,func){
       daum.maps.event.trigger(marker,event,func);
+      return this;
     },
     
     off: function(event,func){
-      daum.maps.event.removeEventListener(marker,event,func);
+      daum.maps.event.removeEventListener(marker,event,eventCallback(func));
+      return this;
     },
     
     object: function(){
@@ -510,12 +441,16 @@ function infoWindow(options){
     name: "infoWindow",
     
     open: function(marker){
-      infowindow.open(marker.map().object(),marker.object());
-      daumMap=marker.map();
+      if(marker.name==='marker'){
+        infowindow.open(marker.map().object(),marker.object());
+        daumMap=marker.map();
+        return this;
+      }
     },
     
     close: function(){
       infowindow.close();
+      return this;
     },
     
     map: function(){
@@ -525,6 +460,7 @@ function infoWindow(options){
     position: function(lat,lng){
       if(lat&&lng){
         infowindow.setPosition(new daum.maps.LatLng(lat,lng));
+        return this;
       }
       else{
         var latlng=infowindow.getPosition();
@@ -535,6 +471,7 @@ function infoWindow(options){
     content: function(value){
       if(value){
         infowindow.setContent(value);
+        return this;
       }
       else{
         return infowindow.getContent();
@@ -544,6 +481,7 @@ function infoWindow(options){
     zindex: function(value){
       if(value){
         infoWindow.setZIndex(value);
+        return this;
       }
       else{
         return infowindow.getZIndex();
@@ -553,6 +491,7 @@ function infoWindow(options){
     altitude: function(value){
       if(value){
         infowindow.setAltitude(value);
+        return this;
       }
       else{
         return infowindow.getAltitude();
@@ -562,6 +501,7 @@ function infoWindow(options){
     range: function(value){
       if(value){
         infowindow.setRange(value);
+        return this;
       }
       else{
         return infowindow.getRange();
@@ -592,12 +532,14 @@ function customOverlay(options){
       this.position(position[0],position[1]);
       daumMap=marker.map();
       this.map(daumMap);
+      return this;
     },
     
     map: function(value){
       if(value){
         customoverlay.setMap(value.object());
         daumMap=value;
+        return this;
       }
       else{
         return daumMap;
@@ -623,15 +565,18 @@ function customOverlay(options){
         length+=content.slice(0,lastDot+1).length;
         content=content.slice(lastDot+1);
       }
+      return this;
     },
     
     close: function(){
       customoverlay.setMap(null);
+      return this;
     },
 
     position: function(lat,lng){
       if(lat&&lng){
         customoverlay.setPosition(new daum.maps.LatLng(lat,lng));
+        return this;
       }
       else{
         var latlng=customoverlay.getPosition();
@@ -642,6 +587,7 @@ function customOverlay(options){
     content: function(value){
       if(value){
         div.innerHTML=value;
+        return this;
       }
       else{
         return div.innerHTML;
@@ -651,6 +597,7 @@ function customOverlay(options){
     zindex: function(value){
       if(value){
         customoverlay.setZIndex(value);
+        return this;
       }
       else{
         return customoverlay.getZIndex();
@@ -660,6 +607,7 @@ function customOverlay(options){
     altitude: function(value){
       if(value){
         customoverlay.setAltitude(value);
+        return this;
       }
       else{
         return customoverlay.getAltitude();
@@ -669,6 +617,7 @@ function customOverlay(options){
     range: function(value){
       if(value){
         customoverlay.setRange(value);
+        return this;
       }
       else{
         return customoverlay.getRange();
@@ -677,10 +626,12 @@ function customOverlay(options){
     
     on: function(name,func){
       div.addEventListener(div,name, func);
+      return this;
     },
     
     off: function(name,func){
       div.removeEventListener(div,name,func);
+      return this;
     }
   }
 }

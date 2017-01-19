@@ -37,7 +37,7 @@
   };
    
   var map=daumMap(container,options); //지도 초기화
-  
+  var easyMap=easyMap();
   var mOptions=[
     {
       lat: 33.450701,
@@ -91,13 +91,13 @@
   easyMap.markerClick(markers,overlays);
   
   map.on('click',function(e){
-    alert(e.position());
+    alert(e.point());
   })
 $("#m1").click(function(){
  console.log(overlays[1].content());
 })
 $("#m2").click(function(){
-	map.projectionId('NONE');
+	map.mapTypeId('SKYVIEW').addControl('TYPE');
 })
 $("#m3").click(function(){
 	map.pan(33.450701,126.560667);

@@ -15,13 +15,21 @@ var container = document.getElementById('map'),
 var map = daumMap(container, options);
 ```
 
-매개변수
-* options
-  * center : 삭제
-  * lat (Number): 중심좌표 위도 (필수)
-  * lng (Number): 중심좌표 경도 (필수)
-  * mapTypeId (String: ROADMAP , SKYVIEW , HYBRID 중 하나): 지도 종류
-  * 나머지 [다음 지도](http://apis.map.daum.net/web/documentation/#Map)와 같음
+  매개변수
+  * container (Node) : 지도가 표시될 HTML 요소
+  * options (Object)
+    * lat (Number): 중심좌표 위도 (필수)
+    * lng (Number): 중심좌표 경도 (필수)
+    * level (Number) : 확대 수준 (기본값: 3)
+    * mapTypeId (String: ROADMAP , SKYVIEW , HYBRID 중 하나): 지도 종류
+    * draggable (Boolean): 마우스 드래그, 휠, 모바일 터치를 이용한 시점 변경(이동, 확대, 축소) 가능 여부
+    * scrollwheel (Boolean): 마우스 휠, 모바일 터치를 이용한 확대 및 축소 가능 여부
+    * disableDoubleClick (Boolean) : 더블클릭 이벤트 및 더블클릭 확대 가능 여부
+    * disableDoubleClickZoom (Boolean) : 더블클릭 확대 가능 여부
+    * projectionId (String) : 투영법 지정
+    * tileAnimation (Boolean) : 지도 타일 애니메이션 설정 여부 (기본값: true)
+    * keyboardShortcuts (Boolean | Object) : 키보드의 방향키와 +, – 키로 지도 이동,확대,축소 가능 여부 (기본값: false)
+      * speed (Number) : 지도 이동 속도
 
 
 ##메소드
@@ -35,7 +43,7 @@ var map = daumMap(container, options);
 //[33.450701,126.570667]
 ```
   반환값
-  * [Number, Number]
+  * [Number, Number] (Array)
 
 
 ####.center(위도,경도): 위도,경도 값으로 중심좌표 변경
@@ -106,74 +114,105 @@ map.mapTypeId("SKYVIEW");
 //[33.4488882499644, 126.56798133906949, 33.45251321509635, 126.5733411966229]
 ```
   반환값
-  * [첫째 좌표의 위도(Float),첫째 좌표의 경도(Float),둘째 좌표의 위도(Float),둘째 좌표의 경도(Float)]
+  * [첫째 좌표의 위도(Float),첫째 좌표의 경도(Float),둘째 좌표의 위도(Float),둘째 좌표의 경도(Float)] (Array)
   * 반환되는 좌표 규칙 [참조](http://apis.map.daum.net/web/documentation/#LatLngBounds)
 
 
-####.bound(위도1,경도1,위도2,경도2): 주어진 영역이 화면 안에 전부 나타날 수 있도록 지도의 중심 좌표와 확대 수준을 설정한다
-####위도,경도,위도,경도 순으로 두개의 좌표 전달
+####.bound(options): 주어진 영역이 화면 안에 전부 나타날 수 있도록 지도의 중심 좌표와 확대 수준을 설정한다
+
+####두개의 좌표 전달
 
 ```javascript
-map.bound(33.4488882499644, 126.56798133906949, 33.45251321509635, 126.5733411966229);
+var options={
+  lat1 : 33.4488882499644,
+  lng1 : 126.56798133906949,
+  lat2 : 33.45251321509635,
+  lng2 : 126.5733411966229
+}
+map.bound(options);
 //두 좌표가 보이도록 지도 확대 축소
 ```
 
-  매개변수 
-  * 위도1 (Float): 보여야 할 첫째 좌표의 위도 값
-  * 경도1 (Float): 보여야 할 첫째 좌표의 경도 값
-  * 위도2 (Float): 보여야 할 둘째 좌표의 위도 값
-  * 경도2 (Float): 보여야 할 둘째 좌표의 경도 값
+  매개변수
+  * options
+    * lat1 (Float): 보여야 할 첫째 좌표의 위도 값
+    * lng1 (Float): 보여야 할 첫째 좌표의 경도 값
+    * lat2 (Float): 보여야 할 둘째 좌표의 위도 값
+    * lng2 (Float): 보여야 할 둘째 좌표의 경도 값
 
-####.bound(마커,마커)
-####두개의 marker 객체를 전달했을 때
+####두개의 marker 객체를 전달
 
 ```javascript
-map.bound(marker1,marker2);
+var options={
+  marker1 : obj_marker1,
+  marker2 : obj_marker2
+}
+map.bound(options);
 //두 마커가 보이도록 지도 확대 축소
 ```
 
-  매개변수 
-  * 마커 (Object): 마커 객체
-  * 마커 (Object): 마커 객체
+  매개변수
+  * options(Object)
+    * marker1 (Object): 마커 객체
+    * marker2 (Object): 마커 객체
 
 
 ### 5. pan
 
-####.pan(x,y): 중심좌표 해당 픽셀만큼 부드럽게 이동
+####.pan(options): 부드럽게 이동
+
+####x,y축 전달
 
 ```javascript
-map.pan(50,100);
+var options={
+  x: 50,
+  y: 100
+}
+map.pan(options);
 //오른쪽으로 50 픽셀 위쪽으로 100 픽셀 이동
 ```
   매개변수
-  * x (Integer): x축 이동 픽셀값
-  * y (Integer): y축 이동 픽셀값
+  *options(Object)
+    * x (Integer): x축 이동 픽셀값
+    * y (Integer): y축 이동 픽셀값
 
 
-####.pan(위도,경도): 해당 위,경도로 중심좌표 부드럽게 이동
+####좌표 하나 전달
 
 ```javascript
-map.pan(33.450701,126.570667);
+var options={
+  lat: 33.450701,
+  lng: 126.570667
+}
+map.pan(options);
 //33.450701,126.570667로 부드럽게 이동
 ```
 
-  매개변수 
-  * 위도 (Float)
-  * 경도 (Float)
+  매개변수
+  *options(Object)
+    * lat (Float)
+    * lng (Float)
 
 
-####.pan(위도1,경도1,위도2,경도2): 두 좌표가 보이는 영역으로 부드럽게 이동
+####두 좌표 전달
 [참조](http://apis.map.daum.net/web/documentation/#Map_panTo)
 ```javascript
-map.pan(33.4488882499644, 126.56798133906949, 33.45251321509635, 126.5733411966229);
+var options={
+  lat1: 33.4488882499644,
+  lng1: 126.56798133906949,
+  lat2: 33.45251321509635,
+  lng2: 126.5733411966229
+}
+map.pan(options);
 //두 좌표가 보이도록 지도 이동
 ```
 
-  매개변수 
-  * 위도1 (Float): 보여야 할 첫째 좌표의 위도 값
-  * 경도1 (Float): 보여야 할 첫째 좌표의 경도 값
-  * 위도2 (Float): 보여야 할 둘째 좌표의 위도 값
-  * 경도2 (Float): 보여야 할 둘째 좌표의 경도 값
+  매개변수
+  *options(Object)
+    * lat1 (Float): 보여야 할 첫째 좌표의 위도 값
+    * lng1 (Float): 보여야 할 첫째 좌표의 경도 값
+    * lat2 (Float): 보여야 할 둘째 좌표의 위도 값
+    * lng2 (Float): 보여야 할 둘째 좌표의 경도 값
 
 
 ### 6. addControl
@@ -310,7 +349,7 @@ map.keyboardShortcuts();
   * Boolean
 
 ####.keyboardShortcuts(Boolean): 키보드의 방향키와 +,-키로 지도 이동,확대,축소 가능여부를 설정한다.
-
+  
 ```javascript
 map.keyboardShortcuts(false);
 //키보드로 조절 불가
@@ -321,9 +360,9 @@ map.keyboardShortcuts(false);
 
 
 ### 14. on
-
+  
 ####.on(이벤트 이름,콜백함수): 지도에 이벤트를 등록한다
-
+  
 ```javascript
 map.on('center_changed',function(){
   console.log("중심 좌표가 변경됩니다");
@@ -337,14 +376,14 @@ map.on("click",function(e){
 //지도를 클릭했을 때 위 경도를 알림창으로 띄우는 이벤트를 등록합니다
 ```
 
-  매개변수 [지도 기본 이벤트](http://apis.map.daum.net/web/documentation/#Map_Events)
+  매개변수 [지도가 기본으로 일으키는 이벤트](http://apis.map.daum.net/web/documentation/#Map_Events)
   * 이벤트 이름 (String)
   * 콜백함수 (Function)
   
 
-#### mouseEvent
-
-click, dbclick, rightclick, mousemove 이벤트는 콜백함수로 mouseEvent라는 인자를 전달하는데  
+#### [mouseEvent](/readme/mouseEvent.md#mouseEvent-객체)
+  
+click, dbclick, rightclick, mousemove 이벤트는 콜백함수에게 mouseEvent라는 객체를 전달하는데  
 이 인자는 두가지 메소드를 가집니다.
 ```javascript
 map.on('click',function(mouseEvent){
@@ -355,10 +394,27 @@ map.on('click',function(mouseEvent){
 map.on("click",function(mouseEvent){
   alert(mouseEvent.point());
 });
-//지도를 클릭했을 때 픽셀 좌표를 알림창으로 띄우는 이벤트를 등록합니다
+//지도를 클릭했을 때 화면 좌표를 알림창으로 띄우는 이벤트를 등록합니다
 ```
   
   
 ### 14. off
 
 ####.off(이벤트 이름, 콜백함수): 지도의 이벤트를 제거한다
+  
+```javascript
+map.off('center_changed',function(){
+  console.log("중심 좌표가 변경됩니다");
+});
+//중심 좌표가 변경되었을 때 콘솔에 로그를 띄우는 이벤트를 제거합니다
+
+map.off("click",function(e){
+  var latlng = e.position;
+  alert(latlng);
+});
+//지도를 클릭했을 때 위 경도를 알림창으로 띄우는 이벤트를 제거합니다
+```
+
+  매개변수
+  * 이벤트 이름 (String)
+  * 콜백함수 (Function)
