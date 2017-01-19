@@ -5,21 +5,29 @@ function isInt(n) {
 function preventMap(){
   daum.maps.event.preventMap;
 }
-
-function mouseEvent(mouse){
-    var point=mouse.point.toString().slice(1,-1).split(",");
-    point[1]=Number(point[1].trim());
-    point[0]=Number(point[0]);
-    return {
-        position: function(){
-          return [mouse.latLng.getLat(),mouse.latLng.getLng()];
-        },
-        
-        point: function(){
-          return [point[0],point[1]];
+function eventCallback(func){
+    return function(mouse){
+        if(mouse.latLng){
+            var point=mouse.point.toString().slice(1,-1).split(",");
+            point[1]=Number(point[1].trim());
+            point[0]=Number(point[0]);
+            var returnMouse={
+                position: function(){
+                  return [mouse.latLng.getLat(),mouse.latLng.getLng()];
+                },
+                
+                point: function(){
+                  return [point[0],point[1]];
+                }
+            };
+            func(returnMouse);
         }
-    };
+        else{
+            func();
+        }
+    }
 }
+
 
 var easyMap={
     markerMap: function(markers,value){
@@ -318,15 +326,7 @@ function daumMap(container,options){
     },
     
     on: function(event,func){
-      var callback=function(mouse){
-          if (mouse.LatLng){
-            var mouse=mouseEvent(mouse);
-            func(mouse);
-          }
-          else{
-            func();
-          }
-      };
+      var callback=eventCallback(func);
       daum.maps.event.addListener(map, event,callback);
     },
     

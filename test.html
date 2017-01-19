@@ -91,7 +91,7 @@
   easyMap.markerClick(markers,overlays);
   
   map.on('click',function(e){
-    alert(e.position);
+    alert(e.position());
   })
 $("#m1").click(function(){
  console.log(overlays[1].content());
