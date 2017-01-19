@@ -13,8 +13,10 @@ daum 지도 api easy
 own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 
 ```javascript
+
 <script src="//apis.daum.net/maps/maps3.js?apikey=본인 api 키"></script>
 <script src="/own.min.js"></script>
+
 ```
 
 #예제
@@ -434,3 +436,5 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   //같은 형태로 다른 이벤트를 등록할 수 있습니다
 </script>
 ```
+
+#[daumMap 객체](/easy_daum_map_api/blob/master/readme/daumMap.md#daummap-객체)
