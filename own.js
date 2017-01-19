@@ -4,7 +4,7 @@ function preventMap(){
 
 function eventCallback(func){
   return function(mouse){
-    if(mouse.latLng&&mouse.point){
+    if(mouse&&mouse.latLng&&mouse.point){
       var point=mouse.point.toString().slice(1,-1).split(",");
       point[1]=Number(point[1].trim());
       point[0]=Number(point[0]);
@@ -116,7 +116,7 @@ function daumMap(container,options){
     
     center: function(lat,lng){
       if(lat&&lng){
-        map.setCenter(new daum.maps.Latmng(lat,lng));
+        map.setCenter(new daum.maps.LatLng(lat,lng));
         return this;
       }
       else{
@@ -169,6 +169,7 @@ function daumMap(container,options){
   
         return [sw.getLat(),sw.getLng(),ne.getLat(),ne.getLng()];
       }
+      return this;
     },
     
     pan: function(options){
@@ -181,6 +182,7 @@ function daumMap(container,options){
       else{
         map.panTo(new daum.maps.LatLng(options.lat, options.lng));
       }
+      return this;
     },
     
     addControl: function(control,position){
@@ -241,8 +243,9 @@ function daumMap(container,options){
     },
     
     on: function(event,func){
-      daum.maps.event.addListener(map, event,eventCallback(func));
-      return this;
+      var callbackFunc=eventCallback(func);
+      daum.maps.event.addListener(map, event,callbackFunc);
+      return callbackFunc;
     },
     
     trigger: function(event,data){
@@ -251,7 +254,7 @@ function daumMap(container,options){
     },
     
     off: function(event,func){
-      daum.maps.event.removeListener(map,event,eventCallback(func));
+      daum.maps.event.removeListener(map,event,func);
       return this;
     },
     
@@ -277,7 +280,7 @@ function marker(options){
     name: "marker",
     
     map: function(getmap){
-      if(getmap.name=='daumMap'){
+      if(getmap&&getmap.name=='daumMap'){
         if(getmap!==daumMap){
           marker.setMap(getmap.object());
           daumMap=getmap;
@@ -404,17 +407,17 @@ function marker(options){
     },
     
     on: function(event,func){
-      daum.maps.event.addListener(marker,event,eventCallback(func));
+      daum.maps.event.addListener(marker,event,func);
       return this;
     },
     
     trigger: function(event,func){
-      daum.maps.event.trigger(marker,event,func);
+      daum.maps.event.trigger(marker,event,data);
       return this;
     },
     
     off: function(event,func){
-      daum.maps.event.removeEventListener(marker,event,eventCallback(func));
+      daum.maps.event.removeEventListener(marker,event,func);
       return this;
     },
     
@@ -441,7 +444,7 @@ function infoWindow(options){
     name: "infoWindow",
     
     open: function(marker){
-      if(marker.name==='marker'){
+      if(marker&&marker.name==='marker'){
         infowindow.open(marker.map().object(),marker.object());
         daumMap=marker.map();
         return this;

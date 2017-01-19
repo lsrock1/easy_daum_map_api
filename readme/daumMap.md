@@ -379,6 +379,9 @@ map.on("click",function(e){
   매개변수 [지도가 기본으로 일으키는 이벤트](http://apis.map.daum.net/web/documentation/#Map_Events)
   * 이벤트 이름 (String)
   * 콜백함수 (Function)
+   
+  반환값
+  * 이벤트 제거용 함수 (Function) off 함수를 써서 이벤트를 제거할 때에는 반환된 함수로 제거해야 함  
   
 
 #### [mouseEvent](/readme/mouseEvent.md#mouseEvent-객체)
@@ -403,18 +406,37 @@ map.on("click",function(mouseEvent){
 ####.off(이벤트 이름, 콜백함수): 지도의 이벤트를 제거한다
   
 ```javascript
-map.off('center_changed',function(){
+var event=map.on('center_changed',function(){
   console.log("중심 좌표가 변경됩니다");
 });
-//중심 좌표가 변경되었을 때 콘솔에 로그를 띄우는 이벤트를 제거합니다
+//중심 좌표가 변경되었을 때 콘솔에 로그를 띄우는 이벤트를 등록하고 반환 함수를 받아 저장합니다
 
-map.off("click",function(e){
-  var latlng = e.position;
-  alert(latlng);
-});
-//지도를 클릭했을 때 위 경도를 알림창으로 띄우는 이벤트를 제거합니다
+map.off('center_changed',event);
+//중심 좌표가 변경되었을 때 콘솔에 로그를 띄우는 이벤트를 반환 함수로 제거합니다
 ```
 
   매개변수
   * 이벤트 이름 (String)
   * 콜백함수 (Function)
+
+
+### 메소드 체인
+```javascript
+map
+.center(33.450701,126.570667)
+.level(4)
+.mapTypeId("SKYVIEW")
+.bound({
+  lat1 : 33.4488882499644,
+  lng1 : 126.56798133906949,
+  lat2 : 33.45251321509635,
+  lng2 : 126.5733411966229
+})
+.pan({x: 5,y: 10})
+.relayout()
+.on('center_changed',function(){
+  console.log("중심 좌표가 변경됩니다");
+})
+```
+
+맘껏 이어보세요!

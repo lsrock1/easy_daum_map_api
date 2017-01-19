@@ -89,19 +89,25 @@
   //첫 번째 인자로 오버레이들이 담긴 배열을 두 번째 인자로 배일의 이름을 전달합니다
   
   easyMap.markerClick(markers,overlays);
-  
+  var event;
   map.on('click',function(e){
     alert(e.point());
   })
-$("#m1").click(function(){
- console.log(overlays[1].content());
-})
+  var event;
+
+
 $("#m2").click(function(){
-	map.mapTypeId('SKYVIEW').addControl('TYPE');
+event=map.on('center_changed',function(){
+  console.log("중심 좌표가 변경됩니다");
 })
-$("#m3").click(function(){
-	map.pan(33.450701,126.560667);
+
+$("#m1").click(function(){
+  console.log("이벤트");
+  map.off('center_changed',event);
+
 })
+})
+
 </script>
 
 </body>
