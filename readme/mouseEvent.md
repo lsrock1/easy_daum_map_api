@@ -19,7 +19,7 @@ map.on("click",function(mouseEvent){
 //지도를 클릭했을 때 지도 좌표를 알림창으로 띄우는 이벤트를 등록합니다
 ```
   반환값
-  * [좌표의 위도(Float),좌표의 경도(Float)] (Array)
+  * Array [좌표의 위도(Float),좌표의 경도(Float)]
 
 
 ### .point() : 화면 좌표 반환
@@ -31,4 +31,4 @@ map.on("click",function(mouseEvent){
 //지도를 클릭했을 때 화면 좌표를 알림창으로 띄우는 이벤트를 등록합니다
 ```
   반환값
-  * [좌표의 X(Number),좌표의 Y(Number)] (Array)
+  * Array [좌표의 X(Number),좌표의 Y(Number)]

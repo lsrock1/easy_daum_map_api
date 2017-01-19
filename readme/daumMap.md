@@ -43,7 +43,7 @@ var map = daumMap(container, options);
 //[33.450701,126.570667]
 ```
   반환값
-  * [Number, Number] (Array)
+  * Array [위도 (Number), 경도 (Number)]
 
 
 ####.center(위도,경도): 위도,경도 값으로 중심좌표 변경
@@ -67,7 +67,7 @@ map.center(33.450701,126.570667);
 //3
 ```
   반환값
-  * Number
+  * level (Number)
 
 
 ####.level(level,options): 확대 축소 수준을 매개변수로 설정, options 객체로 다양한 효과 가능
@@ -91,7 +91,7 @@ map.level(3,options);
 //"ROADMAP"
 ```
   반환값
-  * String
+  * 지도 종류 (String)
 
 
 ####.mapTypeId(지도 종류): 지도 종류 변경
@@ -114,7 +114,7 @@ map.mapTypeId("SKYVIEW");
 //[33.4488882499644, 126.56798133906949, 33.45251321509635, 126.5733411966229]
 ```
   반환값
-  * [첫째 좌표의 위도(Float),첫째 좌표의 경도(Float),둘째 좌표의 위도(Float),둘째 좌표의 경도(Float)] (Array)
+  * Array [첫째 좌표의 위도(Float),첫째 좌표의 경도(Float),둘째 좌표의 위도(Float),둘째 좌표의 경도(Float)]
   * 반환되는 좌표 규칙 [참조](http://apis.map.daum.net/web/documentation/#LatLngBounds)
 
 
