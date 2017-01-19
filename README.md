@@ -437,4 +437,4 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 </script>
 ```
 
-#[daumMap 객체](/easy_daum_map_api/blob/master/readme/daumMap.md#daummap-객체)
+#[daumMap 객체](/readme/daumMap.md#daummap-객체)
