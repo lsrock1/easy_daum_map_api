@@ -88,14 +88,6 @@
   //첫 번째 인자로 오버레이들이 담긴 배열을 두 번째 인자로 배일의 이름을 전달합니다
   
   easyMap.markerClick(markers,overlays);
-  var clickEvent=function(e){
-    
-    console.log(returnMouse(e).position());
-  }
-  
-  map.on('center_changed',function(){
-      console.log('변경!!');
-  })
 
 
 $("#m2").click(function(){
@@ -103,7 +95,21 @@ $("#m2").click(function(){
 })
 
 $("#m1").click(function(){
-  console.log("이벤트 제거");
+  map
+.center(33.450701,126.570667)
+.level(4)
+.mapTypeId("SKYVIEW")
+.bound({
+  lat1 : 33.4488882499644,
+  lng1 : 126.56798133906949,
+  lat2 : 33.45251321509635,
+  lng2 : 126.5733411966229
+})
+.pan({x: 5,y: 10})
+.relayout()
+.on('center_changed',function(){
+  console.log("중심 좌표가 변경됩니다");
+})
 })
 
 </script>
