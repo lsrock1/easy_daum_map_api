@@ -36,16 +36,16 @@
   	level: 3
   };
    
-  var map=daumMap(container,options); //지도 초기화
-  var easyMap=easyMap();
+  var map=new daumMap(container,options); //지도 초기화
+  var easyMap=new easyMap();
   var mOptions=[
     {
       lat: 33.450701,
-  	  lng: 126.570667,
+  	  lng: 126.570667
     },
     {
       lat: 33.450701,
-  	  lng: 126.580667,
+  	  lng: 126.580667
     }
   ];
   //옵션 배열
@@ -54,12 +54,11 @@
   //마커들을 저장할 배열
   
   mOptions.forEach(function(option){
-    markers.push(marker(option));
+    markers.push(new marker(option));
   });
   //마커 객체 생성
   
   easyMap.markerMap(markers,map);
-  
   var cOptions=[
     {
       content:'<div class="placeinfo_wrap"><div class="placeinfo"><a class="title" >일번</a><span>'+
@@ -80,7 +79,7 @@
   //오버레이들을 저장할 배열
   
   cOptions.forEach(function(option){
-    overlays.push(customOverlay(option));
+    overlays.push(new customOverlay(option));
   });
   //오버레이 객체 생성
   
@@ -93,6 +92,10 @@
     
     console.log(returnMouse(e).position());
   }
+  
+  map.on('center_changed',function(){
+      console.log('변경!!');
+  })
 
 
 $("#m2").click(function(){

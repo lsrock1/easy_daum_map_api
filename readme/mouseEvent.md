@@ -8,7 +8,7 @@
 다음에서 만든 mouseEvent가 맞을 경우 mouseEvent 객체로 바꿔서 반환합니다.
 ```javascript
 map.on('click',function(mouseEvent){
-  returnMouse(mouseEvent);
+  new returnMouseEvent(mouseEvent);
   //mouseEvent 객체 반환
 });
 ```
@@ -19,11 +19,13 @@ map.on('click',function(mouseEvent){
   
 ```javascript
 map.on('click',function(mouseEvent){
+  mouseEvent=new returnMouseEvent(mouseEvent);
   alert(mouseEvent.position());
 });
 //지도를 클릭했을 때 지도 위 경도를 알림창으로 띄우는 이벤트를 등록합니다
 
 map.on("click",function(mouseEvent){
+  mouseEvent=new returnMouseEvent(mouseEvent);
   alert(mouseEvent.point());
 });
 //지도를 클릭했을 때 지도 좌표를 알림창으로 띄우는 이벤트를 등록합니다

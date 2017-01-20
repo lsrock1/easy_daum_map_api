@@ -12,7 +12,7 @@ var container = document.getElementById('map'),
       level: 3
   };
 
-var map = daumMap(container, options);
+var map = new daumMap(container, options);
 ```
 
   매개변수
@@ -384,16 +384,18 @@ map.on("click",function(e){
 #### [mouseEvent](/readme/mouseEvent.md#mouseEvent-객체)
   
 click, dbclick, rightclick, mousemove 이벤트는 콜백함수에게 mouseEvent라는 인자를 전달하는데  
-이 인자를 returnMouse 함수에 다시 전달하면 다음에서 제공하는  
-복잡한 함수 없이 정보를 가져올 수 있게 재정의된 mouseEvent 객체를 반환합니다
+이 인자를 returnMouseEvent 객체 생성자에 다시 전달하면 다음에서 제공하는  
+복잡한 메소드 없이 정보를 가져올 수 있게 재정의된 returnMouseEvent 객체를 반환합니다
 ```javascript
 map.on('click',function(mouseEvent){
-  alert(returnMouse(mouseEvent).position());
+  mouseEvent=new returnMouseEvent(mouseEvent);
+  alert(mouseEvent.position());
 });
 //지도를 클릭했을 때 위 경도를 알림창으로 띄우는 이벤트를 등록합니다
 
 map.on("click",function(mouseEvent){
-  alert(returnMouse(mouseEvent).point());
+  mouseEvent=new returnMouseEvent(mouseEvent);
+  alert(mouseEvent.point());
 });
 //지도를 클릭했을 때 화면 좌표를 알림창으로 띄우는 이벤트를 등록합니다
 ```

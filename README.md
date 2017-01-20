@@ -34,7 +34,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   	level: 3 //확대 축소 정도
   };
    
-  var map=daumMap(container,options); //지도 초기화
+  var map= new daumMap(container,options); //지도 초기화
    
   var mark={
   	lat: 33.450701, //마커의 위도
@@ -42,7 +42,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   }
   //마커 옵션
   
-  var marker1=marker(mark); //마커객체 생성
+  var marker1= new marker(mark); //마커객체 생성
   marker1.map(map); //마커를 지도에 표시
   marker1.remove(); //마커 지우기
 </script>
@@ -60,7 +60,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   	level: 3
   };
    
-  var map=daumMap(container,options); //지도 초기화
+  var map= new daumMap(container,options); //지도 초기화
    
   var mark={
   	lat: 33.450701,
@@ -69,7 +69,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   }
   //마커 옵션
   
-  var marker1=marker(mark1); //마커객체 생성
+  var marker1=new marker(mark1); //마커객체 생성
   marker1.remove(); //마커 지우기
 </script>
 ```  
@@ -94,8 +94,8 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   }
   //마커 옵션
   
-  var marker1=marker(mark1); //마커객체 생성
-  var easyMap=easyMap(); //easyMap 생성
+  var marker1=new marker(mark1); //마커객체 생성
+  var easyMap=new easyMap(); //easyMap 생성
   easyMap.markerMap([marker1],map) //마커 올리기
 </script>
 ```    
@@ -112,7 +112,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   	level: 3
   };
    
-  var map=daumMap(container,options); //지도 초기화
+  var map=new daumMap(container,options); //지도 초기화
   
   var mark1={
   	lat: 33.450701,
@@ -126,9 +126,9 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   //마커 옵션
   
   var markers=[]
-  markers.push(marker(mark1)); //첫 번째 마커객체 생성 markers 배열에 삽입
-  markers.push(marker(mark2)); //두 번째 마커객체 생성 markers 배열에 삽입
-  var easyMap=easyMap(); //easyMap 생성
+  markers.push(new marker(mark1)); //첫 번째 마커객체 생성 markers 배열에 삽입
+  markers.push(new marker(mark2)); //두 번째 마커객체 생성 markers 배열에 삽입
+  var easyMap=new easyMap(); //easyMap 생성
   easyMap.markerMap(markers,map); //모든 마커를 map이라는 지도에 표시
   easyMap.markerRemove(markers); //모든 마커 지우기
 </script>
@@ -146,7 +146,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   	level: 3
   };
    
-  var map=daumMap(container,options); //지도 초기화
+  var map=new daumMap(container,options); //지도 초기화
    
   var info1={
     content: '<div style="padding:5px;">11</div>',
@@ -165,8 +165,8 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   }
   //인포윈도우 옵션
   
-  var infow1=infoWindow(info1);
-  var infow2=infoWindow(info2);
+  var infow1=new infoWindow(info1);
+  var infow2=new infoWindow(info2);
   //인포윈도우 생성
   
 </script>
@@ -184,7 +184,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   	level: 3
   };
    
-  var map=daumMap(container,options); //지도 초기화
+  var map=new daumMap(container,options); //지도 초기화
   
   var mark1={
   	lat: 33.450701,
@@ -198,9 +198,9 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   //마커 옵션
   
   var markers=[];
-  markers.push(marker(mark1));
-  markers.push(marker(mark2));
-  var easyMap=easyMap(); //easyMap 생성
+  markers.push(new marker(mark1));
+  markers.push(new marker(mark2));
+  var easyMap=new easyMap(); //easyMap 생성
   easyMap.markerMap(markers,map);
   //마커 생성
   
@@ -215,8 +215,8 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   }
   //인포윈도우 옵션
   
-  var infow1=infoWindow(info1);
-  var infow2=infoWindow(info2);
+  var infow1=new infoWindow(info1);
+  var infow2=new infoWindow(info2);
   //인포윈도우 생성
   
   infow1.open(marker1);
@@ -240,7 +240,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   	level: 3
   };
    
-  var map=daumMap(container,options); //지도 초기화
+  var map=new daumMap(container,options); //지도 초기화
   
   var mark1={
   	lat: 33.450701,
@@ -256,9 +256,9 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   //마커 옵션
   
   var markers=[];
-  markers.push(marker(mark1));
-  markers.push(marker(mark2));
-  var easyMap=easyMap(); //easyMap 생성
+  markers.push(new marker(mark1));
+  markers.push(new marker(mark2));
+  var easyMap=new easyMap(); //easyMap 생성
   easyMap.markerMap(markers,map);
   //마커 생성
   
@@ -273,8 +273,8 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   }
   //인포윈도우 옵션
   
-  var infow1=infoWindow(info1);
-  var infow2=infoWindow(info2);
+  var infow1=new infoWindow(info1);
+  var infow2=new infoWindow(info2);
   //인포윈도우 생성
   
   marker1.on('click',function(){
@@ -302,7 +302,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   	level: 3
   };
   
-  var map=daumMap(container,options); //지도 초기화
+  var map=new daumMap(container,options); //지도 초기화
   
   var mark1={
   	lat: 33.450701,
@@ -318,9 +318,9 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   //마커 옵션
   
   var markers=[];
-  markers.push(marker(mark1));
-  markers.push(marker(mark2));
-  var easyMap=easyMap(); //easyMap 생성
+  markers.push(new marker(mark1));
+  markers.push(new marker(mark2));
+  var easyMap=new easyMap(); //easyMap 생성
   easyMap.markerMap(markers,map);
   //마커 생성 및 지도에 올리기
   
@@ -336,8 +336,8 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   //인포윈도우 옵션
   
   var infows=[];
-  infows.push(infoWindow(info1));
-  infows.push(infoWindow(info2));
+  infows.push(new infoWindow(info1));
+  infows.push(new infoWindow(info2));
   //인포윈도우 생성
   
   easyMap.markerClick(markers,infows);
@@ -374,7 +374,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   	level: 3
   };
    
-  var map=daumMap(container,options); //지도 초기화
+  var map=new daumMap(container,options); //지도 초기화
   
   var mOptions=[
     {
@@ -394,7 +394,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   //마커들을 저장할 배열
   
   mOptions.forEach(function(option){
-    markers.push(marker(option));
+    markers.push(new marker(option));
   });
   //마커 객체 생성
   
@@ -418,10 +418,10 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   //오버레이들을 저장할 배열
   
   cOptions.forEach(function(option){
-    overlays.push(customOverlay(option));
+    overlays.push(new customOverlay(option));
   });
   //오버레이 객체 생성
-  var easyMap=easyMap(); //easyMap 생성
+  var easyMap=new easyMap(); //easyMap 생성
   
   easyMap.customOverlayOnClose(overlays,'overlays');
   //clickable 옵션과 비슷한 역할을 합니다
