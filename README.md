@@ -443,6 +443,6 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 
 #[daumMap 객체](/readme/daumMap.md#daummap-객체)
 #[mouseEvent 객체](/readme/mouseEvent.md#mouseEvent-객체)
-#[marker 객체]()
+#[marker 객체](/readme/marker.md#marker-객체)
 #[infoWindow 객체]()
 #[customOverlay 객체]()

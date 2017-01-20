@@ -370,7 +370,7 @@ map.on('center_changed',function(){
 //중심 좌표가 변경되었을 때 콘솔에 로그를 띄우는 이벤트를 등록합니다
 
 map.on("click",function(e){
-  var latlng = e.position;
+  var latlng = mouseEvent(e).position();
   alert(latlng);
 });
 //지도를 클릭했을 때 위 경도를 알림창으로 띄우는 이벤트를 등록합니다
@@ -379,23 +379,21 @@ map.on("click",function(e){
   매개변수 [지도가 기본으로 일으키는 이벤트](http://apis.map.daum.net/web/documentation/#Map_Events)
   * 이벤트 이름 (String)
   * 콜백함수 (Function)
-   
-  반환값
-  * 이벤트 제거용 함수 (Function) off 함수를 써서 이벤트를 제거할 때에는 반환된 함수로 제거해야 함  
   
 
 #### [mouseEvent](/readme/mouseEvent.md#mouseEvent-객체)
   
-click, dbclick, rightclick, mousemove 이벤트는 콜백함수에게 mouseEvent라는 객체를 전달하는데  
-이 인자는 두가지 메소드를 가집니다.
+click, dbclick, rightclick, mousemove 이벤트는 콜백함수에게 mouseEvent라는 인자를 전달하는데  
+이 인자를 returnMouse 함수에 다시 전달하면 다음에서 제공하는  
+복잡한 함수 없이 정보를 가져올 수 있게 재정의된 mouseEvent 객체를 반환합니다
 ```javascript
 map.on('click',function(mouseEvent){
-  alert(mouseEvent.position());
+  alert(returnMouse(mouseEvent).position());
 });
 //지도를 클릭했을 때 위 경도를 알림창으로 띄우는 이벤트를 등록합니다
 
 map.on("click",function(mouseEvent){
-  alert(mouseEvent.point());
+  alert(returnMouse(mouseEvent).point());
 });
 //지도를 클릭했을 때 화면 좌표를 알림창으로 띄우는 이벤트를 등록합니다
 ```
@@ -403,21 +401,40 @@ map.on("click",function(mouseEvent){
   
 ### 14. off
 
-####.off(이벤트 이름, 콜백함수): 지도의 이벤트를 제거한다
+####.off(이벤트 이름, 제거할 함수): 지도의 이벤트를 제거한다
   
 ```javascript
-var event=map.on('center_changed',function(){
+var event= function(){
   console.log("중심 좌표가 변경됩니다");
-});
-//중심 좌표가 변경되었을 때 콘솔에 로그를 띄우는 이벤트를 등록하고 반환 함수를 받아 저장합니다
+};
+map.on('center_changed',event);
+//중심 좌표가 변경되었을 때 콘솔에 로그를 띄우는 이벤트를 등록합니다
 
 map.off('center_changed',event);
-//중심 좌표가 변경되었을 때 콘솔에 로그를 띄우는 이벤트를 반환 함수로 제거합니다
+//중심 좌표가 변경되었을 때 콘솔에 로그를 띄우는 이벤트를 제거합니다
 ```
 
   매개변수
   * 이벤트 이름 (String)
-  * 콜백함수 (Function)
+  * 제거할 함수 (Function)
+
+
+### 15. addRoadViewOverlay
+
+####.addRoadViewOverlay(): 지도에 로드뷰 선을 그린다
+  
+```javascript
+map.addRoadViewOverlay();
+```
+ 
+
+### 15. removeRoadViewOverlay
+
+####.removeRoadViewOverlay(): 지도에 로드뷰 선을 제거한다
+  
+```javascript
+map.removeRoadViewOverlay();
+```
 
 
 ### 메소드 체인

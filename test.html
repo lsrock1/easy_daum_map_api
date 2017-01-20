@@ -89,23 +89,18 @@
   //첫 번째 인자로 오버레이들이 담긴 배열을 두 번째 인자로 배일의 이름을 전달합니다
   
   easyMap.markerClick(markers,overlays);
-  var event;
-  map.on('click',function(e){
-    alert(e.point());
-  })
-  var event;
+  var clickEvent=function(e){
+    
+    console.log(returnMouse(e).position());
+  }
 
 
 $("#m2").click(function(){
-event=map.on('center_changed',function(){
-  console.log("중심 좌표가 변경됩니다");
+  map.addRoadViewOverlay()
 })
 
 $("#m1").click(function(){
-  console.log("이벤트");
-  map.off('center_changed',event);
-
-})
+  console.log("이벤트 제거");
 })
 
 </script>

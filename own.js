@@ -2,31 +2,42 @@ function preventMap(){
   daum.maps.event.preventMap;
 }
 
-function eventCallback(func){
-  return function(mouse){
-    if(mouse&&mouse.latLng&&mouse.point){
-      var point=mouse.point.toString().slice(1,-1).split(",");
-      point[1]=Number(point[1].trim());
-      point[0]=Number(point[0]);
-      var returnMouse={
-        name: 'mouseEvent',
-        
-        position: function(){
-          return [mouse.latLng.getLat(),mouse.latLng.getLng()];
-        },
-        
-        point: function(){
-          return [point[0],point[1]];
-        }
-      };
-      func(returnMouse);
-    }
-    else{
-      func(mouse);
-    }
+function returnMouse(mouse){
+  if(mouse&&mouse.latLng&&mouse.point){
+    var point=mouse.point.toString().slice(1,-1).split(",");
+    point[1]=Number(point[1].trim());
+    point[0]=Number(point[0]);
+    return {
+      name: 'mouseEvent',
+      
+      position: function(){
+        return [mouse.latLng.getLat(),mouse.latLng.getLng()];
+      },
+      
+      point: function(){
+        return [point[0],point[1]];
+      }
+    };
+  }
+  else{
+   return mouse;
   }
 }
 
+function markerImage(options){
+  return new daum.maps.MarkerImage(
+    options.src,
+    new daum.maps.Size(options.height, options.width),
+    {
+      offset: new daum.maps.Point(options.x,options.y),
+      alt: options.alt,
+      coords: options.coords,
+      shape: options.shape,
+      spriteOrigin: new daum.maps.Point(options.sX,options.sY),
+      spriteSize: new daum.maps.Size(options.sHeight, options.sWidth)
+    }
+  );
+}
 
 function easyMap(){
   return {
@@ -69,7 +80,9 @@ function daumMap(container,options){
   options.mapTypeId=options.mapTypeId ? mapType(options.mapTypeId) : undefined;
   options.center=new daum.maps.LatLng(options.lat,options.lng);
   
-  var map=new daum.maps.Map(container, options);
+  var map=new daum.maps.Map(container, options),
+    roadViewOverlay=new daum.maps.RoadviewOverlay();
+
   function mapType(index){
     var mapTypeId={
       "ROADMAP" : daum.maps.MapTypeId.ROADMAP,
@@ -243,9 +256,8 @@ function daumMap(container,options){
     },
     
     on: function(event,func){
-      var callbackFunc=eventCallback(func);
-      daum.maps.event.addListener(map, event,callbackFunc);
-      return callbackFunc;
+      daum.maps.event.addListener(map, event,func);
+      return this;
     },
     
     trigger: function(event,data){
@@ -260,15 +272,23 @@ function daumMap(container,options){
     
     object: function(){
       return map;
+    },
+    
+    addRoadViewOverlay: function(){
+      roadViewOverlay.setMap(map);
+      return this;
+    },
+    
+    removeRoadViewOverlay: function(option){
+      roadViewOverlay.setMap(null);
+      return this;
     }
   };
 }
 
-//마커 객체 정의
-
 function marker(options){
   var daumMap=null;
-  options.position=new daum.maps.LatLng(options.lat,options.lng);
+  options.position= options.lat&&options.lng ? new daum.maps.LatLng(options.lat,options.lng) : new daum.maps.Viewpoint(options.pan,options.tilt,options.zoom,options.panoId);
   if(options.map){
     daumMap=options.map;
     options.map=daumMap.object();
@@ -317,16 +337,16 @@ function marker(options){
         var position=marker.getPosition();
         return [position.getLat(),position.getLng()];
       }
-      else if(options.name==='latlng'){
+      else if(options.lat&&options.lng){
         marker.setPosition(new daum.maps.LatLng(options.lat,options.lng));
       }
-      else if(options.name==='viewpoint'){
-        marker.setPosition(new daum.maps.Viewpoint(options.lat1,options.lng1,options.lat2,options.lng2));
+      else if(options.pan&&options.tilt){
+        marker.setPosition(new daum.maps.Viewpoint(options.pan,options.tilt,options.zoom,options.panoId));
       }
       return this;
     },
     
-    zindex: function(num){
+    zIndex: function(num){
       if(num){
         marker.setZIndex(num);
         return this;
@@ -411,7 +431,7 @@ function marker(options){
       return this;
     },
     
-    trigger: function(event,func){
+    trigger: function(event,data){
       daum.maps.event.trigger(marker,event,data);
       return this;
     },
