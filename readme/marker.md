@@ -36,7 +36,7 @@ var mark = marker(options);
 ####.map(): 마커가 올라가있는 daumMap 객체를 반환한다 
 
 ```javascript
-marker.map();
+mark.map();
 ```
   반환값
   * daumMap Object
@@ -45,7 +45,7 @@ marker.map();
 ####.map(map): 지도에 마커를 올린다
 
 ```javascript
-marker.map(map);
+mark.map(map);
 ```
 
   매개변수 
@@ -57,7 +57,7 @@ marker.map(map);
 ####.remove(): 지도에서 마커를 제거한다 
 
 ```javascript
-marker.remove();
+mark.remove();
 ```
 
 
@@ -66,7 +66,7 @@ marker.remove();
 ####.image(): 마커의 이미지를 반환한다
 
 ```javascript
-marker.image();
+mark.image();
 ```
   반환값
   * 마커이미지 (MarkerImage)
@@ -75,7 +75,7 @@ marker.image();
 ####.image(지도 종류): 마커에 새 이미지를 지정한다
 
 ```javascript
-marker.image(image);
+mark.image(image);
 ```
 
   매개변수 
@@ -87,12 +87,11 @@ marker.image(image);
 ####.position(): 마커의 좌표를 반환한다
 
 ```javascript
- map.position();
-//[33.4488882499644, 126.56798133906949, 33.45251321509635, 126.5733411966229]
+ mark.position();
+//[33.450701, 126.570667]
 ```
   반환값
   * Array [첫째 좌표의 위도(Float),첫째 좌표의 경도(Float),둘째 좌표의 위도(Float),둘째 좌표의 경도(Float)]
-  * 반환되는 좌표 규칙 [참조](http://apis.map.daum.net/web/documentation/#LatLngBounds)
 
 
 ####.position(options): 마커의 좌표를 지정한다
@@ -104,7 +103,7 @@ var options={
   lat : 33.4488882499644,
   lng : 126.56798133906949
 }
-marker.position(options);
+mark.position(options);
 ```
 
   매개변수
