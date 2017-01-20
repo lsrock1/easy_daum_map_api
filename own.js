@@ -1,7 +1,7 @@
 (function(window){
     var returnMouseEvent=function(mouse){
         this.lat=mouse.latLng.getLat();
-        this.lng=mouse.latLng.getLng()
+        this.lng=mouse.latLng.getLng();
         this.point=mouse.point.toString().slice(1,-1).split(",");
     };
     
@@ -97,7 +97,7 @@
           "BICYCLE":daum.maps.MapTypeId.BICYCLE,
           "BICYCLE_HYBRID":daum.maps.MapTypeId.BICYCLE_HYBRID,
           "USE_DISTRICT":daum.maps.MapTypeId.USE_DISTRICT
-        }
+        };
         
         return overlayMapType[index];
       };
@@ -112,10 +112,10 @@
           "BOTTOMLEFT":daum.maps.ControlPosition.BOTTOMLEFT,
           "BOTTOM":daum.maps.ControlPosition.BOTTOM,
           "BOTTOMRIGHT":daum.maps.ControlPosition.BOTTOMRIGHT
-        }
+        };
         
         return positions[index];
-      }
+      };
     
     daumMap.prototype.center=function(lat,lng){
       if(lat&&lng){
