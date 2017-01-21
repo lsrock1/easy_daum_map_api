@@ -6,19 +6,17 @@
 객체를 생성한다.
 ```javascript
 var options = {
-      lat: 33.450701,
-  	  lng: 126.570667,
+      center: [33.450701,126.570667],
       map: map
   };
 
-var mark = marker(options);
+var mark = new marker(options);
 ```
 
   매개변수
   * options (Object)
     * map (daumMap Object): 마커가 올라갈 지도
-    * lat (Number): 마커의 좌표 위도
-    * lng (Number): 마커의 좌표 경도
+    * center (Array): [마커의 좌표 위도 (Number), 마커의 좌표 경도 (Number)]
     * image (MarkerImage) : 마커의 이미지
     * title (String) : 마커 엘리먼트의 타이틀 속성 값 (툴팁)
     * draggable (Boolean) : 드래그 가능한 마커, 로드뷰에 올릴 경우에는 유효하지 않다

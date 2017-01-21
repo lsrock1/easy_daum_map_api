@@ -71,7 +71,7 @@
     
     var daumMap=function(container,options){
         options.mapTypeId=options.mapTypeId ? this.mapType(options.mapTypeId) : undefined;
-        options.center=new daum.maps.LatLng(options.lat,options.lng);
+        options.center=new daum.maps.LatLng(options.center[0],options.center[1]);
         this.map=new daum.maps.Map(container, options);
         this.roadViewOverlay=new daum.maps.RoadviewOverlay();
     };
@@ -117,9 +117,9 @@
         return positions[index];
       };
     
-    daumMap.prototype.center=function(lat,lng){
-      if(lat&&lng){
-        this.map.setCenter(new daum.maps.LatLng(lat,lng));
+    daumMap.prototype.center=function(position){
+      if(position){
+        this.map.setCenter(new daum.maps.LatLng(position[0],position[1]));
         return this;
       }
       else{
@@ -149,8 +149,8 @@
     };
     
     daumMap.prototype.bound= function(options){
-      if(options.lat1&&options.lng1&&options.lat2&&options.lng2){
-        this.map.setBounds(new daum.maps.LatLngBounds(new daum.maps.LatLng(options.lat1,options.lng1), new daum.maps.LatLng(options.lat2,options.lng2)),
+      if(options.position1&&options.position2){
+        this.map.setBounds(new daum.maps.LatLngBounds(new daum.maps.LatLng(options.position1[0],options.position1[1]), new daum.maps.LatLng(options.position2[0],options.position2[1])),
           options.paddingTop,
           options.paddingRight,
           options.paddingBottom,
@@ -158,7 +158,9 @@
         );
       }
       else if(options.marker1&&options.marker2){
-        this.map.setBounds(new daum.maps.LatLngBounds(new daum.maps.LatLng(options.marker1.position[0],options.marker1.position[1]),new daum.maps.LatLng(options.marker2.position[0],options.marker2.position[1])),
+        var m1posi=options.marker1.position();
+        var m2posi=options.marker2.position();
+        this.map.setBounds(new daum.maps.LatLngBounds(new daum.maps.LatLng(m1posi[0],m1posi[1]),new daum.maps.LatLng(m2posi[0],m2posi[1])),
           options.paddingTop,
           options.paddingRight,
           options.paddingBottom,
@@ -170,7 +172,7 @@
         var sw=mapBound.getSouthWest();
         var ne=mapBound.getNorthEast();
   
-        return [sw.getLat(),sw.getLng(),ne.getLat(),ne.getLng()];
+        return [[sw.getLat(),sw.getLng()],[ne.getLat(),ne.getLng()]];
       }
       return this;
     };
@@ -179,11 +181,11 @@
       if(options.x&&options.y){
         this.map.panBy(options.x,options.y);
       }
-      else if(options.lat1&&options.lng1&&options.lat2&&options.lng2){
-        this.map.panTo(new daum.maps.LatLngBounds(new daum.maps.LatLng(options.lat1,options.lng1), new daum.maps.LatLng(options.lat2,options.lng2)));
+      else if(options.position1&&options.position2){
+        this.map.panTo(new daum.maps.LatLngBounds(new daum.maps.LatLng(options.position1[0],options.position1[1]), new daum.maps.LatLng(options.position2[0],options.position2[1])));
       }
       else{
-        this.map.panTo(new daum.maps.LatLng(options.lat, options.lng));
+        this.map.panTo(new daum.maps.LatLng(options.position[0], options.position[1]));
       }
       return this;
     };
@@ -265,7 +267,7 @@
       return this;
     };
     
-    daumMap.prototype.removeRoadViewOverlay = function(option){
+    daumMap.prototype.removeRoadViewOverlay = function(){
       this.roadViewOverlay.setMap(null);
       return this;
     };
@@ -274,7 +276,7 @@
     
     var marker=function(options){
         this.daumMap=null;
-        options.position= options.lat&&options.lng ? new daum.maps.LatLng(options.lat,options.lng) : new daum.maps.Viewpoint(options.pan,options.tilt,options.zoom,options.panoId);
+        options.position= options.position ? new daum.maps.LatLng(options.position[0],options.position[1]) : new daum.maps.Viewpoint(options.pan,options.tilt,options.zoom,options.panoId);
         if(options.map){
           this.daumMap=options.map;
           options.map=this.daumMap.map;
@@ -314,8 +316,8 @@
         var position=this.marker.getPosition();
         return [position.getLat(),position.getLng()];
       }
-      else if(options.lat&&options.lng){
-        this.marker.setPosition(new daum.maps.LatLng(options.lat,options.lng));
+      else if(options.position){
+        this.marker.setPosition(new daum.maps.LatLng(options.position[0],options.position[1]));
       }
       else if(options.pan&&options.tilt){
         this.marker.setPosition(new daum.maps.Viewpoint(options.pan,options.tilt,options.zoom,options.panoId));
@@ -422,8 +424,8 @@
     
     var infoWindow=function(options){
       this.daumMap=null;
-      if(options.map&&options.lat&&options.lng){
-        options.position=new daum.maps.LatLng(options.lat,options.lng);
+      if(options.map&&options.position){
+        options.position=new daum.maps.LatLng(options.position[0],options.position[1]);
         this.daumMap=options.map;
         options.map=this.daumMap.map;
       }
@@ -447,9 +449,9 @@
       return daumMap;
     };
     
-    infoWindow.prototype.position = function(lat,lng){
-      if(lat&&lng){
-        this.infowindow.setPosition(new daum.maps.LatLng(lat,lng));
+    infoWindow.prototype.position = function(position){
+      if(position){
+        this.infowindow.setPosition(new daum.maps.LatLng(position[0],position[1]));
         return this;
       }
       else{
@@ -502,10 +504,10 @@
     
     var customOverlay=function(options){
       this.daumMap=null;
-      if(options.map&&options.lat&&options.lng){
+      if(options.map&&options.position){
         this.daumMap=options.map;
         options.map=this.daumMap.map;
-        options.position=new daum.maps.LatLng(options.lat,options.lng);
+        options.position=new daum.maps.LatLng(options.position[0],options.position[1]);
       }
       this.div=document.createElement('div');
       this.div.innerHTML=options.content;
@@ -558,9 +560,9 @@
       return this;
     };
     
-    customOverlay.prototype.position = function(lat,lng){
-      if(lat&&lng){
-        this.customoverlay.setPosition(new daum.maps.LatLng(lat,lng));
+    customOverlay.prototype.position = function(position){
+      if(position){
+        this.customoverlay.setPosition(new daum.maps.LatLng(position[0],position[1]));
         return this;
       }
       else{
@@ -620,5 +622,64 @@
     };
     
     window.customOverlay=customOverlay;
+    
+    var daumRoadView=function(container,options){
+        this.roadView=new daum.maps.Roadview(container,options);
+        this.roadviewClient = new daum.maps.RoadviewClient();
+    };
+    
+    daumRoadView.prototype.panoId=function(options){
+        if(options){
+            this.roadView.setPanoId(options.panoId,new daum.maps.LatLng(options.position[0],options.position[1]));
+            return this;
+        }
+        else{
+            return this.roadView.getPanoId();
+        }
+    };
+    
+    daumRoadView.prototype.viewPoint=function(options){
+        if(options){
+            this.roadView.setViewpoint(options);
+            return this;
+        }
+        else{
+            return this.roadView.getViewpointWithPanoId();
+        }
+    };
+    
+    daumRoadView.prototype.position=function(options){
+        if(options){
+            var posi=new daum.maps.LatLng(options.position[0],options.position[1]);
+            var road=this.roadView;
+            this.roadviewClient.getNearestPanoId(posi,options.radius,function(panoId){
+                road.setPanoId(panoId,posi);
+            });
+            return this;
+        }
+        else{
+            var position=this.roadView.getPosition();
+            return [position.getLat(),position.getLng()];
+        }
+    };
+    
+    daumRoadView.prototype.relayout=function(){
+        this.roadView.relayout();
+        return this;
+    };
+    
+    daumRoadView.prototype.on=function(event,func){
+        daum.maps.event.addListener(this.roadView, event,func);
+    };
+    
+    daumRoadView.prototype.off=function(event,func){
+        daum.maps.event.removeListener(this.roadView,event,func);
+    };
+    
+    daumRoadView.prototype.trigger=function(event,func){
+        daum.maps.event.trigger(this.roadView,event,func);
+    };
+    
+    window.daumRoadView=daumRoadView;
 
 })(window);

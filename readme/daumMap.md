@@ -7,8 +7,7 @@
 ```javascript
 var container = document.getElementById('map'),
   options = {
-      lat: 33.450701,
-  	  lng: 126.570667,
+      center: [33.450701, 126.570667],
       level: 3
   };
 
@@ -18,8 +17,7 @@ var map = new daumMap(container, options);
   매개변수
   * container (Node) : 지도가 표시될 HTML 요소
   * options (Object)
-    * lat (Number): 중심좌표 위도 (필수)
-    * lng (Number): 중심좌표 경도 (필수)
+    * center (Array): [중심좌표 위도 (Number), 중심좌표 경도 (Number)] 필수
     * level (Number) : 확대 수준 (기본값: 3)
     * mapTypeId (String: ROADMAP , SKYVIEW , HYBRID 중 하나): 지도 종류
     * draggable (Boolean): 마우스 드래그, 휠, 모바일 터치를 이용한 시점 변경(이동, 확대, 축소) 가능 여부
@@ -43,19 +41,22 @@ var map = new daumMap(container, options);
 //[33.450701,126.570667]
 ```
   반환값
-  * Array [위도 (Number), 경도 (Number)]
+  * Array
+    * (Number): 위도
+    * (Number): 경도
 
 
 ####.center(위도,경도): 위도,경도 값으로 중심좌표 변경
 
 ```javascript
-map.center(33.450701,126.570667);
+map.center([33.450701,126.570667]);
 //중심좌표 위도 33.450701 경도 126.570667 로 변경
 ```
 
   매개변수 
-  * 위도 (Number)
-  * 경도 (Number)
+  * Array 
+    * (Number): 위도
+    * (Number): 경도
 
 
 ### 2. level
@@ -111,10 +112,16 @@ map.mapTypeId("SKYVIEW");
 
 ```javascript
  map.bound();
-//[33.4488882499644, 126.56798133906949, 33.45251321509635, 126.5733411966229]
+//[[33.4488882499644, 126.56798133906949], [33.45251321509635, 126.5733411966229]]
 ```
   반환값
-  * Array [첫째 좌표의 위도(Float),첫째 좌표의 경도(Float),둘째 좌표의 위도(Float),둘째 좌표의 경도(Float)]
+  * Array
+    * Array
+      * (Float): 첫째 좌표의 위도
+      * (Float): 첫째 좌표의 경도
+    * Array
+      * (Float): 둘째 좌표의 위도
+      * (Float): 둘째 좌표의 경도
   * 반환되는 좌표 규칙 [참조](http://apis.map.daum.net/web/documentation/#LatLngBounds)
 
 
@@ -124,10 +131,8 @@ map.mapTypeId("SKYVIEW");
 
 ```javascript
 var options={
-  lat1 : 33.4488882499644,
-  lng1 : 126.56798133906949,
-  lat2 : 33.45251321509635,
-  lng2 : 126.5733411966229
+  position1 : [33.4488882499644,126.56798133906949],
+  position2 : [33.45251321509635,126.5733411966229]
 }
 map.bound(options);
 //두 좌표가 보이도록 지도 확대 축소
@@ -135,10 +140,12 @@ map.bound(options);
 
   매개변수
   * options
-    * lat1 (Float): 보여야 할 첫째 좌표의 위도 값
-    * lng1 (Float): 보여야 할 첫째 좌표의 경도 값
-    * lat2 (Float): 보여야 할 둘째 좌표의 위도 값
-    * lng2 (Float): 보여야 할 둘째 좌표의 경도 값
+    * position1 (Array):
+      * (Float): 보여야 할 첫째 좌표의 위도 값
+      * (Float): 보여야 할 첫째 좌표의 경도 값
+    * position2 (Array):
+      * (Float): 보여야 할 둘째 좌표의 위도 값
+      * (Float): 보여야 할 둘째 좌표의 경도 값
 
 ####두개의 marker 객체를 전달
 
@@ -181,8 +188,7 @@ map.pan(options);
 
 ```javascript
 var options={
-  lat: 33.450701,
-  lng: 126.570667
+  position: [33.450701,126.570667]
 }
 map.pan(options);
 //33.450701,126.570667로 부드럽게 이동
@@ -190,18 +196,17 @@ map.pan(options);
 
   매개변수
   *options(Object)
-    * lat (Float)
-    * lng (Float)
+    * position (Array):
+      * (Float): 위도값
+      * (Float): 경도값
 
 
 ####두 좌표 전달
 [참조](http://apis.map.daum.net/web/documentation/#Map_panTo)
 ```javascript
 var options={
-  lat1: 33.4488882499644,
-  lng1: 126.56798133906949,
-  lat2: 33.45251321509635,
-  lng2: 126.5733411966229
+  position1: [33.4488882499644,126.56798133906949],
+  position2: [33.45251321509635,126.5733411966229]
 }
 map.pan(options);
 //두 좌표가 보이도록 지도 이동
@@ -209,10 +214,12 @@ map.pan(options);
 
   매개변수
   *options(Object)
-    * lat1 (Float): 보여야 할 첫째 좌표의 위도 값
-    * lng1 (Float): 보여야 할 첫째 좌표의 경도 값
-    * lat2 (Float): 보여야 할 둘째 좌표의 위도 값
-    * lng2 (Float): 보여야 할 둘째 좌표의 경도 값
+    * position1 (Array):
+      * (Float): 보여야 할 첫째 좌표의 위도 값
+      * (Float): 보여야 할 첫째 좌표의 경도 값
+    * position2 (Array):
+      * (Float): 보여야 할 둘째 좌표의 위도 값
+      * (Float): 보여야 할 둘째 좌표의 경도 값
 
 
 ### 6. addControl
@@ -442,14 +449,12 @@ map.removeRoadViewOverlay();
 ### 메소드 체인
 ```javascript
 map
-.center(33.450701,126.570667)
+.center([33.450701,126.570667])
 .level(4)
 .mapTypeId("SKYVIEW")
 .bound({
-  lat1 : 33.4488882499644,
-  lng1 : 126.56798133906949,
-  lat2 : 33.45251321509635,
-  lng2 : 126.5733411966229
+  position1 : [33.4488882499644,126.56798133906949],
+  position2 : [33.45251321509635,126.5733411966229]
 })
 .pan({x: 5,y: 10})
 .relayout()
