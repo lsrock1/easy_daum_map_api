@@ -29,8 +29,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 <script>
   var container=document.getElementById("map");
   var mapOption = {
-  	lat: 33.450701, //지도의 중심 위도
-  	lng: 126.570667,//지도의 중심 경도
+  	center: [33.450701, 126.570667],//지도의 중심 위도 경도
   	level: 3 //확대 축소 정도
   };
    
@@ -38,8 +37,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   //지도 초기화
    
   var markerOption={
-  	lat: 33.450701, //마커의 위도
-  	lng: 126.570667,//마커의 경도
+  	position: [33.450701,126.570667]//마커의 위도 경도
   }
   //마커 옵션
   
@@ -56,16 +54,14 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 <script>
   var container=document.getElementById("map");
   var mapOption = {
-  	lat: 33.450701,
-  	lng: 126.570667,
+  	center: [33.450701, 126.570667],//지도의 중심 위도 경도
   	level: 3
   };
    
   var map= new daumMap(container,mapOption); //지도 초기화
    
   var markerOption={
-  	lat: 33.450701,
-  	lng: 126.570667,
+  	position: [33.450701,126.570667],
   	map: map //마커를 생성할 지도
   }
   //마커 옵션
@@ -82,16 +78,14 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 <script>
   var container=document.getElementById("map");
   var mapOption = {
-  	lat: 33.450701,
-  	lng: 126.570667,
+  	center: [33.450701,126.570667],
   	level: 3
   };
    
   var map=daumMap(container,mapOption); //지도 초기화
    
   var markerOption={
-  	lat: 33.450701,
-  	lng: 126.570667
+  	position: [33.450701,126.570667]
   }
   //마커 옵션
   
@@ -108,21 +102,18 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 <script>
   var container=document.getElementById("map");
   var mapOption = {
-  	lat: 33.450701,
-  	lng: 126.570667,
+  	center: [33.450701,126.570667],
   	level: 3
   };
    
   var map=new daumMap(container,mapOption); //지도 초기화
   
   var markerOption1={
-  	lat: 33.450701,
-  	lng: 126.570667
+  	position: [33.450701,126.570667]
   }
   
   var markerOption2={
-  	lat: 33.450701,
-  	lng: 126.580667
+  	position: [33.450701,126.580667]
   }
   //마커 옵션
   
@@ -142,8 +133,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 <script>
   var container=document.getElementById("map");
   var mapOption = {
-  	lat: 33.450701,
-  	lng: 126.570667,
+  	center: [33.450701,126.570667],
   	level: 3
   };
    
@@ -153,16 +143,14 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
     content: '<div style="padding:5px;">11</div>',
     removable: true,
     map: map, //인포윈도우를 올릴 지도
-    lat: 33.450701, //올릴 위치 위도
-    lng: 126.570667 //올릴 위치 경도
+    position: [33.450701, 126.570667] //올릴 위치 위도 경도
   }
    
   var infoOption2={
       content: '<div style="padding:5px;">22</div>',
       removable: true,
       map: map,
-      lat: 33.450701,
-      lng: 126.580667
+      position: [33.450701,126.580667]
   }
   //인포윈도우 옵션
   
@@ -180,21 +168,18 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 <script>
   var container=document.getElementById("map");
   var mapOption = {
-  	lat: 33.450701,
-  	lng: 126.570667,
+  	center: [33.450701,126.570667],
   	level: 3
   };
    
   var map=new daumMap(container,mapOption); //지도 초기화
   
   var markerOption1={
-  	lat: 33.450701,
-  	lng: 126.570667
+  	position: [33.450701,126.570667]
   }
   
   var markerOption2={
-  	lat: 33.450701,
-  	lng: 126.580667
+  	position: [33.450701,126.580667]
   }
   //마커 옵션
   
@@ -236,22 +221,19 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 <script>
   var container=document.getElementById("map");
   var mapOption = {
-  	lat: 33.450701,
-  	lng: 126.570667,
+  	center: [33.450701,126.570667],
   	level: 3
   };
    
   var map=new daumMap(container,mapOption); //지도 초기화
   
   var markerOption1={
-  	lat: 33.450701,
-  	lng: 126.570667,
+  	position: [33.450701,126.570667],
   	clickable: true
-  }
+  };
   
   var markerOption2={
-  	lat: 33.450701,
-  	lng: 126.580667,
+  	position: [33.450701,126.580667],
   	clickable: true
   }
   //마커 옵션
@@ -298,22 +280,19 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 <script>
   var container=document.getElementById("map");
   var mapOption = {
-  	lat: 33.450701,
-  	lng: 126.570667,
+  	center: [33.450701,126.570667],
   	level: 3
   };
   
   var map=new daumMap(container,mapOption); //지도 초기화
   
   var markerOption1={
-  	lat: 33.450701,
-  	lng: 126.570667,
+  	position: [33.450701,126.570667],
   	clickable: true
-  }
+  };
   
   var markerOption2={
-  	lat: 33.450701,
-  	lng: 126.580667,
+  	position: [33.450701,126.580667],
   	clickable: true
   }
   //마커 옵션
@@ -370,8 +349,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 <script>
   var container=document.getElementById("map");
   var mapOption = {
-  	lat: 33.450701,
-  	lng: 126.570667,
+  	center: [33.450701,126.570667],
   	level: 3
   };
    
@@ -379,14 +357,12 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   
   var markerOptions=[
     {
-      lat: 33.450701,
-  	  lng: 126.570667,
-  	  clickable: true
+    	position: [33.450701,126.570667],
+    	clickable: true
     },
     {
-      lat: 33.450701,
-  	  lng: 126.580667,
-  	  clickable: true
+    	position: [33.450701,126.580667],
+    	clickable: true
     }
   ];
   //옵션 배열
