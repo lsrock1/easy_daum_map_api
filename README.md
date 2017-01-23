@@ -4,8 +4,8 @@ daum 지도 api easy
 다음 지도를 사용하기 쉽게 만든 js입니다  
 쉬운 인터페이스를 구현하는 것을 목표로 합니다  
 다음에서 제공하는 객체들을 가능한 직접 사용하지 않습니다  
-제이쿼리스러운 메소드를 추구합니다(메소드 체인 가능)  
-물론 own.js 없이 다음 api를 사용하는게 자유도는 더 높습니다  
+다음 공식 예제에서 함수로 구현한 좋은 기능들을 메소드로 편하게 사용할 수 있습니다  
+제이쿼리스러운 메소드를 추구합니다  
   
 #포함하기
 
@@ -415,6 +415,48 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   })
   //오버레이에 마우스를 올리면 닫히는 이벤트를 등록합니다
   //같은 형태로 다른 이벤트를 등록할 수 있습니다
+</script>
+```
+
+##로드뷰 도로를 이용하여 로드뷰 생성하기
+
+[같은예제](http://apis.map.daum.net/web/sample/basicRoadview2/)
+```javascript
+<body>
+  <div id="map" style="width:500px;height:400px; float: left;"></div>
+  <div id="map1" style="width:500px;height:400px; float:left;"></div>
+</body>
+<script> 
+  var mapContainer=document.getElementById("map");
+  var options = {
+  	center: [33.450701,126.570667],
+  	level: 3
+  };
+  var map=new daumMap(mapContainer,options); //지도 초기화
+  map.addRoadViewOverlay(); // 지도에 로드뷰 도로 표시
+  
+  var roadViewContainer=document.getElementById("map1");
+  
+  var road=new daumRoadView(roadViewContainer); //로드뷰 초기화
+  
+  var marker= new marker({
+      position: [33.450701,126.570667],
+      map: map,
+      draggable: true
+    });
+  //옵션으로 드래그 가능한 마커 생성
+
+  map.on('click',function(e){
+      var mouseEvent=new returnMouseEvent(e);
+      road.position({position: mouseEvent.position(),radius: 30});
+      marker.position({position: mouseEvent.position()});
+  });
+  //지도에 클릭하면 마커를 이동하고 로드뷰에서 좌표로 가까운 파노라마 찾는 이벤트 등록
+
+  marker.on('dragend',function(e){
+      road.position({position: marker.position()})
+  })
+  //마커에 마커 드래그가 끝나면 마커가 위치한 부분에서 로드뷰 띄우는 이벤트 등록
 </script>
 ```
 

@@ -22,75 +22,41 @@
 </head>
 
 <body>
-<div id="map" style="width:500px;height:400px;"></div>
-<div id="map1" style="width:500px;height:400px;"></div>
+<div>
+    <div id="map" style="width:500px;height:400px; float: left;"></div>
+    <div id="map1" style="width:500px;height:400px; float:left;"></div>
+    <div style="clear:both;"></div>
+</div>
 <button id="m1">셋설정</button>
 <button id="m2">셋2</button>
 <button id="m3">3</button>
 <script src="//apis.daum.net/maps/maps3.js?apikey=23598cdf36f0c5f5bf1f1bfda70b8e80&libraries=services"></script>
 <script src="/own.js"></script>
 <script> 
-  var container=document.getElementById("map");
+  var mapContainer=document.getElementById("map");
+  var roadViewContainer=document.getElementById("map1");
   var options = {
   	center: [33.450701,126.570667],
   	level: 3
   };
-  var container1=document.getElementById("map1");
   
-  var map=new daumMap(container,options); //지도 초기화
-  var road=new daumRoadView(container1);
-  var easyMap=new easyMap();
-  var mOptions=[
-    {
-      position: [33.450701,126.570667]
-    },
-    {
-      position: [33.450701,126.580667]
-    }
-  ];
-  //옵션 배열
   
-  var markers=[];
-  //마커들을 저장할 배열
-  
-  mOptions.forEach(function(option){
-    markers.push(new marker(option));
-  });
-  //마커 객체 생성
-  
-  easyMap.markerMap(markers,map);
-  var cOptions=[
-    {
-      content:'<div class="placeinfo_wrap"><div class="placeinfo"><a class="title" >일번</a><span>'+
-              '<span style="text-align: right;" class="close">&times;</span>'+
-              '</span></div><div class="after"></div></div>',
-      clickable: true,
-    },
-    {
-      content:'<div class="placeinfo_wrap"><div class="placeinfo"><a class="title" >이번</a><span>'+
-              '<span style="text-align: right;" class="close">&times;</span>'+
-              '</span></div><div class="after"></div></div>',
-      clickable: true,
-    }
-  ]
-  //커스텀 오버레이 옵션
-  
-  var overlays=[];
-  //오버레이들을 저장할 배열
-  
-  cOptions.forEach(function(option){
-    overlays.push(new customOverlay(option));
-  });
-  //오버레이 객체 생성
-  
-  easyMap.customOverlayOnClose(overlays,'overlays');
-  //오버레이 요소 중 close 클래스에 close 이벤트를 등록합니다
-  //첫 번째 인자로 오버레이들이 담긴 배열을 두 번째 인자로 배일의 이름을 전달합니다
-  
-  easyMap.markerClick(markers,overlays);
+  var map=new daumMap(mapContainer,options); //지도 초기화
+  var road=new daumRoadView(roadViewContainer);
+  var marker= new marker({
+      position: [33.450701,126.570667],
+      map: map,
+      draggable: true
+    });
+
   map.on('click',function(e){
       var mouseEvent=new returnMouseEvent(e);
       road.position({position: mouseEvent.position(),radius: 30});
+      marker.position({position: mouseEvent.position()});
+  });
+  
+  marker.on('dragend',function(e){
+      road.position({position: marker.position()})
   })
 
 $("#m2").click(function(){

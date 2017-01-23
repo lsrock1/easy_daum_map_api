@@ -652,7 +652,7 @@
         if(options){
             var posi=new daum.maps.LatLng(options.position[0],options.position[1]);
             var road=this.roadView;
-            this.roadviewClient.getNearestPanoId(posi,options.radius,function(panoId){
+            this.roadviewClient.getNearestPanoId(posi,options.radius||50,function(panoId){
                 road.setPanoId(panoId,posi);
             });
             return this;
