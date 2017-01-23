@@ -377,8 +377,8 @@ map.on('center_changed',function(){
 //중심 좌표가 변경되었을 때 콘솔에 로그를 띄우는 이벤트를 등록합니다
 
 map.on("click",function(e){
-  var latlng = mouseEvent(e).position();
-  alert(latlng);
+  var latlng = new returnMouseEvent(e);
+  alert(latlng.position());
 });
 //지도를 클릭했을 때 위 경도를 알림창으로 띄우는 이벤트를 등록합니다
 ```
