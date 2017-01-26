@@ -89,7 +89,11 @@ mark.image(image);
 //[33.450701, 126.570667]
 ```
   반환값
-  * Array [첫째 좌표의 위도(Float),첫째 좌표의 경도(Float),둘째 좌표의 위도(Float),둘째 좌표의 경도(Float)]
+  * Array
+    * (Number): 첫째 좌표의 위도
+    * (Number): 첫째 좌표의 경도
+    * (Number): 둘째 좌표의 위도
+    * (Number): 둘째 좌표의 경도
 
 
 ####.position(options): 마커의 좌표를 지정한다
@@ -106,8 +110,8 @@ mark.position(options);
 
   매개변수
   * options (Object)
-    * lat (Float): 좌표의 위도 값
-    * lng (Float): 좌표의 경도 값
+    * lat (Number): 좌표의 위도 값
+    * lng (Number): 좌표의 경도 값
 
 
 ####로드뷰 위치 지정
@@ -124,10 +128,10 @@ marker.position(options);
 
   매개변수 [참조](http://apis.map.daum.net/web/documentation/#Viewpoint)
   * options (Object)
-    * pan (Number) : 가로 각도, 0부터 360 사이의 값으로 북쪽부터 시계방향으로 대응한다
-    * tilt (Number) : 세로 각도, -90부터 90 사이의 값으로 위쪽부터 아래쪽으로 대응한다
-    * zoom (Number) : 확대 수준, -3부터 3 사이의 정수이다
-    * panoId (Number) : 특정 위치의 로드뷰 고유의 아이디 값
+    * pan (Number): 가로 각도, 0부터 360 사이의 값으로 북쪽부터 시계방향으로 대응한다
+    * tilt (Number): 세로 각도, -90부터 90 사이의 값으로 위쪽부터 아래쪽으로 대응한다
+    * zoom (Number): 확대 수준, -3부터 3 사이의 정수이다
+    * panoId (Number): 특정 위치의 로드뷰 고유의 아이디 값
 
 
 ### 5. zIndex

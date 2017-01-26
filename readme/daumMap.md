@@ -117,11 +117,11 @@ map.mapTypeId("SKYVIEW");
   반환값
   * Array
     * Array
-      * (Float): 첫째 좌표의 위도
-      * (Float): 첫째 좌표의 경도
+      * (Number): 첫째 좌표의 위도
+      * (Number): 첫째 좌표의 경도
     * Array
-      * (Float): 둘째 좌표의 위도
-      * (Float): 둘째 좌표의 경도
+      * (Number): 둘째 좌표의 위도
+      * (Number): 둘째 좌표의 경도
   * 반환되는 좌표 규칙 [참조](http://apis.map.daum.net/web/documentation/#LatLngBounds)
 
 
@@ -141,11 +141,11 @@ map.bound(options);
   매개변수
   * options
     * position1 (Array):
-      * (Float): 보여야 할 첫째 좌표의 위도 값
-      * (Float): 보여야 할 첫째 좌표의 경도 값
+      * (Number): 보여야 할 첫째 좌표의 위도 값
+      * (Number): 보여야 할 첫째 좌표의 경도 값
     * position2 (Array):
-      * (Float): 보여야 할 둘째 좌표의 위도 값
-      * (Float): 보여야 할 둘째 좌표의 경도 값
+      * (Number): 보여야 할 둘째 좌표의 위도 값
+      * (Number): 보여야 할 둘째 좌표의 경도 값
 
 ####두개의 marker 객체를 전달
 
@@ -180,8 +180,8 @@ map.pan(options);
 ```
   매개변수
   *options(Object)
-    * x (Integer): x축 이동 픽셀값
-    * y (Integer): y축 이동 픽셀값
+    * x (Number): x축 이동 픽셀값
+    * y (Number): y축 이동 픽셀값
 
 
 ####좌표 하나 전달
@@ -197,8 +197,8 @@ map.pan(options);
   매개변수
   *options(Object)
     * position (Array):
-      * (Float): 위도값
-      * (Float): 경도값
+      * (Number): 위도값
+      * (Number): 경도값
 
 
 ####두 좌표 전달
@@ -213,13 +213,13 @@ map.pan(options);
 ```
 
   매개변수
-  *options(Object)
+  * options(Object)
     * position1 (Array):
-      * (Float): 보여야 할 첫째 좌표의 위도 값
-      * (Float): 보여야 할 첫째 좌표의 경도 값
+      * (Number): 보여야 할 첫째 좌표의 위도 값
+      * (Number): 보여야 할 첫째 좌표의 경도 값
     * position2 (Array):
-      * (Float): 보여야 할 둘째 좌표의 위도 값
-      * (Float): 보여야 할 둘째 좌표의 경도 값
+      * (Number): 보여야 할 둘째 좌표의 위도 값
+      * (Number): 보여야 할 둘째 좌표의 경도 값
 
 
 ### 6. addControl

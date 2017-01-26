@@ -627,6 +627,7 @@
         this.roadView=new daum.maps.Roadview(container,options);
         this.roadviewClient = new daum.maps.RoadviewClient();
     };
+    daumRoadView.prototype.map=this.roadView;
     
     daumRoadView.prototype.panoId=function(options){
         if(options){
