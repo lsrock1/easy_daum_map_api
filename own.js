@@ -691,18 +691,18 @@
         return this;
     };
     
-    DaumRoadView.prototype.on=function(event,func){
+    DaumRoadView.prototype.on = function(event,func){
         daum.maps.event.addListener(this.roadView, event,func);
     };
     
-    DaumRoadView.prototype.off=function(event,func){
+    DaumRoadView.prototype.off = function(event,func){
         daum.maps.event.removeListener(this.roadView,event,func);
     };
     
-    DaumRoadView.prototype.trigger=function(event,func){
+    DaumRoadView.prototype.trigger = function(event,func){
         daum.maps.event.trigger(this.roadView,event,func);
     };
     
-    window.own.DaumRoadView=DaumRoadView;
+    window.own.DaumRoadView = DaumRoadView;
 
 })(window);

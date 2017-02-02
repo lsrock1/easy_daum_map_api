@@ -1,4 +1,4 @@
-daum 지도 api easy
+Daum 지도 api easy
 =======================
 #목적
 다음 지도를 사용하기 쉽게 만든 js입니다  
@@ -28,21 +28,21 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 ```javascript
 <div id="map" style="width:500px;height:400px;"></div>
 <script>
-  var container=document.getElementById("map");
+  var container = document.getElementById("map");
   var mapOption = {
   	center: [33.450701, 126.570667],//지도의 중심 위도 경도
   	level: 3 //확대 축소 정도
   };
    
-  var map= new own.DaumMap(container,mapOption);
+  var map= new own.DaumMap(container, mapOption);
   //지도 초기화
-   
-  var markerOption={
-  	position: [33.450701,126.570667]//마커의 위도 경도
-  }
+
+  var markerOption = {
+  	position: [33.450701, 126.570667]//마커의 위도 경도
+  };
   //마커 옵션
   
-  var marker1= new own.Marker(markerOption); //마커객체 생성
+  var marker1 = new own.Marker(markerOption); //마커객체 생성
   marker1.map(map); //마커를 지도에 표시
   marker1.remove(); //마커 지우기
 </script>
@@ -53,21 +53,21 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 ```javascript
 <div id="map" style="width:500px;height:400px;"></div>
 <script>
-  var container=document.getElementById("map");
+  var container = document.getElementById("map");
   var mapOption = {
   	center: [33.450701, 126.570667],//지도의 중심 위도 경도
   	level: 3
   };
    
-  var map= new own.DaumMap(container,mapOption); //지도 초기화
+  var map= new own.DaumMap(container, mapOption); //지도 초기화
    
-  var markerOption={
-  	position: [33.450701,126.570667],
+  var markerOption = {
+  	position: [33.450701, 126.570667],
   	map: map //마커를 생성할 지도
-  }
+  };
   //마커 옵션
   
-  var marker1=new own.Marker(markerOption); //마커객체 생성
+  var marker1 = new own.Marker(markerOption); //마커객체 생성
   marker1.remove(); //마커 지우기
 </script>
 ```  
@@ -77,22 +77,22 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 ```javascript
 <div id="map" style="width:500px;height:400px;"></div>
 <script>
-  var container=document.getElementById("map");
+  var container = document.getElementById("map");
   var mapOption = {
-  	center: [33.450701,126.570667],
+  	center: [33.450701, 126.570667],
   	level: 3
   };
    
-  var map=daumMap(container,mapOption); //지도 초기화
+  var map = new own.DaumMap(container, mapOption); //지도 초기화
    
   var markerOption={
-  	position: [33.450701,126.570667]
-  }
+  	position: [33.450701, 126.570667]
+  };
   //마커 옵션
   
-  var marker1=new own.Marker(markerOption); //마커객체 생성
-  var easyMap=new own.EasyMap(); //easyMap 생성
-  easyMap.markerMap([marker1],map) //마커 올리기
+  var marker1 = new own.Marker(markerOption); //마커객체 생성
+  var easyMap = new own.EasyMap(); //easyMap 생성
+  easyMap.markerMap([marker1], map); //마커 올리기
 </script>
 ```    
     
@@ -101,28 +101,28 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 ```javascript
 <div id="map" style="width:500px;height:400px;"></div>
 <script>
-  var container=document.getElementById("map");
+  var container = document.getElementById("map");
   var mapOption = {
-  	center: [33.450701,126.570667],
+  	center: [33.450701, 126.570667],
   	level: 3
   };
    
-  var map=new own.DaumMap(container,mapOption); //지도 초기화
+  var map = new own.DaumMap(container, mapOption); //지도 초기화
   
-  var markerOption1={
-  	position: [33.450701,126.570667]
-  }
+  var markerOption1 = {
+  	position: [33.450701, 126.570667]
+  };
   
-  var markerOption2={
-  	position: [33.450701,126.580667]
-  }
+  var markerOption2 = {
+  	position: [33.450701, 126.580667]
+  };
   //마커 옵션
   
-  var markers=[]
+  var markers = [];
   markers.push(new own.Marker(markerOption1)); //첫 번째 마커객체 생성 markers 배열에 삽입
   markers.push(new own.Marker(markerOption2)); //두 번째 마커객체 생성 markers 배열에 삽입
-  var easyMap=new own.EasyMap(); //easyMap 생성
-  easyMap.markerMap(markers,map); //모든 마커를 map이라는 지도에 표시
+  var easyMap = new own.EasyMap(); //easyMap 생성
+  easyMap.markerMap(markers, map); //모든 마커를 map이라는 지도에 표시
   easyMap.markerRemove(markers); //모든 마커 지우기
 </script>
 ```
@@ -132,31 +132,31 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 ```javascript
 <div id="map" style="width:500px;height:400px;"></div>
 <script>
-  var container=document.getElementById("map");
+  var container = document.getElementById("map");
   var mapOption = {
-  	center: [33.450701,126.570667],
+  	center: [33.450701, 126.570667],
   	level: 3
   };
    
-  var map=new own.DaumMap(container,mapOption); //지도 초기화
+  var map = new own.DaumMap(container, mapOption); //지도 초기화
    
-  var infoOption1={
+  var infoOption1 = {
     content: '<div style="padding:5px;">11</div>',
     removable: true,
     map: map, //인포윈도우를 올릴 지도
     position: [33.450701, 126.570667] //올릴 위치 위도 경도
-  }
+  };
    
-  var infoOption2={
+  var infoOption2 = {
       content: '<div style="padding:5px;">22</div>',
       removable: true,
       map: map,
-      position: [33.450701,126.580667]
-  }
+      position: [33.450701, 126.580667]
+  };
   //인포윈도우 옵션
   
-  var infow1=new own.InfoWindow(infoOption1);
-  var infow2=new own.InfoWindow(infoOption2);
+  var infow1 = new own.InfoWindow(infoOption1);
+  var infow2 = new own.InfoWindow(infoOption2);
   //인포윈도우 생성
   
 </script>
@@ -167,39 +167,39 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 ```javascript
 <div id="map" style="width:500px;height:400px;"></div>
 <script>
-  var container=document.getElementById("map");
+  var container = document.getElementById("map");
   var mapOption = {
-  	center: [33.450701,126.570667],
+  	center: [33.450701, 126.570667],
   	level: 3
   };
    
-  var map=new own.DaumMap(container,mapOption); //지도 초기화
+  var map = new own.DaumMap(container, mapOption); //지도 초기화
   
-  var markerOption1={
-  	position: [33.450701,126.570667]
-  }
-  
+  var markerOption1 = {
+  	position: [33.450701, 126.570667]
+  };
+
   var markerOption2={
   	position: [33.450701,126.580667]
-  }
+  };
   //마커 옵션
   
-  var markers=[];
+  var markers = [];
   markers.push(new own.Marker(markerOption1));
   markers.push(new own.Marker(markerOption2));
-  var easyMap=new own.EasyMap(); //easyMap 생성
-  easyMap.markerMap(markers,map);
+  var easyMap = new own.EasyMap(); //easyMap 생성
+  easyMap.markerMap(markers, map);
   //마커 생성
   
   var infoOption1={
     content: '<div style="padding:5px;">11</div>',
     removable: true
-  }
+  };
    
   var infoOption2={
       content: '<div style="padding:5px;">22</div>',
       removable: true
-  }
+  };
   //인포윈도우 옵션
   
   var infow1=new own.InfoWindow(infoOption1);
@@ -220,54 +220,54 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 ```javascript
 <div id="map" style="width:500px;height:400px;"></div>
 <script>
-  var container=document.getElementById("map");
+  var container = document.getElementById("map");
   var mapOption = {
-  	center: [33.450701,126.570667],
+  	center: [33.450701, 126.570667],
   	level: 3
   };
    
-  var map=new own.DaumMap(container,mapOption); //지도 초기화
+  var map = new own.DaumMap(container, mapOption); //지도 초기화
   
   var markerOption1={
-  	position: [33.450701,126.570667],
+  	position: [33.450701, 126.570667],
   	clickable: true
   };
   
   var markerOption2={
-  	position: [33.450701,126.580667],
+  	position: [33.450701, 126.580667],
   	clickable: true
-  }
+  };
   //마커 옵션
   
   var markers=[];
   markers.push(new own.Marker(markerOption1));
   markers.push(new own.Marker(markerOption2));
-  var easyMap=new own.EasyMap(); //easyMap 생성
+  var easyMap = new own.EasyMap(); //easyMap 생성
   easyMap.markerMap(markers,map);
   //마커 생성
   
   var infoOption1={
     content: '<div style="padding:5px;">11</div>',
     removable: true
-  }
+  };
    
   var infoOption2={
       content: '<div style="padding:5px;">22</div>',
       removable: true
-  }
+  };
   //인포윈도우 옵션
-  
-  var infow1=new own.InfoWindow(infoOption1);
-  var infow2=new own.InfoWindow(infoOption2);
+
+  var infow1 = new own.InfoWindow(infoOption1);
+  var infow2 = new own.InfoWindow(infoOption2);
   //인포윈도우 생성
-  
+
   marker1.on('click',function(){
-      infow1.open(markers[0]);
+    infow1.open(markers[0]);
   })
   //marker1 클릭에 infow1 인포윈도우 오픈 연결
   
   marker2.on('click',function(){
-      infow2.open(markers[1]);
+    infow2.open(markers[1]);
   })
   //marker2 클릭에 infow2 인포윈도우 오픈 연결
 </script>
@@ -281,47 +281,47 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 <script>
   var container=document.getElementById("map");
   var mapOption = {
-  	center: [33.450701,126.570667],
+  	center: [33.450701, 126.570667],
   	level: 3
   };
   
   var map=new own.DaumMap(container,mapOption); //지도 초기화
   
   var markerOption1={
-  	position: [33.450701,126.570667],
+  	position: [33.450701, 126.570667],
   	clickable: true
   };
   
   var markerOption2={
-  	position: [33.450701,126.580667],
+  	position: [33.450701, 126.580667],
   	clickable: true
-  }
+  };
   //마커 옵션
   
   var markers=[];
   markers.push(new own.Marker(markerOption1));
   markers.push(new own.Marker(markerOption2));
-  var easyMap=new own.EasyMap(); //easyMap 생성
+  var easyMap = new own.EasyMap(); //easyMap 생성
   easyMap.markerMap(markers,map);
   //마커 생성 및 지도에 올리기
   
   var infoOption1={
     content: '<div style="padding:5px;">11</div>',
     removable: true
-  }
+  };
    
   var infoOption2={
       content: '<div style="padding:5px;">22</div>',
       removable: true
-  }
+  };
   //인포윈도우 옵션
   
-  var infows=[];
+  var infows = [];
   infows.push(new own.InfoWindow(infoOption1));
   infows.push(new own.InfoWindow(infoOption2));
   //인포윈도우 생성
   
-  easyMap.markerClick(markers,infows);
+  easyMap.markerClick(markers, infows);
   //각 배열의 N번째 마커와 인포윈도우 클릭으로 연결
   
 </script>
@@ -348,27 +348,27 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   <div id="map" style="width:500px;height:400px;"></div>
 </body>
 <script>
-  var container=document.getElementById("map");
+  var container = document.getElementById("map");
   var mapOption = {
-  	center: [33.450701,126.570667],
+  	center: [33.450701, 126.570667],
   	level: 3
   };
    
-  var map=new own.DaumMap(container,mapOption); //지도 초기화
-  
+  var map=new own.DaumMap(container, mapOption); //지도 초기화
+
   var markerOptions=[
     {
-    	position: [33.450701,126.570667],
+    	position: [33.450701, 126.570667],
     	clickable: true
     },
     {
-    	position: [33.450701,126.580667],
+    	position: [33.450701, 126.580667],
     	clickable: true
     }
   ];
   //옵션 배열
   
-  var markers=[];
+  var markers = [];
   //마커들을 저장할 배열
   
   markerOptions.forEach(function(option){
@@ -392,14 +392,14 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   ]
   //커스텀 오버레이 옵션
   
-  var overlays=[];
+  var overlays = [];
   //오버레이들을 저장할 배열
-  
+
   overlayOptions.forEach(function(option){
     overlays.push(new own.CustomOverlay(option));
   });
   //오버레이 객체 생성
-  var easyMap=new own.EasyMap(); //easyMap 생성
+  var easyMap = new own.EasyMap(); //easyMap 생성
   
   easyMap.customOverlayOnClose(overlays,'overlays');
   //clickable 옵션과 비슷한 역할을 합니다
@@ -428,28 +428,28 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   <div id="map1" style="width:500px;height:400px; float:left;"></div>
 </body>
 <script> 
-  var mapContainer=document.getElementById("map");
+  var mapContainer = document.getElementById("map");
   var options = {
   	center: [33.450701,126.570667],
   	level: 3
   };
-  var map=new own.DaumMap(mapContainer,options); //지도 초기화
+  var map = new own.DaumMap(mapContainer, options); //지도 초기화
   map.addRoadViewOverlay(); // 지도에 로드뷰 도로 표시
   
-  var roadViewContainer=document.getElementById("map1");
+  var roadViewContainer = document.getElementById("map1");
   
-  var road=new own.DaumRoadView(roadViewContainer); //로드뷰 초기화
+  var road = new own.DaumRoadView(roadViewContainer); //로드뷰 초기화
   
-  var marker= new own.Marker({
-      position: [33.450701,126.570667],
+  var marker = new own.Marker({
+      position: [33.450701, 126.570667],
       map: map,
       draggable: true
     });
   //옵션으로 드래그 가능한 마커 생성
 
   map.on('click',function(e){
-      var mouseEvent=own.ReturnMouseEvent(e);
-      road.position({position: mouseEvent.position(),radius: 30});
+      var mouseEvent = own.ReturnMouseEvent(e);
+      road.position({position: mouseEvent.position(), radius: 30});
       marker.position({position: mouseEvent.position()});
   });
   //지도에 클릭하면 마커를 이동하고 로드뷰에서 좌표로 가까운 파노라마 찾는 이벤트 등록

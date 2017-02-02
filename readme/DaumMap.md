@@ -38,7 +38,7 @@ var map = new own.DaumMap(container, options);
 
 ```javascript
  map.center();
-//[33.450701,126.570667]
+//[33.450701, 126.570667]
 ```
   반환값
   * Array
@@ -49,7 +49,7 @@ var map = new own.DaumMap(container, options);
 ####.center(위도,경도): 위도,경도 값으로 중심좌표 변경
 
 ```javascript
-map.center([33.450701,126.570667]);
+map.center([33.450701, 126.570667]);
 //중심좌표 위도 33.450701 경도 126.570667 로 변경
 ```
 
@@ -74,7 +74,7 @@ map.center([33.450701,126.570667]);
 ####.level(level,options): 확대 축소 수준을 매개변수로 설정, options 객체로 다양한 효과 가능
 
 ```javascript
-map.level(3,options);
+map.level(3, options);
 //확대 축소 수준 3으로 변경
 ```
 
@@ -131,15 +131,15 @@ map.mapTypeId("SKYVIEW");
 
 ```javascript
 var options={
-  position1 : [33.4488882499644,126.56798133906949],
-  position2 : [33.45251321509635,126.5733411966229]
-}
+  position1 : [33.4488882499644, 126.56798133906949],
+  position2 : [33.45251321509635, 126.5733411966229]
+};
 map.bound(options);
 //두 좌표가 보이도록 지도 확대 축소
 ```
 
   매개변수
-  * options
+  * options (Object)
     * position1 (Array):
       * (Number): 보여야 할 첫째 좌표의 위도 값
       * (Number): 보여야 할 첫째 좌표의 경도 값
@@ -153,13 +153,13 @@ map.bound(options);
 var options={
   marker1 : obj_marker1,
   marker2 : obj_marker2
-}
+};
 map.bound(options);
 //두 마커가 보이도록 지도 확대 축소
 ```
 
   매개변수
-  * options(Object)
+  * options (Object)
     * marker1 (Object): 마커 객체
     * marker2 (Object): 마커 객체
 
@@ -174,12 +174,12 @@ map.bound(options);
 var options={
   x: 50,
   y: 100
-}
+};
 map.pan(options);
 //오른쪽으로 50 픽셀 위쪽으로 100 픽셀 이동
 ```
   매개변수
-  * options(Object)
+  * options (Object)
     * x (Number): x축 이동 픽셀값
     * y (Number): y축 이동 픽셀값
 
@@ -188,14 +188,14 @@ map.pan(options);
 
 ```javascript
 var options={
-  position: [33.450701,126.570667]
-}
+  position: [33.450701, 126.570667]
+};
 map.pan(options);
 //33.450701,126.570667로 부드럽게 이동
 ```
 
   매개변수
-  * options(Object)
+  * options (Object)
     * position (Array):
       * (Number): 위도값
       * (Number): 경도값
@@ -205,15 +205,15 @@ map.pan(options);
 [참조](http://apis.map.daum.net/web/documentation/#Map_panTo)
 ```javascript
 var options={
-  position1: [33.4488882499644,126.56798133906949],
-  position2: [33.45251321509635,126.5733411966229]
-}
+  position1: [33.4488882499644, 126.56798133906949],
+  position2: [33.45251321509635, 126.5733411966229]
+};
 map.pan(options);
 //두 좌표가 보이도록 지도 이동
 ```
 
   매개변수
-  * options(Object)
+  * options (Object)
     * position1 (Array):
       * (Number): 보여야 할 첫째 좌표의 위도 값
       * (Number): 보여야 할 첫째 좌표의 경도 값
@@ -227,10 +227,10 @@ map.pan(options);
 ####.addControl(컨트롤러 이름,위치): 지도에 컨트롤러를 올린다
 
 ```javascript
-map.addControl("TYPE","TOP");
+map.addControl("TYPE", "TOP");
 //타입 컨트롤러를 상단에 올린다
 
-map.addControl("ZOOM","BOTTOMLEFT");
+map.addControl("ZOOM", "BOTTOMLEFT");
 //줌컨트롤러를 왼쪽 아래에 올린다
 ```
 
@@ -244,10 +244,10 @@ map.addControl("ZOOM","BOTTOMLEFT");
 ####.removeControl(컨트롤러 이름,위치): 지도에 컨트롤러를 없앤다
 
 ```javascript
-map.removeControl("TYPE","TOP");
+map.removeControl("TYPE", "TOP");
 //상단에 있는 타입 컨트롤러를 없앤다
 
-map.removeControl("ZOOM","BOTTOMLEFT");
+map.removeControl("ZOOM", "BOTTOMLEFT");
 //왼쪽 아래에 있는 줌컨트롤러를 없앤다
 ```
 
@@ -388,20 +388,20 @@ map.on("click",function(e){
   * 콜백함수 (Function)
   
 
-#### [mouseEvent](/readme/MouseEvent.md#MouseEvent-객체)
+#### [MouseEvent](/readme/MouseEvent.md#MouseEvent-객체)
   
 click, dbclick, rightclick, mousemove 이벤트는 콜백함수에게 mouseEvent라는 인자를 전달하는데  
 이 인자를 returnMouseEvent 객체 생성자에 다시 전달하면 다음에서 제공하는  
 복잡한 메소드 없이 정보를 가져올 수 있게 재정의된 returnMouseEvent 객체를 반환합니다
 ```javascript
 map.on('click',function(mouseEvent){
-  mouseEvent=own.returnMouseEvent(mouseEvent);
+  mouseEvent = own.returnMouseEvent(mouseEvent);
   alert(mouseEvent.position());
 });
 //지도를 클릭했을 때 위 경도를 알림창으로 띄우는 이벤트를 등록합니다
 
 map.on("click",function(mouseEvent){
-  mouseEvent=own.returnMouseEvent(mouseEvent);
+  mouseEvent = own.returnMouseEvent(mouseEvent);
   alert(mouseEvent.point());
 });
 //지도를 클릭했을 때 화면 좌표를 알림창으로 띄우는 이벤트를 등록합니다
@@ -416,10 +416,10 @@ map.on("click",function(mouseEvent){
 var event= function(){
   console.log("중심 좌표가 변경됩니다");
 };
-map.on('center_changed',event);
+map.on('center_changed', event);
 //중심 좌표가 변경되었을 때 콘솔에 로그를 띄우는 이벤트를 등록합니다
 
-map.off('center_changed',event);
+map.off('center_changed', event);
 //중심 좌표가 변경되었을 때 콘솔에 로그를 띄우는 이벤트를 제거합니다
 ```
 
@@ -449,16 +449,16 @@ map.removeRoadViewOverlay();
 ### 메소드 체인
 ```javascript
 map
-.center([33.450701,126.570667])
+.center([33.450701, 126.570667])
 .level(4)
 .mapTypeId("SKYVIEW")
 .bound({
-  position1 : [33.4488882499644,126.56798133906949],
-  position2 : [33.45251321509635,126.5733411966229]
+  position1 : [33.4488882499644, 126.56798133906949],
+  position2 : [33.45251321509635, 126.5733411966229]
 })
-.pan({x: 5,y: 10})
+.pan({x: 5, y: 10})
 .relayout()
-.on('center_changed',function(){
+.on('center_changed', function(){
   console.log("중심 좌표가 변경됩니다");
 })
 ```
