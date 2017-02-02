@@ -1,22 +1,22 @@
 (function(window){
-    var ReturnMouseEvent=function(mouse){
-        if(!(this instanceof ReturnMouseEvent)){
-          return new ReturnMouseEvent(mouse);
+    var MouseEvent=function(mouse){
+        if(!(this instanceof MouseEvent)){
+          return new MouseEvent(mouse);
         }
         this.lat=mouse.latLng.getLat();
         this.lng=mouse.latLng.getLng();
         this.point=mouse.point.toString().slice(1,-1).split(",");
     };
     
-    ReturnMouseEvent.prototype.position=function(){
+    MouseEvent.prototype.position=function(){
       return [this.lat,this.lng]; 
     };
     
-    ReturnMouseEvent.prototype.point=function(){
+    MouseEvent.prototype.point=function(){
         return [this.point[0],this.point[1]];
     };
     
-    window.own.returnMouseEvent=ReturnMouseEvent;
+    window.own.MouseEvent=MouseEvent;
     
     var EasyMap=function(){
       if(!(this instanceof EasyMap)){

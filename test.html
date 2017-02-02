@@ -42,7 +42,9 @@
   
   
   var map=new daumMap(mapContainer,options); //지도 초기화
-  var road=new daumRoadView(roadViewContainer);
+  map.addRoadViewOverlay();
+  
+  var road=new own.DaumRoadView(roadViewContainer);
   var marker= new marker({
       position: [33.450701,126.570667],
       map: map,

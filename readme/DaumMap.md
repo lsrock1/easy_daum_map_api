@@ -377,7 +377,7 @@ map.on('center_changed',function(){
 //중심 좌표가 변경되었을 때 콘솔에 로그를 띄우는 이벤트를 등록합니다
 
 map.on("click",function(e){
-  var latlng = own.returnMouseEvent(e);
+  var latlng = own.MouseEvent(e);
   alert(latlng.position());
 });
 //지도를 클릭했을 때 위 경도를 알림창으로 띄우는 이벤트를 등록합니다
@@ -395,13 +395,13 @@ click, dbclick, rightclick, mousemove 이벤트는 콜백함수에게 mouseEvent
 복잡한 메소드 없이 정보를 가져올 수 있게 재정의된 returnMouseEvent 객체를 반환합니다
 ```javascript
 map.on('click',function(mouseEvent){
-  mouseEvent = own.returnMouseEvent(mouseEvent);
+  mouseEvent = own.MouseEvent(mouseEvent);
   alert(mouseEvent.position());
 });
 //지도를 클릭했을 때 위 경도를 알림창으로 띄우는 이벤트를 등록합니다
 
 map.on("click",function(mouseEvent){
-  mouseEvent = own.returnMouseEvent(mouseEvent);
+  mouseEvent = own.MouseEvent(mouseEvent);
   alert(mouseEvent.point());
 });
 //지도를 클릭했을 때 화면 좌표를 알림창으로 띄우는 이벤트를 등록합니다

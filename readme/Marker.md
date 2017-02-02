@@ -37,7 +37,7 @@ var mark = new own.Marker(options);
 mark.map();
 ```
   반환값
-  * daumMap Object
+  * DaumMap Object
 
 
 ####.map(map): 지도에 마커를 올린다
@@ -47,7 +47,7 @@ mark.map(map);
 ```
 
   매개변수 
-  * map (daumMap Object)
+  * map (DaumMap Object)
 
 
 ### 2. remove
@@ -102,9 +102,9 @@ mark.image(image);
 
 ```javascript
 var options={
-  lat : 33.4488882499644,
-  lng : 126.56798133906949
-}
+  lat: 33.4488882499644,
+  lng: 126.56798133906949
+};
 mark.position(options);
 ```
 
@@ -118,11 +118,11 @@ mark.position(options);
 
 ```javascript
 var options={
-  pan : 30,
-  tilt : -10,
-  zoom : 0,
-  panoId : 1033283653
-}
+  pan: 30,
+  tilt: -10,
+  zoom: 0,
+  panoId: 1033283653
+};
 marker.position(options);
 ```
 
