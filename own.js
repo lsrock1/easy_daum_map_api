@@ -1,36 +1,42 @@
 (function(window){
-    var returnMouseEvent=function(mouse){
+    var ReturnMouseEvent=function(mouse){
+        if(!(this instanceof ReturnMouseEvent)){
+          return new ReturnMouseEvent(mouse);
+        }
         this.lat=mouse.latLng.getLat();
         this.lng=mouse.latLng.getLng();
         this.point=mouse.point.toString().slice(1,-1).split(",");
     };
     
-    returnMouseEvent.prototype.position=function(){
+    ReturnMouseEvent.prototype.position=function(){
       return [this.lat,this.lng]; 
     };
     
-    returnMouseEvent.prototype.point=function(){
+    ReturnMouseEvent.prototype.point=function(){
         return [this.point[0],this.point[1]];
     };
     
-    window.returnMouseEvent=returnMouseEvent;
+    window.own.returnMouseEvent=ReturnMouseEvent;
     
-    var easyMap=function(){
+    var EasyMap=function(){
+      if(!(this instanceof EasyMap)){
+        return new EasyMap();
+      }
     };
     
-    easyMap.prototype.markerMap=function(markers,value){
+    EasyMap.prototype.markerMap=function(markers,value){
       markers.forEach(function(ob){
         ob['map'](value);
       });
     };
     
-    easyMap.prototype.markerRemove=function(markers){
+    EasyMap.prototype.markerRemove=function(markers){
       markers.forEach(function(ob){
         ob['remove']();
       });
     };
     
-    easyMap.prototype.markerClick= function(markers,overlay){
+    EasyMap.prototype.markerClick= function(markers,overlay){
       if(Array.isArray(overlay)&&markers.length===overlay.length){
         for(var i=0;i<markers.length;i++){
           (function(marker,val){
@@ -42,19 +48,19 @@
       }
     };
     
-    easyMap.prototype.customOverlayOnClose= function(overlay,name){
+    EasyMap.prototype.customOverlayOnClose= function(overlay,name){
       for(var i =0;i<overlay.length;i++){
         overlay[i]['onClose'](name+"["+i.toString()+"]");
       }
     };
     
-    window.easyMap=easyMap;
+    window.own.EasyMap=EasyMap;
     
-    window.preventMap=function(){
+    window.own.preventMap=function(){
       daum.maps.event.preventMap;
     };
 
-    window.markerImage=function(options){
+    window.own.markerImage=function(options){
       return new daum.maps.MarkerImage(
         options.src,
         new daum.maps.Size(options.height, options.width),
@@ -69,14 +75,17 @@
       );
     };
     
-    var daumMap=function(container,options){
+    var DaumMap=function(container,options){
+        if(!(this instanceof DaumMap)){
+          return new DaumMap(container,options);
+        }
         options.mapTypeId=options.mapTypeId ? this.mapType(options.mapTypeId) : undefined;
         options.center=new daum.maps.LatLng(options.center[0],options.center[1]);
         this.map=new daum.maps.Map(container, options);
         this.roadViewOverlay=new daum.maps.RoadviewOverlay();
     };
     
-    daumMap.prototype.mapType=function(index){
+    DaumMap.prototype.mapType=function(index){
         var mapTypeId={
           "ROADMAP" : daum.maps.MapTypeId.ROADMAP,
           "SKYVIEW" : daum.maps.MapTypeId.SKYVIEW,
@@ -89,7 +98,7 @@
         return mapTypeId[index];
       };
     
-    daumMap.prototype.overlayMapType=function(index){
+    DaumMap.prototype.overlayMapType=function(index){
         var overlayMapType={
           "OVERLAY":daum.maps.MapTypeId.OVERLAY,
           "TRAFFIC":daum.maps.MapTypeId.TRAFFIC,
@@ -102,7 +111,7 @@
         return overlayMapType[index];
       };
       
-    daumMap.prototype.controlPosition=function(index){
+    DaumMap.prototype.controlPosition=function(index){
         var positions={
           "TOP": daum.maps.ControlPosition.TOP,
           "TOPLEFT":daum.maps.ControlPosition.TOPLEFT,
@@ -117,7 +126,7 @@
         return positions[index];
       };
     
-    daumMap.prototype.center=function(position){
+    DaumMap.prototype.center=function(position){
       if(position){
         this.map.setCenter(new daum.maps.LatLng(position[0],position[1]));
         return this;
@@ -127,7 +136,7 @@
       }
     };
     
-    daumMap.prototype.level= function(level,options){
+    DaumMap.prototype.level= function(level,options){
       if(level){
         this.map.setLevel(level,options);
         return this;
@@ -137,7 +146,7 @@
       }
     };
     
-    daumMap.prototype.mapTypeId= function(name){
+    DaumMap.prototype.mapTypeId= function(name){
       if(name){
         this.map.setMapTypeId(this.mapType(name));
         return this;
@@ -148,7 +157,7 @@
       }
     };
     
-    daumMap.prototype.bound= function(options){
+    DaumMap.prototype.bound= function(options){
       if(options.position1&&options.position2){
         this.map.setBounds(new daum.maps.LatLngBounds(new daum.maps.LatLng(options.position1[0],options.position1[1]), new daum.maps.LatLng(options.position2[0],options.position2[1])),
           options.paddingTop,
@@ -177,7 +186,7 @@
       return this;
     };
     
-    daumMap.prototype.pan = function(options){
+    DaumMap.prototype.pan = function(options){
       if(options.x&&options.y){
         this.map.panBy(options.x,options.y);
       }
@@ -190,19 +199,19 @@
       return this;
     };
     
-    daumMap.prototype.addControl= function(control,position){
+    DaumMap.prototype.addControl= function(control,position){
       var con= control ==='TYPE' ? new daum.maps.MapTypeControl() : new daum.maps.ZoomControl();
       this.map.addControl(con,this.controlPosition(position));
       return this;
     };
     
-    daumMap.prototype.removeControl = function(control,position){
+    DaumMap.prototype.removeControl = function(control,position){
       var con= control ==='TYPE' ? new daum.maps.MapTypeControl() : new daum.maps.ZoomControl();
       this.map.removeControl(con,this.controlPosition(position));
       return this;
     };
     
-    daumMap.prototype.draggable = function(bool){
+    DaumMap.prototype.draggable = function(bool){
       if(bool){
         this.map.setDraggable(bool);
         return this;
@@ -212,7 +221,7 @@
       }    
     };
     
-    daumMap.prototype.zoomable = function(bool){
+    DaumMap.prototype.zoomable = function(bool){
       if(bool){
         this.map.setZoomable(bool);
         return this;
@@ -222,22 +231,22 @@
       }
     };
     
-    daumMap.prototype.relayout = function(){
+    DaumMap.prototype.relayout = function(){
       this.map.relayout();
       return this;
     };
     
-    daumMap.prototype.addOverlayMapTypeId = function(name){
+    DaumMap.prototype.addOverlayMapTypeId = function(name){
       this.map.addOverlayMapTypeId(this.overlayMapType(name));
       return this;
     };
     
-    daumMap.prototype.removeOverlayMapTypeId = function(name){
+    DaumMap.prototype.removeOverlayMapTypeId = function(name){
       this.map.removeOverlayMapTypeId(this.overlayMapType(name));
       return this;
     };
     
-    daumMap.prototype.keyboardShortcuts = function(bool){
+    DaumMap.prototype.keyboardShortcuts = function(bool){
       if(bool){
         this.map.setKeyboardShortcuts(bool);
         return this;
@@ -247,34 +256,37 @@
       }
     };
     
-    daumMap.prototype.on = function(event,func){
+    DaumMap.prototype.on = function(event,func){
       daum.maps.event.addListener(this.map, event,func);
       return this;
     };
     
-    daumMap.prototype.trigger = function(event,data){
+    DaumMap.prototype.trigger = function(event,data){
       daum.maps.event.trigger(this.map, event,data);
       return this;
     };
     
-    daumMap.prototype.off = function(event,func){
+    DaumMap.prototype.off = function(event,func){
       daum.maps.event.removeListener(this.map,event,func);
       return this;
     };
     
-    daumMap.prototype.addRoadViewOverlay = function(){
+    DaumMap.prototype.addRoadViewOverlay = function(){
       this.roadViewOverlay.setMap(this.map);
       return this;
     };
     
-    daumMap.prototype.removeRoadViewOverlay = function(){
+    DaumMap.prototype.removeRoadViewOverlay = function(){
       this.roadViewOverlay.setMap(null);
       return this;
     };
     
-    window.daumMap=daumMap;
+    window.own.DaumMap=DaumMap;
     
-    var marker=function(options){
+    var Marker=function(options){
+        if(!(this instanceof Marker)){
+            return new Marker(options);
+        }
         this.daumMap=null;
         options.position= options.position ? new daum.maps.LatLng(options.position[0],options.position[1]) : new daum.maps.Viewpoint(options.pan,options.tilt,options.zoom,options.panoId);
         if(options.map){
@@ -284,7 +296,7 @@
         this.marker=new daum.maps.Marker(options);
     };
     
-    marker.prototype.map = function(daumMap){
+    Marker.prototype.map = function(daumMap){
       if(daumMap){
         this.marker.setMap(daumMap.map);
         this.daumMap=daumMap;
@@ -295,13 +307,13 @@
       }
     };
     
-    marker.prototype.remove = function(){
+    Marker.prototype.remove = function(){
       this.marker.setMap(null);
       this.daumMap=null;
       return this;
     };
     
-    marker.prototype.image = function(image){
+    Marker.prototype.image = function(image){
       if(image){
         this.marker.setImage(image);
         return this;
@@ -311,7 +323,7 @@
       }
     };
     
-    marker.prototype.position = function(options){
+    Marker.prototype.position = function(options){
       if(!options){
         var position=this.marker.getPosition();
         return [position.getLat(),position.getLng()];
@@ -325,7 +337,7 @@
       return this;
     };
     
-    marker.prototype.zIndex = function(num){
+    Marker.prototype.zIndex = function(num){
       if(num){
         this.marker.setZIndex(num);
         return this;
@@ -335,7 +347,7 @@
       }
     };
     
-    marker.prototype.visible = function(bool){
+    Marker.prototype.visible = function(bool){
       if(bool){
         this.marker.setVisible(bool);
         return this;
@@ -345,7 +357,7 @@
       }
     };
     
-    marker.prototype.title = function(title){
+    Marker.prototype.title = function(title){
       if(title){
         this.marker.setTitle(title);
         return this;
@@ -355,7 +367,7 @@
       }
     };
     
-    marker.prototype.draggable = function(bool){
+    Marker.prototype.draggable = function(bool){
       if(bool){
         this.marker.setDraggable(bool);
         return this;
@@ -365,7 +377,7 @@
       }
     };
     
-    marker.prototype.clickable = function(bool){
+    Marker.prototype.clickable = function(bool){
       if(bool){
         this.marker.setClickable(bool);
         return this;
@@ -375,7 +387,7 @@
       }
     };
     
-    marker.prototype.altitude = function(num){
+    Marker.prototype.altitude = function(num){
       if(num){
         this.marker.setAltitude(num);
         return this;
@@ -385,7 +397,7 @@
       }
     };
     
-    marker.prototype.range = function(num){
+    Marker.prototype.range = function(num){
       if(num){
         this.marker.setRange(num);
         return this;
@@ -395,7 +407,7 @@
       }
     };
     
-    marker.prototype.opacity = function(num){
+    Marker.prototype.opacity = function(num){
       if(num){
         this.marker.setOpacity(num);
         return this;
@@ -405,24 +417,27 @@
       }
     };
     
-    marker.prototype.on = function(event,func){
+    Marker.prototype.on = function(event,func){
       daum.maps.event.addListener(this.marker,event,func);
       return this;
     };
     
-    marker.prototype.trigger = function(event,data){
+    Marker.prototype.trigger = function(event,data){
       daum.maps.event.trigger(this.marker,event,data);
       return this;
     };
     
-    marker.prototype.off = function(event,func){
+    Marker.prototype.off = function(event,func){
       daum.maps.event.removeEventListener(this.marker,event,func);
       return this;
     };
     
-    window.marker=marker;
+    window.own.Marker=Marker;
     
-    var infoWindow=function(options){
+    var InfoWindow=function(options){
+      if(!(this instanceof InfoWindow)){
+          return new InfoWindow(options);
+      }
       this.daumMap=null;
       if(options.map&&options.position){
         options.position=new daum.maps.LatLng(options.position[0],options.position[1]);
@@ -432,7 +447,7 @@
       this.infowindow=new daum.maps.InfoWindow(options);
     };
     
-    infoWindow.prototype.open = function(marker){
+    InfoWindow.prototype.open = function(marker){
       if(marker){
         this.infowindow.open(marker.map().map,marker.marker);
         this.daumMap=marker.map();
@@ -440,16 +455,16 @@
       }
     };
     
-    infoWindow.prototype.close = function(){
+    InfoWindow.prototype.close = function(){
       this.infowindow.close();
       return this;
     };
     
-    infoWindow.prototype.map = function(){
+    InfoWindow.prototype.map = function(){
       return daumMap;
     };
     
-    infoWindow.prototype.position = function(position){
+    InfoWindow.prototype.position = function(position){
       if(position){
         this.infowindow.setPosition(new daum.maps.LatLng(position[0],position[1]));
         return this;
@@ -460,7 +475,7 @@
       }
     };
     
-    infoWindow.prototype.content = function(value){
+    InfoWindow.prototype.content = function(value){
       if(value){
         this.infowindow.setContent(value);
         return this;
@@ -470,7 +485,7 @@
       }
     };
     
-    infoWindow.prototype.zindex = function(value){
+    InfoWindow.prototype.zindex = function(value){
       if(value){
         this.infoWindow.setZIndex(value);
         return this;
@@ -480,7 +495,7 @@
       }
     };
     
-    infoWindow.prototype.altitude = function(value){
+    InfoWindow.prototype.altitude = function(value){
       if(value){
         this.infowindow.setAltitude(value);
         return this;
@@ -490,7 +505,7 @@
       }
     };
     
-    infoWindow.prototype.range = function(value){
+    InfoWindow.prototype.range = function(value){
       if(value){
         this.infowindow.setRange(value);
         return this;
@@ -500,9 +515,12 @@
       }
     };
     
-    window.infoWindow = infoWindow;
+    window.own.InfoWindow = InfoWindow;
     
-    var customOverlay=function(options){
+    var CustomOverlay=function(options){
+      if(!(this instanceof CustomOverlay)){
+          return new CustomOverlay(options);
+      }
       this.daumMap=null;
       if(options.map&&options.position){
         this.daumMap=options.map;
@@ -515,14 +533,14 @@
       this.customoverlay=new daum.maps.CustomOverlay(options);
     };
     
-    customOverlay.prototype.open=function(marker){
+    CustomOverlay.prototype.open=function(marker){
       var position=marker.position();
       this.position(position[0],position[1]);
       this.map(marker.map());
       return this;
     };
     
-    customOverlay.prototype.map = function(value){
+    CustomOverlay.prototype.map = function(value){
       if(value){
         this.customoverlay.setMap(value.map);
         this.daumMap=value;
@@ -533,7 +551,7 @@
       }
     };
     
-    customOverlay.prototype.onClose= function(name){
+    CustomOverlay.prototype.onClose= function(name){
       var totalContent=this.content();
       var content=totalContent;
       var length=0;
@@ -555,12 +573,12 @@
       return this;
     };
     
-    customOverlay.prototype.close = function(){
+    CustomOverlay.prototype.close = function(){
       this.customoverlay.setMap(null);
       return this;
     };
     
-    customOverlay.prototype.position = function(position){
+    CustomOverlay.prototype.position = function(position){
       if(position){
         this.customoverlay.setPosition(new daum.maps.LatLng(position[0],position[1]));
         return this;
@@ -571,7 +589,7 @@
       }
     };
     
-    customOverlay.prototype.content = function(value){
+    CustomOverlay.prototype.content = function(value){
       if(value){
         this.div.innerHTML=value;
         return this;
@@ -581,7 +599,7 @@
       }
     };
     
-    customOverlay.prototype.zIndex = function(value){
+    CustomOverlay.prototype.zIndex = function(value){
       if(value){
         this.customoverlay.setZIndex(value);
         return this;
@@ -591,7 +609,7 @@
       }
     };
     
-    customOverlay.prototype.altitude = function(value){
+    CustomOverlay.prototype.altitude = function(value){
       if(value){
         this.customoverlay.setAltitude(value);
         return this;
@@ -601,7 +619,7 @@
       }
     };
     
-    customOverlay.prototype.range = function(value){
+    CustomOverlay.prototype.range = function(value){
       if(value){
         this.customoverlay.setRange(value);
         return this;
@@ -611,25 +629,29 @@
       }
     };
     
-    customOverlay.prototype.on = function(name,func){
+    CustomOverlay.prototype.on = function(name,func){
       this.div.addEventListener(name, func);
       return this;
     };
     
-    customOverlay.prototype.off = function(name,func){
+    CustomOverlay.prototype.off = function(name,func){
       this.div.removeEventListener(name,func);
       return this;
     };
     
-    window.customOverlay=customOverlay;
+    window.own.CustomOverlay=CustomOverlay;
     
-    var daumRoadView=function(container,options){
+    var DaumRoadView=function(container,options){
+        if(!(this instanceof DaumRoadView)){
+            return new DaumRoadView(container,options);
+        }
         this.roadView=new daum.maps.Roadview(container,options);
         this.roadviewClient = new daum.maps.RoadviewClient();
     };
-    daumRoadView.prototype.map=this.roadView;
     
-    daumRoadView.prototype.panoId=function(options){
+    DaumRoadView.prototype.map=this.roadView;
+    
+    DaumRoadView.prototype.panoId=function(options){
         if(options){
             this.roadView.setPanoId(options.panoId,new daum.maps.LatLng(options.position[0],options.position[1]));
             return this;
@@ -639,7 +661,7 @@
         }
     };
     
-    daumRoadView.prototype.viewPoint=function(options){
+    DaumRoadView.prototype.viewPoint=function(options){
         if(options){
             this.roadView.setViewpoint(options);
             return this;
@@ -649,7 +671,7 @@
         }
     };
     
-    daumRoadView.prototype.position=function(options){
+    DaumRoadView.prototype.position=function(options){
         if(options){
             var posi=new daum.maps.LatLng(options.position[0],options.position[1]);
             var road=this.roadView;
@@ -664,23 +686,23 @@
         }
     };
     
-    daumRoadView.prototype.relayout=function(){
+    DaumRoadView.prototype.relayout=function(){
         this.roadView.relayout();
         return this;
     };
     
-    daumRoadView.prototype.on=function(event,func){
+    DaumRoadView.prototype.on=function(event,func){
         daum.maps.event.addListener(this.roadView, event,func);
     };
     
-    daumRoadView.prototype.off=function(event,func){
+    DaumRoadView.prototype.off=function(event,func){
         daum.maps.event.removeListener(this.roadView,event,func);
     };
     
-    daumRoadView.prototype.trigger=function(event,func){
+    DaumRoadView.prototype.trigger=function(event,func){
         daum.maps.event.trigger(this.roadView,event,func);
     };
     
-    window.daumRoadView=daumRoadView;
+    window.own.DaumRoadView=DaumRoadView;
 
 })(window);

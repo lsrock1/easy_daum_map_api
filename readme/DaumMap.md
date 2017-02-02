@@ -1,7 +1,7 @@
-# daumMap 객체
+# DaumMap 객체
 지도 객체
 
-##생성자 함수: daumMap(container,options)
+##생성자 함수: own.DaumMap(container,options)
 
 지도를 생성한다.
 ```javascript
@@ -11,7 +11,7 @@ var container = document.getElementById('map'),
       level: 3
   };
 
-var map = new daumMap(container, options);
+var map = new own.DaumMap(container, options);
 ```
 
   매개변수
@@ -179,7 +179,7 @@ map.pan(options);
 //오른쪽으로 50 픽셀 위쪽으로 100 픽셀 이동
 ```
   매개변수
-  *options(Object)
+  * options(Object)
     * x (Number): x축 이동 픽셀값
     * y (Number): y축 이동 픽셀값
 
@@ -195,7 +195,7 @@ map.pan(options);
 ```
 
   매개변수
-  *options(Object)
+  * options(Object)
     * position (Array):
       * (Number): 위도값
       * (Number): 경도값
@@ -377,7 +377,7 @@ map.on('center_changed',function(){
 //중심 좌표가 변경되었을 때 콘솔에 로그를 띄우는 이벤트를 등록합니다
 
 map.on("click",function(e){
-  var latlng = new returnMouseEvent(e);
+  var latlng = own.returnMouseEvent(e);
   alert(latlng.position());
 });
 //지도를 클릭했을 때 위 경도를 알림창으로 띄우는 이벤트를 등록합니다
@@ -388,20 +388,20 @@ map.on("click",function(e){
   * 콜백함수 (Function)
   
 
-#### [mouseEvent](/readme/mouseEvent.md#mouseEvent-객체)
+#### [mouseEvent](/readme/MouseEvent.md#MouseEvent-객체)
   
 click, dbclick, rightclick, mousemove 이벤트는 콜백함수에게 mouseEvent라는 인자를 전달하는데  
 이 인자를 returnMouseEvent 객체 생성자에 다시 전달하면 다음에서 제공하는  
 복잡한 메소드 없이 정보를 가져올 수 있게 재정의된 returnMouseEvent 객체를 반환합니다
 ```javascript
 map.on('click',function(mouseEvent){
-  mouseEvent=new returnMouseEvent(mouseEvent);
+  mouseEvent=own.returnMouseEvent(mouseEvent);
   alert(mouseEvent.position());
 });
 //지도를 클릭했을 때 위 경도를 알림창으로 띄우는 이벤트를 등록합니다
 
 map.on("click",function(mouseEvent){
-  mouseEvent=new returnMouseEvent(mouseEvent);
+  mouseEvent=own.returnMouseEvent(mouseEvent);
   alert(mouseEvent.point());
 });
 //지도를 클릭했을 때 화면 좌표를 알림창으로 띄우는 이벤트를 등록합니다

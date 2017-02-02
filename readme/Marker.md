@@ -1,7 +1,7 @@
-# marker 객체
+# Marker 객체
 마커 객체
 
-##생성자 함수: marker(options)
+##생성자 함수: own.Marker(options)
 
 객체를 생성한다.
 ```javascript
@@ -10,7 +10,7 @@ var options = {
       map: map
   };
 
-var mark = new marker(options);
+var mark = new own.Marker(options);
 ```
 
   매개변수
