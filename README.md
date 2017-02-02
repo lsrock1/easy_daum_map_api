@@ -448,7 +448,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   //옵션으로 드래그 가능한 마커 생성
 
   map.on('click',function(e){
-      var mouseEvent = own.ReturnMouseEvent(e);
+      var mouseEvent = own.MouseEvent(e);
       road.position({position: mouseEvent.position(), radius: 30});
       marker.position({position: mouseEvent.position()});
   });
