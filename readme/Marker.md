@@ -90,10 +90,8 @@ mark.image(image);
 ```
   반환값
   * Array
-    * (Number): 첫째 좌표의 위도
-    * (Number): 첫째 좌표의 경도
-    * (Number): 둘째 좌표의 위도
-    * (Number): 둘째 좌표의 경도
+    * (Number): 좌표의 위도
+    * (Number): 좌표의 경도
 
 
 ####.position(options): 마커의 좌표를 지정한다
@@ -102,16 +100,16 @@ mark.image(image);
 
 ```javascript
 var options={
-  lat: 33.4488882499644,
-  lng: 126.56798133906949
+  position: [33.4488882499644, 126.56798133906949]
 };
 mark.position(options);
 ```
 
   매개변수
   * options (Object)
-    * lat (Number): 좌표의 위도 값
-    * lng (Number): 좌표의 경도 값
+    * Array
+      * (Number): 좌표의 위도 값
+      * (Number): 좌표의 경도 값
 
 
 ####로드뷰 위치 지정
