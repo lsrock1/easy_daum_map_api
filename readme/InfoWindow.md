@@ -1,5 +1,5 @@
 # InfoWindow 객체
-마커 객체
+인포윈도우 객체
 
 ##생성자 함수: own.InfoWindow(options)
 
@@ -32,9 +32,10 @@ var infoWindow = new own.InfoWindow(options);
 ####.open(): 해당 마커 위에 인포윈도우를 띄운다 
 
 ```javascript
-infoWindow.open();
+infoWindow.open(marker);
 ```
-
+  매개변수
+  * Marker
 
 ### 2. close
 
@@ -52,7 +53,6 @@ infoWindow.close();
 ```javascript
 infoWindow.map();
 ```
-
   반환값
   * DaumMap
  
