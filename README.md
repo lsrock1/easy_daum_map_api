@@ -466,3 +466,6 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 #[Marker 객체](/readme/Marker.md#Marker-객체)
 #[InfoWindow 객체]()
 #[CustomOverlay 객체]()
+#[DaumRoadView 객체]()
+#[EasyMap 객체]()
+#[기타 함수]()

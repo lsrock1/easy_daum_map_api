@@ -428,7 +428,24 @@ map.off('center_changed', event);
   * 제거할 함수 (Function)
 
 
-### 15. addRoadViewOverlay
+### 15. trigger
+  
+####.trigger(이벤트 이름,데이터): 지도에 이벤트를 발생시킨다
+  
+```javascript
+map.on("own_event",function(data){
+  console.log(data);
+});
+
+map.trigger("own_event",'사용자 이벤트');
+```
+
+  매개변수 [지도가 기본으로 일으키는 이벤트](http://apis.map.daum.net/web/documentation/#Map_Events)
+  * 이벤트 이름 (String)
+  * 데이터 (*) : 이벤트를 처리하는 함수에 넘길 변수
+
+
+### 16. addRoadViewOverlay
 
 ####.addRoadViewOverlay(): 지도에 로드뷰 선을 그린다
   
@@ -437,7 +454,7 @@ map.addRoadViewOverlay();
 ```
  
 
-### 15. removeRoadViewOverlay
+### 17. removeRoadViewOverlay
 
 ####.removeRoadViewOverlay(): 지도에 로드뷰 선을 제거한다
   
