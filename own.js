@@ -439,18 +439,18 @@
           return new InfoWindow(options);
       }
       this.daumMap=null;
-      if(options.map&&options.position){
-        options.position=new daum.maps.LatLng(options.position[0],options.position[1]);
-        this.daumMap=options.map;
-        options.map=this.daumMap.map;
+      options.position=new daum.maps.LatLng(options.position[0], options.position[1]);
+      if(options.map){
+        this.daumMap = options.map;
+        options.map = this.daumMap.map;
       }
       this.infowindow=new daum.maps.InfoWindow(options);
     };
     
     InfoWindow.prototype.open = function(marker){
       if(marker){
-        this.infowindow.open(marker.map().map,marker.marker);
-        this.daumMap=marker.map();
+        this.infowindow.open(marker.map().map, marker.marker);
+        this.daumMap = marker.map();
         return this;
       }
     };
@@ -461,7 +461,7 @@
     };
     
     InfoWindow.prototype.map = function(){
-      return daumMap;
+      return this.daumMap;
     };
     
     InfoWindow.prototype.position = function(position){
@@ -485,7 +485,7 @@
       }
     };
     
-    InfoWindow.prototype.zindex = function(value){
+    InfoWindow.prototype.zIndex = function(value){
       if(value){
         this.infoWindow.setZIndex(value);
         return this;

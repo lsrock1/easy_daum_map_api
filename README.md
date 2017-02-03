@@ -463,7 +463,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 
 #[DaumMap 객체](/readme/DaumMap.md#Daummap-객체): 일반 다음지도 관련
 #[Marker 객체](/readme/Marker.md#Marker-객체): 마커 관련
-#[InfoWindow 객체](): 인포윈도우 관련
+#[InfoWindow 객체](/readme/InfoWindow.md#InfoWindow-객체): 인포윈도우 관련
 #[CustomOverlay 객체](): 커스텀 오버레이 관련
 #[DaumRoadView 객체](): 로드뷰 관련
 #[EasyMap 객체](): 여러개의 객체를 다루는데 편의를 주는 객체

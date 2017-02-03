@@ -107,7 +107,7 @@ mark.position(options);
 
   매개변수
   * options (Object)
-    * Array
+    * position (Array)
       * (Number): 좌표의 위도 값
       * (Number): 좌표의 경도 값
 
@@ -328,7 +328,7 @@ marker.off('mouseover', event);
 
 ### 15. trigger
 
-####.trigger(이벤트 이름, 데이터): 마커의 이벤트를 제거한다
+####.trigger(이벤트 이름, 데이터): 마커에 이벤트를 발생시킨다
   
 ```javascript
 marker.on('custom_event', function(data){
