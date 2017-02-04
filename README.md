@@ -460,12 +460,12 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   //마커에 마커 드래그가 끝나면 마커가 위치한 부분에서 로드뷰 띄우는 이벤트 등록
 </script>
 ```
-
-#[다음지도](/readme/DaumMap.md#Daummap-객체)
-#[마커](/readme/Marker.md#Marker-객체)
-#[인포윈도우](/readme/InfoWindow.md#InfoWindow-객체)
-#[커스텀 오버레이](/readme/CustomOverlay.md#CustomOverlay-객체)
-#[로드뷰]()
-#[EasyMap](): 여러개의 객체를 다루기
-#[MouseEvent](/readme/MouseEvent.md#MouseEvent-객체)
-#[기타 함수](): 위에 없는 것들..
+#디테일
+##[다음지도](/readme/DaumMap.md#Daummap-객체)
+##[마커](/readme/Marker.md#Marker-객체)
+##[인포윈도우](/readme/InfoWindow.md#InfoWindow-객체)
+##[커스텀 오버레이](/readme/CustomOverlay.md#CustomOverlay-객체)
+##[로드뷰]()
+##[EasyMap](): 여러개의 객체를 다루기
+##[MouseEvent](/readme/MouseEvent.md#MouseEvent-객체)
+##[기타 함수](): 위에 없는 것들..
