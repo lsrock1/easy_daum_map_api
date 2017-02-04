@@ -128,17 +128,17 @@
     
     DaumMap.prototype.center=function(position){
       if(position){
-        this.map.setCenter(new daum.maps.LatLng(position[0],position[1]));
+        this.map.setCenter(new daum.maps.LatLng(position[0], position[1]));
         return this;
       }
       else{
-        return [this.map.getCenter().lat,this.map.getCenter().lng];
+        return [this.map.getCenter().lat, this.map.getCenter().lng];
       }
     };
     
-    DaumMap.prototype.level= function(level,options){
+    DaumMap.prototype.level= function(level, options){
       if(level){
-        this.map.setLevel(level,options);
+        this.map.setLevel(level, options);
         return this;
       }
       else{
@@ -574,7 +574,7 @@
       }
       return this;
     };
-    
+
     CustomOverlay.prototype.close = function(){
       this.customoverlay.setMap(null);
       return this;
@@ -643,19 +643,19 @@
     
     window.own.CustomOverlay=CustomOverlay;
     
-    var DaumRoadView=function(container,options){
+    var DaumRoadView=function(container, options){
         if(!(this instanceof DaumRoadView)){
-            return new DaumRoadView(container,options);
+            return new DaumRoadView(container, options);
         }
-        this.roadView=new daum.maps.Roadview(container,options);
+        this.roadView = new daum.maps.Roadview(container, options);
         this.roadviewClient = new daum.maps.RoadviewClient();
     };
     
-    DaumRoadView.prototype.map=this.roadView;
+    DaumRoadView.prototype.map = this.roadView;
     
-    DaumRoadView.prototype.panoId=function(options){
+    DaumRoadView.prototype.panoId = function(options){
         if(options){
-            this.roadView.setPanoId(options.panoId,new daum.maps.LatLng(options.position[0],options.position[1]));
+            this.roadView.setPanoId(options.panoId, new daum.maps.LatLng(options.position[0], options.position[1]));
             return this;
         }
         else{
@@ -677,14 +677,14 @@
         if(options){
             var posi=new daum.maps.LatLng(options.position[0],options.position[1]);
             var road=this.roadView;
-            this.roadviewClient.getNearestPanoId(posi,options.radius||50,function(panoId){
+            this.roadviewClient.getNearestPanoId(posi, options.radius||50, function(panoId){
                 road.setPanoId(panoId,posi);
             });
             return this;
         }
         else{
-            var position=this.roadView.getPosition();
-            return [position.getLat(),position.getLng()];
+            var position = this.roadView.getPosition();
+            return [position.getLat(), position.getLng()];
         }
     };
     
