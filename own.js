@@ -522,10 +522,12 @@
           return new CustomOverlay(options);
       }
       this.daumMap=null;
-      if(options.map&&options.position){
+      if(options.map){
         this.daumMap=options.map;
         options.map=this.daumMap.map;
-        options.position=new daum.maps.LatLng(options.position[0],options.position[1]);
+      }
+      if(options.position){
+          options.position=new daum.maps.LatLng(options.position[0],options.position[1]);
       }
       this.div=document.createElement('div');
       this.div.innerHTML=options.content;
@@ -533,9 +535,9 @@
       this.customoverlay=new daum.maps.CustomOverlay(options);
     };
     
-    CustomOverlay.prototype.open=function(marker){
+    CustomOverlay.prototype.open = function(marker){
       var position=marker.position();
-      this.position(position[0],position[1]);
+      this.position(position[0], position[1]);
       this.map(marker.map());
       return this;
     };
@@ -551,13 +553,13 @@
       }
     };
     
-    CustomOverlay.prototype.onClose= function(name){
-      var totalContent=this.content();
-      var content=totalContent;
-      var length=0;
+    CustomOverlay.prototype.onClose = function(name){
+      var totalContent = this.content();
+      var content = totalContent;
+      var length = 0;
       while(1){
-        var point=content.indexOf("class");
-        if(point===-1){
+        var point = content.indexOf("class");
+        if(point === -1){
           break;
         }
         var dot=content[point+6];

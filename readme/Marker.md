@@ -15,7 +15,7 @@ var mark = new own.Marker(options);
 
   매개변수
   * options (Object)
-    * map (daumMap Object): 마커가 올라갈 지도
+    * map (DaumMap Object): 마커가 올라갈 지도
     * position (Array): [마커의 좌표 위도 (Number), 마커의 좌표 경도 (Number)]
     * image (MarkerImage) : 마커의 이미지
     * title (String) : 마커 엘리먼트의 타이틀 속성 값 (툴팁)

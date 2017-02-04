@@ -15,14 +15,14 @@ var infoWindow = new own.InfoWindow(options);
 
   매개변수
   * options (Object)
-    * map (DaumMap | DaumRoadview) : 인포윈도우가 올라갈 지도 또는 로드뷰
+    * map (DaumMap | DaumRoadview): 인포윈도우가 올라갈 지도 또는 로드뷰
     * position (Array): [인포윈도우의 좌표 위도 (Number), 인포윈도우의 좌표 경도 (Number)]
-    * content (Node | String) : 엘리먼트 또는 HTML 문자열 형태의 내용
-    * disableAutoPan (Boolean) : 인포윈도우를 열 때 지도가 자동으로 패닝하지 않을지의 여부 (기본값: false)
-    * removable (Boolean) : 삭제 가능한 인포윈도우
-    * zIndex (Number) : 인포윈도우 엘리먼트의 z-index 속성 값
-    * altitude (Number) : 로드뷰에 올라있는 인포윈도우의 높이 값(m 단위)
-    * range (Number) : 로드뷰 상에서 인포윈도우의 가시반경(m 단위), 두 지점 사이의 거리가 지정한 값보다 멀어지면 인포윈도우는 보이지 않게 된다
+    * content (Node | String): 엘리먼트 또는 HTML 문자열 형태의 내용
+    * disableAutoPan (Boolean): 인포윈도우를 열 때 지도가 자동으로 패닝하지 않을지의 여부 (기본값: false)
+    * removable (Boolean): 삭제 가능한 인포윈도우
+    * zIndex (Number): 인포윈도우 엘리먼트의 z-index 속성 값
+    * altitude (Number): 로드뷰에 올라있는 인포윈도우의 높이 값(m 단위)
+    * range (Number): 로드뷰 상에서 인포윈도우의 가시반경(m 단위), 두 지점 사이의 거리가 지정한 값보다 멀어지면 인포윈도우는 보이지 않게 된다
 
 
 ##메소드
