@@ -59,11 +59,11 @@ roadView.panoId(options);
 roadView.viewPoint();
 ```
   반환값
-    * Viewpoint
-        * pan (Number)
-        * tilt (Number)
-        * zoom (Number)
-        * panoId (Number)
+  * Viewpoint
+    * pan (Number)
+    * tilt (Number)
+    * zoom (Number)
+    * panoId (Number)
 
 ####.viewPoint(options): 로드뷰 시점을 지정한다
 
