@@ -1,4 +1,5 @@
 (function(window){
+    var own={};
     var MouseEvent=function(mouse){
         if(!(this instanceof MouseEvent)){
           return new MouseEvent(mouse);
@@ -16,7 +17,7 @@
         return [this.point[0],this.point[1]];
     };
     
-    window.own.MouseEvent=MouseEvent;
+    own.MouseEvent = MouseEvent;
     
     var EasyMap=function(){
       if(!(this instanceof EasyMap)){
@@ -54,13 +55,13 @@
       }
     };
     
-    window.own.EasyMap=EasyMap;
+    own.EasyMap=EasyMap;
     
-    window.own.preventMap=function(){
+    own.preventMap=function(){
       daum.maps.event.preventMap;
     };
 
-    window.own.markerImage=function(options){
+    own.markerImage=function(options){
       return new daum.maps.MarkerImage(
         options.src,
         new daum.maps.Size(options.height, options.width),
@@ -281,7 +282,7 @@
       return this;
     };
     
-    window.own.DaumMap=DaumMap;
+    own.DaumMap=DaumMap;
     
     var Marker=function(options){
         if(!(this instanceof Marker)){
@@ -432,7 +433,7 @@
       return this;
     };
     
-    window.own.Marker=Marker;
+    own.Marker=Marker;
     
     var InfoWindow=function(options){
       if(!(this instanceof InfoWindow)){
@@ -515,7 +516,7 @@
       }
     };
     
-    window.own.InfoWindow = InfoWindow;
+    own.InfoWindow = InfoWindow;
     
     var CustomOverlay=function(options){
       if(!(this instanceof CustomOverlay)){
@@ -641,7 +642,7 @@
       return this;
     };
     
-    window.own.CustomOverlay=CustomOverlay;
+    own.CustomOverlay=CustomOverlay;
     
     var DaumRoadView=function(container, options){
         if(!(this instanceof DaumRoadView)){
@@ -705,6 +706,8 @@
         daum.maps.event.trigger(this.roadView,event,func);
     };
     
-    window.own.DaumRoadView = DaumRoadView;
+    own.DaumRoadView = DaumRoadView;
+    
+    window.own=own;
 
-})(window);
+})(this);

@@ -40,19 +40,18 @@
   	level: 3
   };
   
-  
-  var map=new daumMap(mapContainer,options); //지도 초기화
+  var map=new own.DaumMap(mapContainer,options); //지도 초기화
   map.addRoadViewOverlay();
   
   var road=new own.DaumRoadView(roadViewContainer);
-  var marker= new marker({
+  var marker= new own.Marker({
       position: [33.450701,126.570667],
       map: map,
       draggable: true
     });
 
   map.on('click',function(e){
-      var mouseEvent=new returnMouseEvent(e);
+      var mouseEvent= own.MouseEvent(e);
       road.position({position: mouseEvent.position(),radius: 30});
       marker.position({position: mouseEvent.position()});
   });
@@ -66,6 +65,11 @@ $("#m2").click(function(){
 })
 
 $("#m1").click(function(){
+    road.viewPoint({
+        pan: 10,
+    tilt: 0,
+    zoom: 0
+    })
 })
 
 </script>
