@@ -58,7 +58,7 @@ roadView.panoId(options);
 ```javascript
 roadView.viewPoint();
 ```
-    반환값
+  반환값
     * Viewpoint
         * pan (Number)
         * tilt (Number)
@@ -74,7 +74,7 @@ roadView.viewPoint({
     zoom: 0
 });
 ```
-    매개 변수
+  매개 변수
     * [viewpoint](http://apis.map.daum.net/web/documentation/#Viewpoint)
 
 
