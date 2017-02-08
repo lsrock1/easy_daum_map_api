@@ -1,5 +1,7 @@
 (function(window){
+    
     var own={};
+    
     var MouseEvent=function(mouse){
         if(!(this instanceof MouseEvent)){
           return new MouseEvent(mouse);
@@ -18,38 +20,35 @@
     };
     
     own.MouseEvent = MouseEvent;
-    
-    var EasyMap=function(){
-      if(!(this instanceof EasyMap)){
-        return new EasyMap();
-      }
-    };
-    
-    EasyMap.prototype.markerMap=function(markers,value){
+
+    var EasyMap=function () {};
+
+    EasyMap.markerMap = function (markers, map) {
       markers.forEach(function(ob){
-        ob['map'](value);
+        ob['map'](map);
       });
     };
-    
-    EasyMap.prototype.markerRemove=function(markers){
+
+    EasyMap.markerRemove = function(markers){
       markers.forEach(function(ob){
         ob['remove']();
       });
     };
-    
-    EasyMap.prototype.markerClick= function(markers,overlay){
-      if(Array.isArray(overlay)&&markers.length===overlay.length){
-        for(var i=0;i<markers.length;i++){
-          (function(marker,val){
-            marker.on('click',function(){
+
+    EasyMap.markerClickOpen = function (markers, overlay) {
+      var markerLength = markers.length;
+      if(Array.isArray(overlay) && markerLength === overlay.length){
+        for(var i=0 ; i<markerLength ; i++){
+          (function (marker, val) {
+            marker.on('click', function(){
               val.open(marker);
             });
-          }(markers[i],overlay[i]));
+          }(markers[i], overlay[i]));
         }
       }
     };
     
-    EasyMap.prototype.customOverlayOnClose= function(overlay,name){
+    EasyMap.customOverlayOnClose= function(overlay,name){
       for(var i =0;i<overlay.length;i++){
         overlay[i]['onClose'](name+"["+i.toString()+"]");
       }
@@ -538,7 +537,7 @@
     
     CustomOverlay.prototype.open = function(marker){
       var position=marker.position();
-      this.position(position[0], position[1]);
+      this.position(position);
       this.map(marker.map());
       return this;
     };
@@ -708,6 +707,9 @@
     
     own.DaumRoadView = DaumRoadView;
     
+    if(daum.maps.MarkerClusterer){
+        
+    }
     window.own=own;
 
 })(this);
