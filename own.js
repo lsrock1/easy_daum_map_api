@@ -537,7 +537,7 @@
     
     CustomOverlay.prototype.open = function(marker){
       var position=marker.position();
-      this.position(position);
+      this.customoverlay.setPosition(new daum.maps.LatLng(position[0],position[1]));
       this.map(marker.map());
       return this;
     };
@@ -707,9 +707,6 @@
     
     own.DaumRoadView = DaumRoadView;
     
-    if(daum.maps.MarkerClusterer){
-        
-    }
     window.own=own;
 
 })(this);

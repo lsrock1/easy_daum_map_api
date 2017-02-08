@@ -91,7 +91,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   //마커 옵션
   
   var marker1 = new own.Marker(markerOption); //마커객체 생성
-  var easyMap = new own.EasyMap(); //easyMap 생성
+  var easyMap = own.EasyMap; //easyMap 가져오기
   easyMap.markerMap([marker1], map); //마커 올리기
 </script>
 ```    
@@ -121,7 +121,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   var markers = [];
   markers.push(new own.Marker(markerOption1)); //첫 번째 마커객체 생성 markers 배열에 삽입
   markers.push(new own.Marker(markerOption2)); //두 번째 마커객체 생성 markers 배열에 삽입
-  var easyMap = new own.EasyMap(); //easyMap 생성
+  var easyMap = own.EasyMap; //easyMap 가져오기
   easyMap.markerMap(markers, map); //모든 마커를 map이라는 지도에 표시
   easyMap.markerRemove(markers); //모든 마커 지우기
 </script>
@@ -187,7 +187,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   var markers = [];
   markers.push(new own.Marker(markerOption1));
   markers.push(new own.Marker(markerOption2));
-  var easyMap = new own.EasyMap(); //easyMap 생성
+  var easyMap = own.EasyMap; //easyMap 가져오기
   easyMap.markerMap(markers, map);
   //마커 생성
   
@@ -242,7 +242,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   var markers=[];
   markers.push(new own.Marker(markerOption1));
   markers.push(new own.Marker(markerOption2));
-  var easyMap = new own.EasyMap(); //easyMap 생성
+  var easyMap = own.EasyMap; //easyMap 가져오기
   easyMap.markerMap(markers,map);
   //마커 생성
   
@@ -274,7 +274,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 ```
 
 
-###* 방법 (2) easyMap의 markerClick 메소드 사용(여러개의 마커와 인포윈도우 사용시 편리)
+###* 방법 (2) easyMap의 markerClickOpen 함수 사용(여러개의 마커와 인포윈도우 사용시 편리)
 
 ```javascript
 <div id="map" style="width:500px;height:400px;"></div>
@@ -301,7 +301,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   var markers=[];
   markers.push(new own.Marker(markerOption1));
   markers.push(new own.Marker(markerOption2));
-  var easyMap = new own.EasyMap(); //easyMap 생성
+  var easyMap = own.EasyMap; //easyMap 가져오기
   easyMap.markerMap(markers,map);
   //마커 생성 및 지도에 올리기
   
@@ -321,7 +321,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   infows.push(new own.InfoWindow(infoOption2));
   //인포윈도우 생성
   
-  easyMap.markerClick(markers, infows);
+  easyMap.markerClickOpen(markers, infows);
   //각 배열의 N번째 마커와 인포윈도우 클릭으로 연결
   
 </script>
@@ -399,7 +399,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
     overlays.push(new own.CustomOverlay(option));
   });
   //오버레이 객체 생성
-  var easyMap = new own.EasyMap(); //easyMap 생성
+  var easyMap = own.EasyMap; //easyMap 가져오기
   
   easyMap.customOverlayOnClose(overlays,'overlays');
   //clickable 옵션과 비슷한 역할을 합니다
@@ -407,7 +407,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   //첫 번째 인자로 오버레이들이 담긴 배열을 두 번째 인자로 배일의 이름을 전달합니다
   //함수가 실행된 후 close 클래스를 가진 button을 클릭하면 개별 오버레이가 닫히게 됩니다
   
-  easyMap.markerClick(markers,overlays);
+  easyMap.markerClickOpen(markers,overlays);
   //각 배열의 N번째 마커와 오버레이를 클릭으로 연결
   //마커를 클릭하면 오버레이가 열립니다
   
