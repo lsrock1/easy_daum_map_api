@@ -3,7 +3,7 @@
 특별한 이벤트들(click, dbclick, rightclick, mousemove)의 경우 콜백함수로 mouseEvent 객체를 전달합니다.  
 이 객체를 활용해 해당 이벤트가 일어난 위도, 경도 또는 지도 안 포인트를 알 수 있습니다.  
   
-##생성자 함수 own.MouseEvent(mouseEvent)
+## 생성자 함수 own.MouseEvent(mouseEvent)
 이벤트가 발생해서 콜백함수로 전달된 mouseEvent 인자를  
 다음에서 만든 mouseEvent가 맞을 경우 mouseEvent 객체로 바꿔서 반환합니다.
 ```javascript
@@ -14,7 +14,7 @@ map.on('click',function(mouseEvent){
 });
 ```
 
-##메소드
+## 메소드
 
 ### .position() : 지도 좌표 반환
   
