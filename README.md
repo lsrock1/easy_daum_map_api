@@ -1,6 +1,6 @@
 Daum 지도 api easy
 =======================
-#목적
+# 목적
 다음 지도를 사용하기 쉽게 만든 js입니다  
 쉬운 인터페이스를 구현하는 것을 목표로 합니다  
 다음에서 제공하는 객체들을 가능한 직접 사용하지 않습니다  
@@ -8,7 +8,7 @@ Daum 지도 api easy
 own 네임스페이스를 사용합니다  
 제이쿼리스러운 메소드를 추구합니다  
   
-#포함하기
+# 포함하기
 
 own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 
@@ -19,11 +19,11 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 
 ```
 
-#예제
+# 예제
 
-##1. 지도에 마커 올리기
+## 1. 지도에 마커 올리기
 ![Alt text](/image/marker.png)
-###* 방법 (1) 마커객체 생성 후 map 메소드 사용
+### * 방법 (1) 마커객체 생성 후 map 메소드 사용
 
 ```javascript
 <div id="map" style="width:500px;height:400px;"></div>
@@ -48,7 +48,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 </script>
 ```
 
-###* 방법 (2) 마커객체 생성 옵션에 map 넣기
+### * 방법 (2) 마커객체 생성 옵션에 map 넣기
 
 ```javascript
 <div id="map" style="width:500px;height:400px;"></div>
@@ -72,7 +72,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 </script>
 ```  
     
-###* 방법 (3) easyMap의 markerMap 매소드 사용(여러개의 마커 사용시 편리)
+### * 방법 (3) easyMap의 markerMap 매소드 사용(여러개의 마커 사용시 편리)
 
 ```javascript
 <div id="map" style="width:500px;height:400px;"></div>
@@ -96,7 +96,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 </script>
 ```    
     
-##2. 다중 마커 사용
+## 2. 다중 마커 사용
 ![Alt text](/image/markers.png)
 ```javascript
 <div id="map" style="width:500px;height:400px;"></div>
@@ -127,7 +127,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 </script>
 ```
 
-##3. 인포윈도우 생성
+## 3. 인포윈도우 생성
 ![Alt text](/image/info.png)
 ```javascript
 <div id="map" style="width:500px;height:400px;"></div>
@@ -162,7 +162,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 </script>
 ```
 
-##4. 마커 위에 인포윈도우 생성
+## 4. 마커 위에 인포윈도우 생성
 ![Alt text](/image/infomarker.png)
 ```javascript
 <div id="map" style="width:500px;height:400px;"></div>
@@ -213,9 +213,9 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 ```   
 
 
-##5. 마커 클릭 이벤트에 인포윈도우 연결
+## 5. 마커 클릭 이벤트에 인포윈도우 연결
 
-###* 방법 (1) 마커의 on 메소드 사용
+### * 방법 (1) 마커의 on 메소드 사용
 
 ```javascript
 <div id="map" style="width:500px;height:400px;"></div>
@@ -274,7 +274,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 ```
 
 
-###* 방법 (2) easyMap의 markerClickOpen 함수 사용(여러개의 마커와 인포윈도우 사용시 편리)
+### * 방법 (2) easyMap의 markerClickOpen 함수 사용(여러개의 마커와 인포윈도우 사용시 편리)
 
 ```javascript
 <div id="map" style="width:500px;height:400px;"></div>
@@ -327,7 +327,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 </script>
 ```
   
-##6. 닫기 가능한 다중 커스텀 오버레이 띄우기
+## 6. 닫기 가능한 다중 커스텀 오버레이 띄우기
 ![Alt text](/image/coverlay.png)  
 오버레이의 css는 [다음 공식 api 예제](http://apis.map.daum.net/web/sample/categoryFromBounds/)를 참고했습니다.
 괜찮은 커스텀 오버레이 css는 다음 공식 예제 [여기](http://apis.map.daum.net/web/sample/removableCustomOverlay/)에서 참고하시면 됩니다  
@@ -419,7 +419,7 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
 </script>
 ```
 
-##로드뷰 도로를 이용하여 로드뷰 생성하기
+## 로드뷰 도로를 이용하여 로드뷰 생성하기
 
 [같은예제](http://apis.map.daum.net/web/sample/basicRoadview2/)
 ```javascript
@@ -460,12 +460,12 @@ own.min.js를 daum map api 스크립트 소스 아래에 포함합니다.
   //마커에 마커 드래그가 끝나면 마커가 위치한 부분에서 로드뷰 띄우는 이벤트 등록
 </script>
 ```
-#디테일
-##[다음지도](/readme/DaumMap.md#Daummap-객체)
-##[마커](/readme/Marker.md#Marker-객체)
-##[인포윈도우](/readme/InfoWindow.md#InfoWindow-객체)
-##[커스텀 오버레이](/readme/CustomOverlay.md#CustomOverlay-객체)
-##[로드뷰](/readme/DaumRoadView.md#DaumRoadView-객체)
-##[EasyMap](): 여러개의 객체를 다루기
-##[MouseEvent](/readme/MouseEvent.md#MouseEvent-객체)
-##[기타 함수](): 위에 없는 것들
+# 디테일
+## [다음지도](/readme/DaumMap.md#Daummap-객체)
+## [마커](/readme/Marker.md#Marker-객체)
+## [인포윈도우](/readme/InfoWindow.md#InfoWindow-객체)
+## [커스텀 오버레이](/readme/CustomOverlay.md#CustomOverlay-객체)
+## [로드뷰](/readme/DaumRoadView.md#DaumRoadView-객체)
+## [EasyMap](): 여러개의 객체를 다루기
+## [MouseEvent](/readme/MouseEvent.md#MouseEvent-객체)
+## [기타 함수](): 위에 없는 것들
