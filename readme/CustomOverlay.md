@@ -1,7 +1,7 @@
 # CustomOverlay 객체
 커스텀 오버레이 객체
 
-##생성자 함수: own.CustomOverlay(options)
+## 생성자 함수: own.CustomOverlay(options)
 
 객체를 생성한다.
 ```javascript
@@ -29,11 +29,11 @@ var customOverlay = new own.CustomOverlay(options);
     * yAnchor (Number): 컨텐츠의 y축 위치. 0_1 사이의 값을 가진다. 기본값은 0.5
 
 
-##메소드
+## 메소드
 
 ### 1. open
 
-####.open(): 해당 마커 위치에 커스텀 오버레이를 띄운다 
+#### .open(): 해당 마커 위치에 커스텀 오버레이를 띄운다 
 
 ```javascript
 customOverlay.open(marker);
@@ -57,7 +57,7 @@ customOverlay.onClose('customOverlay');
 
 ### 3. map
 
-####.map(): 커스텀 오버레이가 올라간 지도를 반환한다 
+#### .map(): 커스텀 오버레이가 올라간 지도를 반환한다 
 
 ```javascript
 customOverlay.map();
@@ -66,7 +66,7 @@ customOverlay.map();
   * DaumMap
 
 
-####.map(map): 지도 또는 로드뷰에 커스텀 오버레이를 올린다
+#### .map(map): 지도 또는 로드뷰에 커스텀 오버레이를 올린다
 
 ```javascript
 customOverlay.map(map);
@@ -77,7 +77,7 @@ customOverlay.map(map);
 
 ### 4. close
 
-####.close(): 커스텀 오버레이를 닫는다 
+#### .close(): 커스텀 오버레이를 닫는다 
 
 ```javascript
 customOverlay.close();
@@ -86,7 +86,7 @@ customOverlay.close();
 
 ### 5. position
 
-####.position(): 커스텀 오버레이의 좌표를 반환한다
+#### .position(): 커스텀 오버레이의 좌표를 반환한다
 
 ```javascript
 customOverlay.position();
@@ -97,7 +97,7 @@ customOverlay.position();
     * (Number): 좌표의 경도값
 
 
-####.position(position): 커스텀 오버레이의 좌표를 지정한다
+#### .position(position): 커스텀 오버레이의 좌표를 지정한다
 
 ```javascript
 customOverlay.position([33.4488882499644, 126.56798133906949]);
@@ -110,7 +110,7 @@ customOverlay.position([33.4488882499644, 126.56798133906949]);
 
 ### 6. content
 
-####.content(): 커스텀 오버레이의 내용을 지정했던 형태로 반환한다
+#### .content(): 커스텀 오버레이의 내용을 지정했던 형태로 반환한다
 
 ```javascript
 customOverlay.content();
@@ -119,7 +119,7 @@ customOverlay.content();
   * Node | String
 
 
-####.content(content): 커스텀 오버레이의 내용을 지정한다
+#### .content(content): 커스텀 오버레이의 내용을 지정한다
 
 ```javascript
 customOverlay.content('This is all for you');
@@ -130,7 +130,7 @@ customOverlay.content('This is all for you');
 
 ### 7. visible
 
-####.visible(): 커스텀 오버레이의 표시 여부를 반환한다
+#### .visible(): 커스텀 오버레이의 표시 여부를 반환한다
 
 ```javascript
 customOverlay.visible();
@@ -139,7 +139,7 @@ customOverlay.visible();
   * Boolean
 
 
-####.visible(visible): 커스텀 오버레이의 표시 여부를 지정한다
+#### .visible(visible): 커스텀 오버레이의 표시 여부를 지정한다
 
 ```javascript
 customOverlay.visible(false);
@@ -150,7 +150,7 @@ customOverlay.visible(false);
 
 ### 8. zIndex
 
-####.zIndex(): 커스텀 오버레이의 z-Index를 반환한다
+#### .zIndex(): 커스텀 오버레이의 z-Index를 반환한다
 
 ```javascript
 customOverlay.zIndex();
@@ -159,7 +159,7 @@ customOverlay.zIndex();
   * Number
 
 
-####.zIndex(zIndex): 커스텀 오버레이의 z-index를 설정한다
+#### .zIndex(zIndex): 커스텀 오버레이의 z-index를 설정한다
 
 ```javascript
 customOverlay.zIndex(3);
@@ -170,7 +170,7 @@ customOverlay.zIndex(3);
 
 ### 9. altitude
 
-####.altitude(): 커스텀 오버레이의 높이(위치)를 반환한다
+#### .altitude(): 커스텀 오버레이의 높이(위치)를 반환한다
 
 ```javascript
 customOverlay.altitude();
@@ -179,7 +179,7 @@ customOverlay.altitude();
   * Number
 
 
-####.altitude(altitude): 로드뷰상에서 커스텀 오버레이의 높이(위치)를 지정한다
+#### .altitude(altitude): 로드뷰상에서 커스텀 오버레이의 높이(위치)를 지정한다
 [참고](http://apis.map.daum.net/web/documentation/#CustomOverlay_setAltitude)
 ```javascript
 customOverlay.altitude(10);
@@ -190,7 +190,7 @@ customOverlay.altitude(10);
 
 ### 10. range
 
-####.range(): 커스텀 오버레이의 가시반경을 반환한다
+#### .range(): 커스텀 오버레이의 가시반경을 반환한다
 
 ```javascript
 customOverlay.range();
@@ -199,7 +199,7 @@ customOverlay.range();
   * Number
 
 
-####.range(range): 커스텀 오버레이의 가시반경을 설정한다
+#### .range(range): 커스텀 오버레이의 가시반경을 설정한다
 
 ```javascript
 customOverlay.range(10);
@@ -210,7 +210,7 @@ customOverlay.range(10);
 
 ### 11. on
   
-####.on(이벤트 이름,콜백함수): 커스텀 오버레이에 이벤트를 등록한다
+#### .on(이벤트 이름,콜백함수): 커스텀 오버레이에 이벤트를 등록한다
   
 ```javascript
 customOverlay.on('click',function(){
@@ -225,7 +225,7 @@ customOverlay.on('click',function(){
 
 ### 12. off
 
-####.off(이벤트 이름, 제거할 함수): 커스텀 오버레이의 이벤트를 제거한다
+#### .off(이벤트 이름, 제거할 함수): 커스텀 오버레이의 이벤트를 제거한다
   
 ```javascript
 var event= function(){
