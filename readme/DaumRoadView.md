@@ -1,7 +1,7 @@
 # DaumRoadView 객체
 
 
-##생성자 함수: own.DaumRoadView(container, options)
+## 생성자 함수: own.DaumRoadView(container, options)
 
 객체를 생성한다.
 ```javascript
@@ -20,11 +20,11 @@ var container = document.getElementById('map'),
     * zoom (Number): 로드뷰 줌 초기값.(-3_3)
 
 
-##메소드
+## 메소드
 
 ### 1. panoId
 
-####.panoId(): 파노라마 ID를 반환한다
+#### .panoId(): 파노라마 ID를 반환한다
 
 ```javascript
 roadView.panoId();
@@ -33,7 +33,7 @@ roadView.panoId();
   * Number
 
 
-####.panoId(options): 파노라마 ID를 지정한다
+#### .panoId(options): 파노라마 ID를 지정한다
 
 ```javascript
 var options = {
@@ -53,7 +53,7 @@ roadView.panoId(options);
 
 ### 2. [viewPoint](http://apis.map.daum.net/web/documentation/#Roadview_setViewpoint)
 
-####.viewPoint(): 로드뷰 시점을 반환한다
+#### .viewPoint(): 로드뷰 시점을 반환한다
 
 ```javascript
 roadView.viewPoint();
@@ -65,7 +65,7 @@ roadView.viewPoint();
     * zoom (Number)
     * panoId (Number)
 
-####.viewPoint(options): 로드뷰 시점을 지정한다
+#### .viewPoint(options): 로드뷰 시점을 지정한다
 
 ```javascript
 roadView.viewPoint({
@@ -80,7 +80,7 @@ roadView.viewPoint({
 
 ### 3. position
 
-####.position(): 로드뷰가 보여주는 지점의 지도 좌표를 반환한다
+#### .position(): 로드뷰가 보여주는 지점의 지도 좌표를 반환한다
 
 ```javascript
 roadView.position();
@@ -91,7 +91,7 @@ roadView.position();
     * (Number): 좌표의 경도값
 
 
-####.position(options): 전달된 좌표에서 반경 내 가장 가까운 로드뷰 파노라마로 좌표를 변경한다
+#### .position(options): 전달된 좌표에서 반경 내 가장 가까운 로드뷰 파노라마로 좌표를 변경한다
 
 ```javascript
 var options = {
@@ -111,7 +111,7 @@ roadView.position(options);
 
 ### 4. relayout
 
-####.relayout(): 로드뷰 엘리먼트의 크기를 변경한 후에는 반드시 이 함수를 호출해야 한다.
+#### .relayout(): 로드뷰 엘리먼트의 크기를 변경한 후에는 반드시 이 함수를 호출해야 한다.
 플래시 로드뷰는 자동으로 영역을 잡는 경우가 있으나 모바일 로드뷰는 꼭 호출하도록 하자.
 단, window의 resize 이벤트에 대해서는 자동으로 호출된다.
 
@@ -122,7 +122,7 @@ roadView.relayout();
 
 ### 5. on
   
-####.on(이벤트 이름,콜백함수): 로드뷰에 이벤트를 등록한다
+#### .on(이벤트 이름,콜백함수): 로드뷰에 이벤트를 등록한다
   
 ```javascript
 roadView.on('viewpoint_changed',function(){
@@ -137,7 +137,7 @@ roadView.on('viewpoint_changed',function(){
 
 ### 6. off
 
-####.off(이벤트 이름, 제거할 함수): 로드뷰의 이벤트를 제거한다
+#### .off(이벤트 이름, 제거할 함수): 로드뷰의 이벤트를 제거한다
   
 ```javascript
 var event= function(){
@@ -155,7 +155,7 @@ roadView.off('viewpoint_changed', event);
 
 ### 7. trigger
   
-####.trigger(이벤트 이름,데이터): 지도에 이벤트를 발생시킨다
+#### .trigger(이벤트 이름,데이터): 지도에 이벤트를 발생시킨다
   
 ```javascript
 roadView.on("own_event",function(data){
