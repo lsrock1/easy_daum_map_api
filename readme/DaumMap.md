@@ -1,7 +1,7 @@
 # DaumMap 객체
 지도 객체
 
-##생성자 함수: own.DaumMap(container,options)
+## 생성자 함수: own.DaumMap(container,options)
 
 지도를 생성한다.
 ```javascript
@@ -30,11 +30,11 @@ var map = new own.DaumMap(container, options);
       * speed (Number) : 지도 이동 속도
 
 
-##메소드
+## 메소드
 
 ### 1. center
 
-####.center(): 중심좌표 반환  
+#### .center(): 중심좌표 반환  
 
 ```javascript
  map.center();
@@ -46,7 +46,7 @@ var map = new own.DaumMap(container, options);
     * (Number): 경도
 
 
-####.center(위도,경도): 위도,경도 값으로 중심좌표 변경
+#### .center(위도,경도): 위도,경도 값으로 중심좌표 변경
 
 ```javascript
 map.center([33.450701, 126.570667]);
@@ -61,7 +61,7 @@ map.center([33.450701, 126.570667]);
 
 ### 2. level
 
-####.level(): 현재 확대 축소 수준 반환  
+#### .level(): 현재 확대 축소 수준 반환  
 
 ```javascript
  map.level();
@@ -71,7 +71,7 @@ map.center([33.450701, 126.570667]);
   * level (Number)
 
 
-####.level(level,options): 확대 축소 수준을 매개변수로 설정, options 객체로 다양한 효과 가능
+#### .level(level,options): 확대 축소 수준을 매개변수로 설정, options 객체로 다양한 효과 가능
 
 ```javascript
 map.level(3, options);
@@ -85,7 +85,7 @@ map.level(3, options);
 
 ### 3. mapTypeId
 
-####.mapTypeId(): 현재 지도 종류 반환
+#### .mapTypeId(): 현재 지도 종류 반환
 
 ```javascript
  map.mapTypeId();
@@ -95,7 +95,7 @@ map.level(3, options);
   * 지도 종류 (String)
 
 
-####.mapTypeId(지도 종류): 지도 종류 변경
+#### .mapTypeId(지도 종류): 지도 종류 변경
 
 ```javascript
 map.mapTypeId("SKYVIEW");
@@ -108,7 +108,7 @@ map.mapTypeId("SKYVIEW");
 
 ### 4. bound
 
-####.bound(): 현재 지도의 화면 영역 반환
+#### .bound(): 현재 지도의 화면 영역 반환
 
 ```javascript
  map.bound();
@@ -125,9 +125,9 @@ map.mapTypeId("SKYVIEW");
   * 반환되는 좌표 규칙 [참조](http://apis.map.daum.net/web/documentation/#LatLngBounds)
 
 
-####.bound(options): 주어진 영역이 화면 안에 전부 나타날 수 있도록 지도의 중심 좌표와 확대 수준을 설정한다
+#### .bound(options): 주어진 영역이 화면 안에 전부 나타날 수 있도록 지도의 중심 좌표와 확대 수준을 설정한다
 
-####두개의 좌표 전달
+#### 두개의 좌표 전달
 
 ```javascript
 var options={
@@ -147,7 +147,7 @@ map.bound(options);
       * (Number): 보여야 할 둘째 좌표의 위도 값
       * (Number): 보여야 할 둘째 좌표의 경도 값
 
-####두개의 marker 객체를 전달
+#### 두개의 marker 객체를 전달
 
 ```javascript
 var options={
@@ -166,9 +166,9 @@ map.bound(options);
 
 ### 5. pan
 
-####.pan(options): 부드럽게 이동
+#### .pan(options): 부드럽게 이동
 
-####x,y축 전달
+#### x,y축 전달
 
 ```javascript
 var options={
@@ -184,7 +184,7 @@ map.pan(options);
     * y (Number): y축 이동 픽셀값
 
 
-####좌표 하나 전달
+#### 좌표 하나 전달
 
 ```javascript
 var options={
@@ -201,7 +201,7 @@ map.pan(options);
       * (Number): 경도값
 
 
-####두 좌표 전달
+#### 두 좌표 전달
 [참조](http://apis.map.daum.net/web/documentation/#Map_panTo)
 ```javascript
 var options={
@@ -224,7 +224,7 @@ map.pan(options);
 
 ### 6. addControl
 
-####.addControl(컨트롤러 이름,위치): 지도에 컨트롤러를 올린다
+#### .addControl(컨트롤러 이름,위치): 지도에 컨트롤러를 올린다
 
 ```javascript
 map.addControl("TYPE", "TOP");
@@ -241,7 +241,7 @@ map.addControl("ZOOM", "BOTTOMLEFT");
 
 ### 7. removeControl
 
-####.removeControl(컨트롤러 이름,위치): 지도에 컨트롤러를 없앤다
+#### .removeControl(컨트롤러 이름,위치): 지도에 컨트롤러를 없앤다
 
 ```javascript
 map.removeControl("TYPE", "TOP");
@@ -258,7 +258,7 @@ map.removeControl("ZOOM", "BOTTOMLEFT");
 
 ### 8. draggable
 
-####.draggable(): 마우스 드래그와 모바일 터치를 이용한 지도 이동 가능 여부를 반환한다
+#### .draggable(): 마우스 드래그와 모바일 터치를 이용한 지도 이동 가능 여부를 반환한다
 
 ```javascript
 map.draggable();
@@ -268,7 +268,7 @@ map.draggable();
   반환값
   * Boolean
 
-####.draggable(Boolean): 마우스 드래그와 모바일 터치를 이용한 지도 이동 가능 여부를 설정한다
+#### .draggable(Boolean): 마우스 드래그와 모바일 터치를 이용한 지도 이동 가능 여부를 설정한다
 
 ```javascript
 map.draggable(false);
@@ -281,7 +281,7 @@ map.draggable(false);
 
 ### 9. zoomable
 
-####.zoomable(): 마우스 휠과 모바일 터치를 이용한 지도 확대, 축소 가능 여부를 반환한다.
+#### .zoomable(): 마우스 휠과 모바일 터치를 이용한 지도 확대, 축소 가능 여부를 반환한다.
 
 ```javascript
 map.zoomable();
@@ -291,7 +291,7 @@ map.zoomable();
   반환값
   * Boolean
 
-####.zoomable(Boolean): 마우스 휠과 모바일 터치를 이용한 지도 확대, 축소 가능 여부를 설정한다.
+#### .zoomable(Boolean): 마우스 휠과 모바일 터치를 이용한 지도 확대, 축소 가능 여부를 설정한다.
 
 ```javascript
 map.zoomable(false);
@@ -304,7 +304,7 @@ map.zoomable(false);
 
 ### 10. relayout
 
-####.relayout(): 지도를 표시하는 HTML elemente의 크기를 변경한 후에는 반드시 이 함수를 호출해야 한다.
+#### .relayout(): 지도를 표시하는 HTML elemente의 크기를 변경한 후에는 반드시 이 함수를 호출해야 한다.
 
 ```javascript
 map.relayout();
@@ -313,7 +313,7 @@ map.relayout();
 
 ### 11. addOverlayMapTypeId
 
-####.addOverlayMapTypeId(타일 종류): 지도에 로드뷰, 교통정보 등의 오버레이 타입의 타일 이미지를 올린다.
+#### .addOverlayMapTypeId(타일 종류): 지도에 로드뷰, 교통정보 등의 오버레이 타입의 타일 이미지를 올린다.
 
 ```javascript
 map.addOverlayMapTypeId("TRAFFIC");
@@ -329,7 +329,7 @@ map.addOverlayMapTypeId("TERRAIN");
 
 ### 12. removeOverlayMapTypeId
 
-####.removeOverlayMapTypeId(타일 종류): 지도에 로드뷰, 교통정보 등의 오버레이 타입의 타일 이미지를 삭제한다.
+#### .removeOverlayMapTypeId(타일 종류): 지도에 로드뷰, 교통정보 등의 오버레이 타입의 타일 이미지를 삭제한다.
 
 ```Javascript
 map.removeOverlayMapTypeId("TRAFFIC");
@@ -345,7 +345,7 @@ map.removeOverlayMapTypeId("TERRAIN");
 
 ### 13. keyboardShortcuts
 
-####.keyboardShortcuts(): 키보드의 방향키와 +,-키로 지도 이동,확대,축소 가능여부를 반환한다.
+#### .keyboardShortcuts(): 키보드의 방향키와 +,-키로 지도 이동,확대,축소 가능여부를 반환한다.
 
 ```javascript
 map.keyboardShortcuts();
@@ -355,7 +355,7 @@ map.keyboardShortcuts();
   반환값
   * Boolean
 
-####.keyboardShortcuts(Boolean): 키보드의 방향키와 +,-키로 지도 이동,확대,축소 가능여부를 설정한다.
+#### .keyboardShortcuts(Boolean): 키보드의 방향키와 +,-키로 지도 이동,확대,축소 가능여부를 설정한다.
   
 ```javascript
 map.keyboardShortcuts(false);
@@ -368,7 +368,7 @@ map.keyboardShortcuts(false);
 
 ### 14. on
   
-####.on(이벤트 이름,콜백함수): 지도에 이벤트를 등록한다
+#### .on(이벤트 이름,콜백함수): 지도에 이벤트를 등록한다
   
 ```javascript
 map.on('center_changed',function(){
@@ -410,7 +410,7 @@ map.on("click",function(mouseEvent){
   
 ### 14. off
 
-####.off(이벤트 이름, 제거할 함수): 지도의 이벤트를 제거한다
+#### .off(이벤트 이름, 제거할 함수): 지도의 이벤트를 제거한다
   
 ```javascript
 var event= function(){
@@ -430,7 +430,7 @@ map.off('center_changed', event);
 
 ### 15. trigger
   
-####.trigger(이벤트 이름,데이터): 지도에 이벤트를 발생시킨다
+#### .trigger(이벤트 이름,데이터): 지도에 이벤트를 발생시킨다
   
 ```javascript
 map.on("own_event",function(data){
@@ -447,7 +447,7 @@ map.trigger("own_event",'사용자 이벤트');
 
 ### 16. addRoadViewOverlay
 
-####.addRoadViewOverlay(): 지도에 로드뷰 선을 그린다
+#### .addRoadViewOverlay(): 지도에 로드뷰 선을 그린다
   
 ```javascript
 map.addRoadViewOverlay();
@@ -456,7 +456,7 @@ map.addRoadViewOverlay();
 
 ### 17. removeRoadViewOverlay
 
-####.removeRoadViewOverlay(): 지도에 로드뷰 선을 제거한다
+#### .removeRoadViewOverlay(): 지도에 로드뷰 선을 제거한다
   
 ```javascript
 map.removeRoadViewOverlay();
