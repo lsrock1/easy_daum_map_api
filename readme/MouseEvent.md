@@ -49,5 +49,4 @@ map.on("click",function(mouseEvent){
   반환값
   * Array 
     * (Number): 좌표의 X
-    * (Number): 좌표의 Y X
     * (Number): 좌표의 Y
